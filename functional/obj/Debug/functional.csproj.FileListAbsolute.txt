@@ -1,0 +1,7 @@
+C:\Users\admin\source\repos\functional\functional\obj\Debug\functional.csprojAssemblyReference.cache
+C:\Users\admin\source\repos\functional\functional\obj\Debug\functional.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\functional\functional\bin\Debug\functional.exe.config
+C:\Users\admin\source\repos\functional\functional\bin\Debug\functional.exe
+C:\Users\admin\source\repos\functional\functional\bin\Debug\functional.pdb
+C:\Users\admin\source\repos\functional\functional\obj\Debug\functional.exe
+C:\Users\admin\source\repos\functional\functional\obj\Debug\functional.pdb
