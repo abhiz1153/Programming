@@ -1,0 +1,28 @@
+{
+  "RiceList": [
+    {
+      "Name": "BrownRice",
+      "PricePerKg": 150.0,
+      "Weight": 20.0
+    }
+  ],
+  "WheatList": [
+    {
+      "Name": "White",
+      "Weight": 500.0,
+      "PricePerKg": 30.0
+    }
+  ],
+  "PulsesList": [
+    {
+      "Name": "Moong",
+      "Weight": 70.0,
+      "PricePerKg": 42.0
+    },
+    {
+      "Name": "Redgram",
+      "Weight": 50.0,
+      "PricePerKg": 42.0
+    }
+  ]
+}

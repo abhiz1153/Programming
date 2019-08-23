@@ -1,0 +1,22 @@
+﻿[
+  {
+    "stockname": "Maruti",
+    "sharenumber": 20,
+    "stockprice": 15000
+  },
+  {
+    "stockname": "Toyota",
+    "sharenumber": 10,
+    "stockprice": 35000
+  },
+  {
+    "stockname": "Tata",
+    "sharenumber": 15,
+    "stockprice": 33000
+  },
+  {
+    "stockname": "Titan",
+    "sharenumber": 15,
+    "stockprice": 33000
+  }
+]
