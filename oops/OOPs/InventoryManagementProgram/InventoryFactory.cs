@@ -34,7 +34,7 @@ namespace OOPs.InventoryManagementProgram
 
                 return jsonObjectArray;
             }
-            else
+            else 
             {
                 Console.WriteLine("Specified file path does not exist");
                 return new InventoryTypes();

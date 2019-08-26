@@ -31,6 +31,11 @@ namespace OOPs
                     Console.WriteLine("2. Regular Expression Demonstration ");
                     Console.WriteLine("3. Stock Report");
                     Console.WriteLine("4. Inventory Management Program ");
+                    Console.WriteLine("5. Commercial Data Processing");
+                    Console.WriteLine("6. Deck Of Card ");
+                    Console.WriteLine("7. Deck of Card Using Queue");
+                    Console.WriteLine("8. Address Book");
+                    Console.WriteLine("");
                     Console.WriteLine("");
                     Console.WriteLine("");
                     Console.WriteLine("Enter which program you want to run");
@@ -55,6 +60,22 @@ namespace OOPs
                         case 4:
                             InventoryManagementProgram.Options options = new InventoryManagementProgram.Options();
                             options.InventoryManagementMethods();
+                            break;
+                        case 5:
+                            CommercialDataProcessing.UserInputOptions userInputOptions = new CommercialDataProcessing.UserInputOptions();
+                            userInputOptions.GetInputs();
+                            break;
+                        case 6:
+                            DeckOfCards.DeckOfCards cards = new DeckOfCards.DeckOfCards();
+                            cards.InitializeCard();
+                            break;
+                        case 7:
+                            DeckOfCards.DeckOfCardsUsingQueue queue = new DeckOfCards.DeckOfCardsUsingQueue();
+                            queue.InitializeDeckOfCardsUsingQueue();
+                            break;
+                        case 8:
+                            AddressBookFolder.Choice address = new AddressBookFolder.Choice();
+                            address.Options();
                             break;
                     }
                     Console.WriteLine("Do you want to Continue then Press Y");

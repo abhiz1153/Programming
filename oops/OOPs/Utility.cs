@@ -4,7 +4,7 @@
 // </copyright>
 // <creator name="Abhishek Sharma"/>
 // --------------------------------------------------------------------------------------------------------------------
-namespace OOPs.InventoryManagementProgram
+namespace OOPs
 {
     using System;
     using System.Collections.Generic;

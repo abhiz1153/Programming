@@ -1,0 +1,34 @@
+{
+  "AccountList": [
+    {
+      "AccountName": "Samsung",
+      "ShareNumber": 65,
+      "StockPrice": 535000.0
+    },
+    {
+      "AccountName": "Nokia",
+      "ShareNumber": 30,
+      "StockPrice": 100000.0
+    },
+    {
+      "AccountName": "Asus",
+      "ShareNumber": 20,
+      "StockPrice": 50000.0
+    },
+    {
+      "AccountName": "Moto",
+      "ShareNumber": 40,
+      "StockPrice": 70000.0
+    },
+    {
+      "AccountName": "MI",
+      "ShareNumber": 50,
+      "StockPrice": 100000.0
+    },
+    {
+      "AccountName": "LG",
+      "ShareNumber": 10,
+      "StockPrice": 30000.0
+    }
+  ]
+}
