@@ -1,0 +1,139 @@
+﻿<html>
+<head>
+    <meta charset="utf-8" />
+    <title>UpdateEmployee</title>
+</head>
+<body>
+
+    <h2 align="center"><b>UPDATE EMPLOYEE DETAILS</b> </h2>
+
+    <form method="PUT" id="update" action="UpdateEmployees">
+        <table border="0" align="center">
+            <tbody>
+
+
+                <tr>
+                    <td><label for="id"><b>ID</b></label></td>
+                    <td><input type="number" id="ID" placeholder="ID" name="ID" required /></td>
+
+                </tr>
+
+                <tr><td><br /></tr>
+                <tr>
+                    <td><label for="name"><b>NAME</b></label></td>
+                    <td><input type="text" id="name" name="name" placeholder="Name" /></td>
+
+                </tr>
+                <tr><td><br /></td></tr>
+                <tr>
+                    <td><label for="designation"><b>DESIGNATION</b></label></td>
+                    <td><input type="text" id="designation" name="designation" placeholder="Designation" /></td>
+
+                </tr>
+                <tr><td><br /></td></tr>
+                <tr>
+                    <td>
+                        <label><b>CITY</b></label>
+                    </td>
+                    <td>
+                        <select name="city" id="city" required="">
+                            <option value="" disabled="disabled"> -- Select -- </option>
+                            <option value="Hyderabad">HYDERABAD</option>
+                            <option value="Bangalore">BANGALORE</option>
+                            <option value="Mumbai">MUMBAI</option>
+                            <option value="Delhi">DELHI</option>
+                            <option value="Goa">GOA</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr><td><br /></td></tr>
+                <tr>
+                    <td><label><b>SALARY</b></label></td>
+                    <td><input type="text" name="salary" id="salary" placeholder=" Salary" required /></td>
+                </tr>
+                <tr><td><br /></td></tr>
+
+                <tr>
+                    <td> <pre class="tab"></pre></td>
+                    <td width="30px">
+                        <b><input type="button" value="BACK" id="BACK" onclick="window.location.href='https://localhost:44341/ListEmployee.html'"></b>
+
+
+                    <td width="30px">
+                        <b>
+                            <input type="button" name="UPDATE" id="btnSubmit" onclick="btnSubmit();" value="UPDATE" />
+                        </b>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </form>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSubmit").click(function () {
+                var formData = new FormData();
+                formData.append("ID", $("#ID").val());
+                formData.append("name", $("#name").val());
+                formData.append("designation", $("#designation").val());
+                formData.append("city", $("#city").val());
+                formData.append("salary", $("#salary").val());
+                $.ajax({
+                    url: "/update",
+                    type: 'PUT',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (response) {
+                        alert("Employee Updated Sucessfully");
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+                //$(document).ready(function () {
+
+
+                //    $('#btbSave').click(function () {
+
+                //        var data = $('#input').serialize();
+
+                //        $.ajax(
+                //            {
+                //                type: "POST",
+                //                url: "/api/home/AddEmployees",
+                //                data: {
+                //                    Content: data,
+                //                }
+                //               success: function (response) {
+                //                    alert("Employee Added Sucessfully");
+                //                }
+                //            })
+
+                //    }
+                //    });
+                //var postData = JSON.stringify({
+                //    "id": $("#id").val(),
+                //    "name": $("#name").val(),
+                //    "designation": $("#designation").val(),
+                //    "city": $("#city").val(),
+                //    "salary": $("#salary").val()
+                //});
+                //$.ajax({
+                //    type: "POST",
+                //    url: "/api/home/AddEmployees",
+                //    data: postData,
+                //    contentType: "application/json; charset=utf-8",
+                //    success: function (response) {
+                //    alert("Employee Added Sucessfully");
+                //}
+                //});
+
+    </script>
+
+</body>
+</html>

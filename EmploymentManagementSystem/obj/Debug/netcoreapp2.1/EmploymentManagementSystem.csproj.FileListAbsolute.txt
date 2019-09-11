@@ -1,0 +1,16 @@
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\bin\Debug\netcoreapp2.1\EmploymentManagementSystem.deps.json
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\bin\Debug\netcoreapp2.1\EmploymentManagementSystem.runtimeconfig.json
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\bin\Debug\netcoreapp2.1\EmploymentManagementSystem.runtimeconfig.dev.json
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\bin\Debug\netcoreapp2.1\EmploymentManagementSystem.dll
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\bin\Debug\netcoreapp2.1\EmploymentManagementSystem.pdb
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\bin\Debug\netcoreapp2.1\EmploymentManagementSystem.Views.dll
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\obj\Debug\netcoreapp2.1\EmploymentManagementSystem.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\obj\Debug\netcoreapp2.1\EmploymentManagementSystem.RazorAssemblyInfo.cache
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\obj\Debug\netcoreapp2.1\EmploymentManagementSystem.RazorAssemblyInfo.cs
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\obj\Debug\netcoreapp2.1\EmploymentManagementSystem.AssemblyInfoInputs.cache
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\obj\Debug\netcoreapp2.1\EmploymentManagementSystem.AssemblyInfo.cs
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\obj\Debug\netcoreapp2.1\EmploymentManagementSystem.RazorTargetAssemblyInfo.cache
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\obj\Debug\netcoreapp2.1\EmploymentManagementSystem.dll
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\obj\Debug\netcoreapp2.1\EmploymentManagementSystem.pdb
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\obj\Debug\netcoreapp2.1\EmploymentManagementSystem.csproj.CopyComplete
+C:\Users\admin\source\repos\EmploymentManagementSystem\EmploymentManagementSystem\obj\Debug\netcoreapp2.1\EmploymentManagementSystem.csprojAssemblyReference.cache
