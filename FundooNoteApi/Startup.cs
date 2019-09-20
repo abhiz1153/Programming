@@ -36,6 +36,8 @@ namespace FundooNoteApi
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddTransient<IAccount, AccountManager>();
+            services.AddTransient<INotes, NotesManager>();
+            services.AddTransient<INotesRepository, NotesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

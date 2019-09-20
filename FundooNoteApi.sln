@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundooNoteApi", "FundooNoteApi\FundooNoteApi.csproj", "{63BDF3BE-B2B4-4C6A-9234-04C21BE4C484}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundooNoteApi", "FundooNoteApi\FundooNoteApi.csproj", "{63BDF3BE-B2B4-4C6A-9234-04C21BE4C484}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{86DEB2CA-3D01-47E7-9753-B10365735A6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{86DEB2CA-3D01-47E7-9753-B10365735A6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinessManager", "BussinessManager\BussinessManager.csproj", "{DB985853-05FB-4575-B01C-1AF2D5B7836F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BussinessManager", "BussinessManager\BussinessManager.csproj", "{DB985853-05FB-4575-B01C-1AF2D5B7836F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundooRepository", "FundooRepository\FundooRepository.csproj", "{D35D34D0-89A3-471F-A61C-856F1B1AC136}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundooRepository", "FundooRepository\FundooRepository.csproj", "{D35D34D0-89A3-471F-A61C-856F1B1AC136}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestP", "XUnitTestP\XUnitTestP.csproj", "{56C29B7D-C5CC-4787-87E0-29578374B9CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D35D34D0-89A3-471F-A61C-856F1B1AC136}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D35D34D0-89A3-471F-A61C-856F1B1AC136}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D35D34D0-89A3-471F-A61C-856F1B1AC136}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C29B7D-C5CC-4787-87E0-29578374B9CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C29B7D-C5CC-4787-87E0-29578374B9CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C29B7D-C5CC-4787-87E0-29578374B9CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C29B7D-C5CC-4787-87E0-29578374B9CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,24 +14,27 @@ namespace Common.Models
         private string city;
         private string password;
        
+        [Required(ErrorMessage = "Enter FirstName")]
         public string FirstName
         {
             set { this.firstName = value; }
             get { return this.firstName; }
         }
+        [Required(ErrorMessage = "Enter LastName")]
         public string LastName
         {
             set { this.lastName = value; }
             get { return this.lastName; }
         }
         [Key]
-        [Required(ErrorMessage = "Enter Email")]
+        [Required]
+        [EmailAddress]
         public string Email
         {
             set { this.email = value; }
             get { return this.email; }
         }
-       
+        [Required(ErrorMessage = "Enter City")]
         public string City
         {
             set { this.city = value; }

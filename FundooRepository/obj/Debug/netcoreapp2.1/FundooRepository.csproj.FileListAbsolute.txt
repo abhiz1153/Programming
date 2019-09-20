@@ -10,3 +10,9 @@ C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\bin\Debug\netcoreapp2
 C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\obj\Debug\netcoreapp2.1\FundooRepository.csproj.CopyComplete
 C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\obj\Debug\netcoreapp2.1\FundooRepository.dll
 C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\obj\Debug\netcoreapp2.1\FundooRepository.pdb
+C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\bin\Debug\netcoreapp2.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\bin\Debug\netcoreapp2.1\Microsoft.Extensions.Identity.Stores.xml
+C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.xml
+C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.xml

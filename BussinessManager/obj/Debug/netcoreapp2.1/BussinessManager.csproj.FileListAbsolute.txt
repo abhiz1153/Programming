@@ -12,3 +12,5 @@ C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\bin\Debug\netcoreapp2
 C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\obj\Debug\netcoreapp2.1\BussinessManager.csproj.CopyComplete
 C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\obj\Debug\netcoreapp2.1\BussinessManager.dll
 C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\obj\Debug\netcoreapp2.1\BussinessManager.pdb
+C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\bin\Debug\netcoreapp2.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\bin\Debug\netcoreapp2.1\Microsoft.Extensions.Identity.Stores.xml
