@@ -21,7 +21,9 @@ namespace FundooNoteApi.Controllers
     ///  public class AccountController
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
+
     [Route("api/[controller]")]
+    [Route("api/")]
     [ApiController]
     public class AccountController : ControllerBase
     {
@@ -33,6 +35,7 @@ namespace FundooNoteApi.Controllers
         /// The connection
         /// </summary>
         //readonly Connection connection = new Connection();
+       // readonly Connection connection = new Connection();
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
         /// </summary>
@@ -42,6 +45,7 @@ namespace FundooNoteApi.Controllers
             this.account = account;
         }
         /// <summary>  
+        /// <summary>
         /// Registrations the specified user model.
         /// </summary>
         /// <param name="userModel">The user model.</param>
@@ -73,6 +77,20 @@ namespace FundooNoteApi.Controllers
             try
             {
                 var result = await this.account.LoginAsync(loginModel);
+                return this.Ok(new { result });
+            }
+            catch (Exception e)
+             {
+                return this.BadRequest(e.Message);
+            }
+        }
+        [HttpPost]
+        [Route("facebooklogin")]
+        public async Task<IActionResult> FacebookLogin(LoginModel loginModel)
+        {
+            try
+            {
+                var result = await this.account.FacebookLoginAsync(loginModel);
                 return this.Ok(new { result });
             }
             catch (Exception e)
@@ -119,7 +137,5 @@ namespace FundooNoteApi.Controllers
             }
 
         }
-
-      
     }
 }

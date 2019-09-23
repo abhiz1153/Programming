@@ -1030,7 +1030,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "2.1.1",
           "Microsoft.NETCore.App": "2.1.0"
         },
         "compile": {
@@ -3856,6 +3855,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "http://packagesource": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

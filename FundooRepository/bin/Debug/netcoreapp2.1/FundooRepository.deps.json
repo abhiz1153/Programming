@@ -12,6 +12,7 @@
           "Microsoft.EntityFrameworkCore": "2.1.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.1",
           "StackExchange.Redis": "2.0.601",
+          "Microsoft.AspNetCore.Mvc.Core": "2.1.1.0",
           "Microsoft.Extensions.Identity.Stores": "2.1.1.0",
           "Microsoft.IdentityModel.Tokens": "5.2.0.0",
           "System.IdentityModel.Tokens.Jwt": "5.2.0.0"
@@ -610,11 +611,16 @@
         }
       },
       "Common/1.0.0": {
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "2.1.1"
-        },
         "runtime": {
           "Common.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.Core/2.1.1.0": {
+        "runtime": {
+          "Microsoft.AspNetCore.Mvc.Core.dll": {
+            "assemblyVersion": "2.1.1.0",
+            "fileVersion": "2.1.1.18157"
+          }
         }
       },
       "Microsoft.Extensions.Identity.Stores/2.1.1.0": {
@@ -1085,6 +1091,11 @@
     },
     "Common/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.AspNetCore.Mvc.Core/2.1.1.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },

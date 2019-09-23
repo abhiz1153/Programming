@@ -102,13 +102,6 @@ namespace Common.Models.NotesModels
         /// The color.
         /// </value>
         public string Color { get; set; }
-        /// <summary>
-        /// Gets or sets the user model.
-        /// </summary>
-        /// <value>
-        /// The user model.
-        /// </value>
-        /// Calling Primary Key 
-        public UserModel UserModel { get; set; }
+       
     }
 }

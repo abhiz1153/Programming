@@ -69,10 +69,48 @@ namespace FundooNoteApi.Controllers
             return this.notes.GetAllListAsync();
         }
         [HttpGet]
-        [Route("Note")]
+        [Route("note")]
         public  List<NotesModel> List(int id)
         {
             return this.notes.GetNotesAsync(id);
+        }
+        [HttpGet]
+        [Route("trash")]
+        public async Task<IActionResult> IsTrash(int id)
+        {
+            try
+            {
+                var result = await this.notes.IsTrashAsync(id);
+                return this.Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
+        }
+        public async Task<IActionResult> IsArchive(int id)
+        {
+            try
+            {
+                var result = await this.notes.IsArchiveAsync(id);
+                return this.Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
+        }
+        public async Task<IActionResult> IsPin(int id)
+        {
+            try
+            {
+                var result = await this.notes.IsPinAsync(id);
+                return this.Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
         }
     }
 }

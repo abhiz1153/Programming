@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
+using System;
+using System.Text;
 using BussinessManager.Interface;
 using BussinessManager.Manager;
 using FundooRepository.DBContext;
 using FundooRepository.Interface;
 using FundooRepository.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace FundooNoteApi
 {
@@ -38,8 +39,49 @@ namespace FundooNoteApi
             services.AddTransient<IAccount, AccountManager>();
             services.AddTransient<INotes, NotesManager>();
             services.AddTransient<INotesRepository, NotesRepository>();
-        }
+            services.AddTransient<ILabel, LabelManager>();
+            services.AddTransient<ILabelRepository, LabelRepository>();
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "FUNDOO NOTES API", Version = "v1" });
+            });
+            
+             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+          options.TokenValidationParameters = new TokenValidationParameters
+          {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = Configuration["Jwt:Issuer"],
+            ValidAudience = Configuration["Jwt:Issuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+          };
+        });
+            services.AddAuthentication(options =>
+            {
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+                .AddFacebook(facebookOptions =>
+                {
+                    facebookOptions.AppId = "363406137898633";
+                    facebookOptions.AppSecret = "c9c61b14caf13579566d5a73062b34be";
+                })
+                .AddCookie();
 
+            //Add distributed cache service backed by Redis cache
+            //services.AddDistributedSqlServerCache(o =>
+            //{
+            //    o.ConnectionString=("UserDBConncetion");
+            //});
+            
+        }
+       
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -51,8 +93,19 @@ namespace FundooNoteApi
             {
                 app.UseHsts();
             }
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
 
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "FUNDOO NOTE API");
+            });
+          
             app.UseHttpsRedirection();
+            app.UseAuthentication();
+
             app.UseMvc();
         }
     }

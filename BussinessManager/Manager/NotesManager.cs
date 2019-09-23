@@ -85,5 +85,41 @@ namespace BussinessManager.Manager
                 throw new Exception(e.Message);
             }
         }
+        public async Task<string> IsArchiveAsync(int id)
+        {
+            try
+            {
+                await this.notesRepository.IsArchive(id);
+                return "UPDATES SUCESSFULLY";
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public async Task<string> IsTrashAsync(int id)
+        {
+            try
+            {
+                await this.notesRepository.IsTrash(id);
+                return "UPDATES SUCESSFULLY";
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public async Task<string> IsPinAsync(int id)
+        {
+            try
+            {
+                await this.notesRepository.IsPin(id);
+                return "UPDATES SUCESSFULLY";
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

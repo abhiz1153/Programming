@@ -25,6 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://packagesource": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,10 +46,6 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[2.1.1, )"
-            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -85,6 +82,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://packagesource": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -101,10 +99,6 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[2.1.1, )"
-            },
             "Microsoft.NETCore.App": {
               "target": "Package",
               "version": "[2.1.0, )",
@@ -140,6 +134,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://packagesource": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

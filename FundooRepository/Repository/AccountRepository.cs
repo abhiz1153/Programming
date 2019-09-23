@@ -19,32 +19,37 @@ namespace FundooRepository.Repository
     using System.IdentityModel.Tokens.Jwt;
     using System.Net.Mail;
     using Microsoft.Extensions.Caching.Distributed;
+    using Microsoft.Extensions.Configuration;
+    using System.Text;
 
     /// <summary>
     /// Public Class for AccountRepository
     /// </summary>
     public class AccountRepository : IAccountRepository
     {
+        private readonly IConfiguration iconfiguration;
         /// <summary>
         /// private User Context
         /// </summary>
         private readonly UserContext userContext;
 
         private readonly IDistributedCache distributedCache;
-        
-        public AccountRepository(UserContext userContext , IDistributedCache distributedCache)
+       // private SecurityKey signinKey;
+
+        public AccountRepository(UserContext userContext, IDistributedCache distributedCache, IConfiguration configuration)
         {
             this.userContext = userContext;
             this.distributedCache = distributedCache;
+            this.iconfiguration = configuration;
         }
-       /// <summary>
-       /// public Task CreateAsync
-       /// </summary>
-       /// <param name="userModels"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// public Task CreateAsync
+        /// </summary>
+        /// <param name="userModels"></param>
+        /// <returns></returns>
         public Task CreateAsync(UserModel userModels)
         {
-            
+
             UserModel userModel = new UserModel()
 
             {
@@ -71,13 +76,25 @@ namespace FundooRepository.Repository
                 if (user)
                 {
                     try
-                    {
-                        Guid guid = Guid.NewGuid();
-                        string token = Convert.ToString(guid);
+                    { 
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iconfiguration["Jwt:Key"]));
+                    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+                    var token = new JwtSecurityToken(iconfiguration["Jwt:Issuer"],
+                      iconfiguration["Jwt:Issuer"],
+                      expires: DateTime.Now.AddMinutes(30),
+                      signingCredentials: creds);              
+                        
                         var cachekey = loginModel.Email;
                         this.distributedCache.GetString(cachekey);
-                        this.distributedCache.SetString(cachekey, token);
-                        return cachekey + " Token Number = " + token;
+                        this.distributedCache.SetString(cachekey, token.ToString());
+                        var data = (new
+                          {
+                                 token = new JwtSecurityTokenHandler().WriteToken(token),
+                                 experation = token.ValidTo
+                          });
+
+                            return data.ToString();
                     }
                     catch (Exception e)
                     {
@@ -88,7 +105,45 @@ namespace FundooRepository.Repository
             return "INVALID USER";
 
         }
-         /// <summary>
+        public async Task<string> FacebookLoginAsync(LoginModel loginModel)
+        {
+            var result = await this.FindByEmailAsync(loginModel.Email);
+            if (result != null)
+            {
+                bool user = userContext.Register.Any(p => p.Password == loginModel.Password && p.Email == loginModel.Email);
+                if (user)
+                {
+                    try
+                    {
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iconfiguration["Jwt:Key"]));
+                        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+                        var token = new JwtSecurityToken(iconfiguration["Jwt:Issuer"],
+                          iconfiguration["Jwt:Issuer"],
+                          expires: DateTime.Now.AddMinutes(30),
+                          signingCredentials: creds);
+
+                        var cachekey = loginModel.Email;
+                        this.distributedCache.GetString(cachekey);
+                        this.distributedCache.SetString(cachekey, token.ToString());
+                        var data = (new
+                        {
+                            token = new JwtSecurityTokenHandler().WriteToken(token),
+                            experation = token.ValidTo
+                        });
+
+                        return data.ToString();
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(e.Message);
+                    }
+                }
+            }
+            return "INVALID USER";
+
+        }
+        /// <summary>
         /// public Task<IdentityUser> for FindByEmailAsync
         /// </summary>
         /// <param name="email"></param>
@@ -138,8 +193,7 @@ namespace FundooRepository.Repository
         public async Task ForgetPasswordLinkAsync(ForgetPasswordModel forgetPasswordModel)
         {
             await this.FindByEmailAsync(forgetPasswordModel.Email);
-            
-            var fromAddress = new MailAddress("abhiz1153@gmail.com");            
+            var fromAddress = new MailAddress("abhiz1153@gmail.com");
             var fromPassword = "Abhi98shek@";
             var toAddress = new MailAddress(forgetPasswordModel.Email);
             string subject = "Reset Password";
@@ -158,9 +212,10 @@ namespace FundooRepository.Repository
             {
                 Subject = subject,
                 Body = body
+
             })
 
-                smtp.Send(message);            
+                smtp.Send(message);
         }
     }
 }

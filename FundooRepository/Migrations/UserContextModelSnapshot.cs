@@ -19,6 +19,23 @@ namespace FundooRepository.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Common.Models.LabelModels.LabelModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Label");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email");
+
+                    b.ToTable("Labels");
+                });
+
             modelBuilder.Entity("Common.Models.NotesModels.NotesModel", b =>
                 {
                     b.Property<int>("Id")
@@ -31,8 +48,7 @@ namespace FundooRepository.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("Email");
 
                     b.Property<string>("Images");
 
@@ -78,12 +94,18 @@ namespace FundooRepository.Migrations
                     b.ToTable("Register");
                 });
 
+            modelBuilder.Entity("Common.Models.LabelModels.LabelModel", b =>
+                {
+                    b.HasOne("Common.Models.UserModel", "UserModel")
+                        .WithMany()
+                        .HasForeignKey("Email");
+                });
+
             modelBuilder.Entity("Common.Models.NotesModels.NotesModel", b =>
                 {
                     b.HasOne("Common.Models.UserModel", "UserModel")
                         .WithMany()
-                        .HasForeignKey("Email")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("Email");
                 });
 #pragma warning restore 612, 618
         }

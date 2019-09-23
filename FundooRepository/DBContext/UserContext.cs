@@ -8,6 +8,7 @@
 namespace FundooRepository.DBContext
 {
     using Common.Models;
+    using Common.Models.LabelModels;
     using Common.Models.NotesModels;
     using Microsoft.EntityFrameworkCore;
     using System;
@@ -46,20 +47,7 @@ namespace FundooRepository.DBContext
         /// The notes.
         /// </value>
         public DbSet<NotesModel> Notes { get; set; }
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            var addedEntities = ChangeTracker.Entries().Where(e => e.State == EntityState.Added).ToList();
-            addedEntities.ForEach(E =>
-            {
-                E.Property("CreatedDate").CurrentValue = DateTime.Now;
-            });
-            var editedEntities = ChangeTracker.Entries().Where(E => E.State == EntityState.Modified).ToList();
-            editedEntities.ForEach(e =>
-            {
-                e.Property("ModifiedDate").CurrentValue = DateTime.Now;
-            });
-            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-        }
-
+        
+        public DbSet<LabelModel> Labels { get; set; }
     }
 }

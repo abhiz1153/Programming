@@ -37,5 +37,11 @@ namespace BussinessManager.Interface
         /// <param name="forgetPasswordModel">The forget password model.</param>
         /// <returns></returns>
         Task<string> ForgetPasswordLinkAsync(ForgetPasswordModel forgetPasswordModel);
+        /// <summary>
+        /// Facebooks the login asynchronous.
+        /// </summary>
+        /// <param name="loginModel">The login model.</param>
+        /// <returns></returns>
+        Task<string> FacebookLoginAsync(LoginModel loginModel);
     }
 }

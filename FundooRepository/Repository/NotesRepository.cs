@@ -85,5 +85,38 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+        public Task IsTrash(int id)
+        {
+            var result = this.userContext.Notes.Where(n => n.Id == id).SingleOrDefault();
+            if (result != null)
+            {
+                result.IsTrash = true;
+                return Task.Run(() => userContext.SaveChangesAsync());
+
+            }
+            return null;
+        }
+        public Task IsArchive(int id)
+        {
+            var result = this.userContext.Notes.Where(n => n.Id == id).SingleOrDefault();
+            if (result != null)
+            {
+                result.IsArchive = true;
+                return Task.Run(() => userContext.SaveChangesAsync());
+
+            }
+            return null;
+        }
+        public Task IsPin(int id)
+        {
+            var result = this.userContext.Notes.Where(n => n.Id == id).SingleOrDefault();
+            if (result != null)
+            {
+                result.IsPin = true;
+                return Task.Run(() => userContext.SaveChangesAsync());
+
+            }
+            return null;
+        }
     }
 }

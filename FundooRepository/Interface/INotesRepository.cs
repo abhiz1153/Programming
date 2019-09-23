@@ -13,5 +13,8 @@ namespace FundooRepository.Interface
         Task UpdateNotes(NotesModel notesModel);
         List<NotesModel> GetList();
         List<NotesModel> GetNotes(int id);
+        Task IsTrash(int id);
+        Task IsArchive(int id);
+        Task IsPin(int id);
     }
 }

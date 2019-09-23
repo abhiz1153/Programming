@@ -2448,17 +2448,13 @@
       },
       "BussinessManager/1.0.0": {
         "dependencies": {
-          "FundooRepository": "1.0.0",
-          "Microsoft.EntityFrameworkCore": "2.1.1"
+          "FundooRepository": "1.0.0"
         },
         "runtime": {
           "BussinessManager.dll": {}
         }
       },
       "Common/1.0.0": {
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "2.1.1"
-        },
         "runtime": {
           "Common.dll": {}
         }
@@ -2466,7 +2462,6 @@
       "FundooNoteApi/1.0.0": {
         "dependencies": {
           "BussinessManager": "1.0.0",
-          "Microsoft.EntityFrameworkCore": "2.1.1",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.9"
         },
         "runtime": {

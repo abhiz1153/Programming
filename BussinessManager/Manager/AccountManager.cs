@@ -60,9 +60,15 @@ namespace BussinessManager.Manager
         /// <returns></returns>
         public async Task<string> LoginAsync(LoginModel loginModel)
         {
-          var result=  await this.accountRepository.LoginAsync(loginModel);
+            var result = await this.accountRepository.LoginAsync(loginModel);
             return ("USER SUCCESSFULLY LOGIN. Catchkey = " + result);
-               
+
+        }
+        public async Task<string> FacebookLoginAsync(LoginModel loginModel)
+        {
+            var result = await this.accountRepository.LoginAsync(loginModel);
+            return ("USER SUCCESSFULLY LOGIN. Catchkey = " + result);
+
         }
         /// <summary>
         /// Resets the password asynchronous.

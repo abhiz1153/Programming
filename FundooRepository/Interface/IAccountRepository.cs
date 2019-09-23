@@ -1,9 +1,8 @@
-﻿// ----------------------------------------------------------------------------------------------------------------------------------------------------------
+
 // <copyright file=IAccountRepository.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="Abhishek Sharma"/>
-// ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 namespace FundooRepository.Interface
 {
@@ -28,6 +27,13 @@ namespace FundooRepository.Interface
         /// <returns></returns>
         Task<string> LoginAsync(LoginModel loginModel);
         /// <summary>
+        /// Checks the password asynchronous.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="password">The password.</param>
+        /// <returns></returns>
+      //  Task<bool> CheckPasswordAsync(string email,string password);
+        /// <summary>
         /// Finds the by email asynchronous.
         /// </summary>
         /// <param name="email">The email.</param>
@@ -51,5 +57,6 @@ namespace FundooRepository.Interface
         /// <param name="forgetPasswordModel">The forget password model.</param>
         /// <returns></returns>
         Task ForgetPasswordLinkAsync(ForgetPasswordModel forgetPasswordModel);
+        Task<string> FacebookLoginAsync(LoginModel loginModel);
     }
 }
