@@ -19,7 +19,7 @@ namespace FundooNoteApi.Controllers
         {
             this.label = label;
         }
-        [HttpPost]
+        [HttpPost, Authorize]
         [Route("add")]
         public IActionResult Add(LabelModel labelModel)
         {
@@ -34,7 +34,7 @@ namespace FundooNoteApi.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete, Authorize]
         [Route("delete")]
         public IActionResult Delete(int id)
         {
@@ -48,7 +48,7 @@ namespace FundooNoteApi.Controllers
                 return this.BadRequest(e.Message);
             }
         }
-        [HttpPut]
+        [HttpPut, Authorize]
         [Route("update")]
         public IActionResult Update(LabelModel labelModel)
         {
@@ -62,13 +62,13 @@ namespace FundooNoteApi.Controllers
                 return this.BadRequest(e.Message);
             }
         }
-        [HttpGet]
+        [HttpGet, Authorize]
         [Route("view")]
         public List<LabelModel> List()
         {
             return this.label.GetAllList();
         }
-        [HttpGet]
+        [HttpGet, Authorize]
         [Route("label")]
         public List<LabelModel> List(int id)
         {

@@ -1,6 +1,7 @@
 ﻿using BussinessManager.Interface;
 using Common.Models.NotesModels;
 using FundooRepository.Interface;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -90,7 +91,19 @@ namespace BussinessManager.Manager
             try
             {
                 await this.notesRepository.IsArchive(id);
-                return "UPDATES SUCESSFULLY";
+                return "ARCHIVE SUCCESS";
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public async Task<string> UnArchiveAsync(int id)
+        {
+            try
+            {
+                await this.notesRepository.UnArchive(id);
+                return "UNARCHIVE SUCCESS";
             }
             catch (Exception e)
             {
@@ -109,6 +122,18 @@ namespace BussinessManager.Manager
                 throw new Exception(e.Message);
             }
         }
+        public async Task<string> RestoreAsync(int id)
+        {
+            try
+            {
+                await this.notesRepository.Restore(id);
+                return "UPDATES SUCESSFULLY";
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
         public async Task<string> IsPinAsync(int id)
         {
             try
@@ -120,6 +145,30 @@ namespace BussinessManager.Manager
             {
                 throw new Exception(e.Message);
             }
+        }
+        public async Task<string> UnPinAsync(int id)
+        {
+            try
+            {
+                await this.notesRepository.UnPin(id);
+                return "UPDATES SUCESSFULLY";
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public string UploadImages(int id,IFormFile image)
+        {
+            try
+            {
+                this.notesRepository.UploadImages(id, image);
+                return "IMAGES UPLOADED SUCESSFULLY";
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }         
         }
     }
 }

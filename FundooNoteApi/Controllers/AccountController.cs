@@ -1,9 +1,9 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file=AccountController.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="Abhishek Sharma"/>
-// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 namespace FundooNoteApi.Controllers
 {
     using System;
@@ -84,6 +84,11 @@ namespace FundooNoteApi.Controllers
                 return this.BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// Facebooks the login.
+        /// </summary>
+        /// <param name="loginModel">The login model.</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("facebooklogin")]
         public async Task<IActionResult> FacebookLogin(LoginModel loginModel)
@@ -91,6 +96,25 @@ namespace FundooNoteApi.Controllers
             try
             {
                 var result = await this.account.FacebookLoginAsync(loginModel);
+                return this.Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
+        }
+        /// <summary>
+        /// Googles the login.
+        /// </summary>
+        /// <param name="loginModel">The login model.</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("google")]
+        public async Task<IActionResult> GoogleLogin(LoginModel loginModel)
+        {
+            try
+            {
+                var result = await this.account.GoogleLoginAsync(loginModel);
                 return this.Ok(new { result });
             }
             catch (Exception e)
@@ -135,7 +159,6 @@ namespace FundooNoteApi.Controllers
             {
                 return this.BadRequest(e.Message);
             }
-
         }
     }
 }

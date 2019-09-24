@@ -43,5 +43,11 @@ namespace BussinessManager.Interface
         /// <param name="loginModel">The login model.</param>
         /// <returns></returns>
         Task<string> FacebookLoginAsync(LoginModel loginModel);
+        /// <summary>
+        /// Googles the login asynchronous.
+        /// </summary>
+        /// <param name="loginModel">The login model.</param>
+        /// <returns></returns>
+        Task<string> GoogleLoginAsync(LoginModel loginModel);
     }
 }

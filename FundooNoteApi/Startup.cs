@@ -72,14 +72,23 @@ namespace FundooNoteApi
                     facebookOptions.AppId = "363406137898633";
                     facebookOptions.AppSecret = "c9c61b14caf13579566d5a73062b34be";
                 })
+                .AddGoogle(googleOptions =>
+                {
+                    googleOptions.ClientId = "934977231069-8mtj2ihulrvr0eikc58cj5bdeepg6vui.apps.googleusercontent.com";
+                    googleOptions.ClientSecret = "Xy3GTZL_cxsiyBf_bfbvvIwW";
+                })
                 .AddCookie();
+           
+            services.AddSession();
+
+            services.AddMvc();
 
             //Add distributed cache service backed by Redis cache
             //services.AddDistributedSqlServerCache(o =>
             //{
             //    o.ConnectionString=("UserDBConncetion");
             //});
-            
+
         }
        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

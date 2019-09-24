@@ -1,10 +1,9 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file=AccountRepository.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="Abhishek Sharma"/>
-// --------------------------------------------------------------------------------------------------------------------
-
+// --------------------------------------------------------------------------------------------------------------------------------------------------
 namespace FundooRepository.Repository
 {
     using Common.Models;
@@ -21,22 +20,25 @@ namespace FundooRepository.Repository
     using Microsoft.Extensions.Caching.Distributed;
     using Microsoft.Extensions.Configuration;
     using System.Text;
-
     /// <summary>
     /// Public Class for AccountRepository
     /// </summary>
     public class AccountRepository : IAccountRepository
     {
+        /// <summary>
+        /// The iconfiguration
+        /// </summary>
         private readonly IConfiguration iconfiguration;
         /// <summary>
         /// private User Context
         /// </summary>
         private readonly UserContext userContext;
-
+        /// <summary>
+        /// The distributed cache
+        /// </summary>
         private readonly IDistributedCache distributedCache;
        // private SecurityKey signinKey;
-
-        public AccountRepository(UserContext userContext, IDistributedCache distributedCache, IConfiguration configuration)
+       public AccountRepository(UserContext userContext, IDistributedCache distributedCache, IConfiguration configuration)
         {
             this.userContext = userContext;
             this.distributedCache = distributedCache;
@@ -88,6 +90,8 @@ namespace FundooRepository.Repository
                         var cachekey = loginModel.Email;
                         this.distributedCache.GetString(cachekey);
                         this.distributedCache.SetString(cachekey, token.ToString());
+                        distributedCache.SetString("1", cachekey);
+                       
                         var data = (new
                           {
                                  token = new JwtSecurityTokenHandler().WriteToken(token),
@@ -103,8 +107,13 @@ namespace FundooRepository.Repository
                 }
             }
             return "INVALID USER";
-
         }
+        /// <summary>
+        /// Facebooks the login asynchronous.
+        /// </summary>
+        /// <param name="loginModel">The login model.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<string> FacebookLoginAsync(LoginModel loginModel)
         {
             var result = await this.FindByEmailAsync(loginModel.Email);
@@ -141,7 +150,49 @@ namespace FundooRepository.Repository
                 }
             }
             return "INVALID USER";
+        }
+        /// <summary>
+        /// Googles the login asynchronous.
+        /// </summary>
+        /// <param name="loginModel">The login model.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public async Task<string> GoogleLoginAsync(LoginModel loginModel)
+        {
+            var result = await this.FindByEmailAsync(loginModel.Email);
+            if (result != null)
+            {
+                bool user = userContext.Register.Any(p => p.Password == loginModel.Password && p.Email == loginModel.Email);
+                if (user)
+                {
+                    try
+                    {
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iconfiguration["Jwt:Key"]));
+                        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
+                        var token = new JwtSecurityToken(iconfiguration["Jwt:Issuer"],
+                          iconfiguration["Jwt:Issuer"],
+                          expires: DateTime.Now.AddMinutes(30),
+                          signingCredentials: creds);
+
+                        var cachekey = loginModel.Email;
+                        this.distributedCache.GetString(cachekey);
+                        this.distributedCache.SetString(cachekey, token.ToString());
+                        var data = (new
+                        {
+                            token = new JwtSecurityTokenHandler().WriteToken(token),
+                            experation = token.ValidTo
+                        });
+
+                        return data.ToString();
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(e.Message);
+                    }
+                }
+            }
+            return "INVALID USER";
         }
         /// <summary>
         /// public Task<IdentityUser> for FindByEmailAsync

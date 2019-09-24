@@ -18,3 +18,5 @@ C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\bin\Debug\netcoreapp2
 C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.xml
 C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Http.Features.xml

@@ -1,9 +1,9 @@
-
+// --------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file=IAccountRepository.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="Abhishek Sharma"/>
-
+// --------------------------------------------------------------------------------------------------------------------------------------------------
 namespace FundooRepository.Interface
 {
     using Common.Models;
@@ -58,5 +58,6 @@ namespace FundooRepository.Interface
         /// <returns></returns>
         Task ForgetPasswordLinkAsync(ForgetPasswordModel forgetPasswordModel);
         Task<string> FacebookLoginAsync(LoginModel loginModel);
+        Task<string> GoogleLoginAsync(LoginModel loginModel);
     }
 }
