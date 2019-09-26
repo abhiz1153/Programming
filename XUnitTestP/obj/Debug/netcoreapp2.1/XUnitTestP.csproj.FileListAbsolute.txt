@@ -23,3 +23,7 @@ C:\Users\admin\source\repos\FundooNoteApi\XUnitTestP\obj\Debug\netcoreapp2.1\XUn
 C:\Users\admin\source\repos\FundooNoteApi\XUnitTestP\bin\Debug\netcoreapp2.1\XUnitTestP.pdb
 C:\Users\admin\source\repos\FundooNoteApi\XUnitTestP\obj\Debug\netcoreapp2.1\XUnitTestP.dll
 C:\Users\admin\source\repos\FundooNoteApi\XUnitTestP\obj\Debug\netcoreapp2.1\XUnitTestP.pdb
+C:\Users\admin\source\repos\FundooNoteApi\XUnitTestP\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\admin\source\repos\FundooNoteApi\XUnitTestP\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\admin\source\repos\FundooNoteApi\XUnitTestP\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.xml
+C:\Users\admin\source\repos\FundooNoteApi\XUnitTestP\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.xml

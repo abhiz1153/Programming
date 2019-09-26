@@ -46,27 +46,22 @@ namespace FundooNoteApi
             {
                 c.SwaggerDoc("v1", new Info { Title = "FUNDOO NOTES API", Version = "v1" });
             });
-            
-             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>
         {
-          options.TokenValidationParameters = new TokenValidationParameters
-          {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = Configuration["Jwt:Issuer"],
-            ValidAudience = Configuration["Jwt:Issuer"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
-          };
-        });
-            services.AddAuthentication(options =>
+            options.TokenValidationParameters = new TokenValidationParameters()
             {
-                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            })
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = Configuration["Jwt:Issuer"],
+                ValidAudience = Configuration["Jwt:Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+            };
+        });
+            services.AddAuthentication()
                 .AddFacebook(facebookOptions =>
                 {
                     facebookOptions.AppId = "363406137898633";
@@ -76,21 +71,15 @@ namespace FundooNoteApi
                 {
                     googleOptions.ClientId = "934977231069-8mtj2ihulrvr0eikc58cj5bdeepg6vui.apps.googleusercontent.com";
                     googleOptions.ClientSecret = "Xy3GTZL_cxsiyBf_bfbvvIwW";
-                })
-                .AddCookie();
-           
-            services.AddSession();
-
-            services.AddMvc();
-
+                });
             //Add distributed cache service backed by Redis cache
-            //services.AddDistributedSqlServerCache(o =>
+            //services.AddDistributedRedisCache(o =>
             //{
-            //    o.ConnectionString=("UserDBConncetion");
-            //});
-
-        }
-       
+               
+            //    o.Configuration = "127.0.0.1:6379";
+            //    o.InstanceName = "redis";
+            //});        
+        }       
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -114,7 +103,7 @@ namespace FundooNoteApi
           
             app.UseHttpsRedirection();
             app.UseAuthentication();
-
+        
             app.UseMvc();
         }
     }

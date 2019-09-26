@@ -46,6 +46,14 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
+            "Microsoft.Extensions.Caching.Redis": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Microsoft.Extensions.Caching.Redis.Core": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -99,6 +107,14 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
+            "Microsoft.Extensions.Caching.Redis": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Microsoft.Extensions.Caching.Redis.Core": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
             "Microsoft.NETCore.App": {
               "target": "Package",
               "version": "[2.1.0, )",
@@ -161,6 +177,14 @@
               "version": "[2.1.1, )",
               "autoReferenced": true
             },
+            "Microsoft.Extensions.Caching.Redis": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Microsoft.Extensions.Caching.Redis.Core": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
             "Microsoft.NETCore.App": {
               "target": "Package",
               "version": "[2.1.0, )",
@@ -169,14 +193,6 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[2.1.9, )"
-            },
-            "ServiceStack.Redis": {
-              "target": "Package",
-              "version": "[5.6.0, )"
-            },
-            "StackExchange.Redis": {
-              "target": "Package",
-              "version": "[2.0.601, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -245,6 +261,14 @@
               "target": "Package",
               "version": "[2.1.1, )"
             },
+            "Microsoft.Extensions.Caching.Redis": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Microsoft.Extensions.Caching.Redis.Core": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -254,14 +278,6 @@
             "Ninject": {
               "target": "Package",
               "version": "[3.3.4, )"
-            },
-            "ServiceStack.Redis": {
-              "target": "Package",
-              "version": "[5.6.0, )"
-            },
-            "StackExchange.Redis": {
-              "target": "Package",
-              "version": "[2.0.601, )"
             }
           },
           "imports": [

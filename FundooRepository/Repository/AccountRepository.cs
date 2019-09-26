@@ -20,6 +20,8 @@ namespace FundooRepository.Repository
     using Microsoft.Extensions.Caching.Distributed;
     using Microsoft.Extensions.Configuration;
     using System.Text;
+    using StackExchange.Redis;
+
     /// <summary>
     /// Public Class for AccountRepository
     /// </summary>
@@ -82,16 +84,24 @@ namespace FundooRepository.Repository
                         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iconfiguration["Jwt:Key"]));
                     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                    var token = new JwtSecurityToken(iconfiguration["Jwt:Issuer"],
-                      iconfiguration["Jwt:Issuer"],
-                      expires: DateTime.Now.AddMinutes(30),
+                    var token = new JwtSecurityToken(
+                        issuer: iconfiguration["Jwt:Issuer"],
+                        audience: iconfiguration["Jwt:Audience"],
+                      expires: DateTime.UtcNow.AddMinutes(30),
                       signingCredentials: creds);              
                         
                         var cachekey = loginModel.Email;
-                        this.distributedCache.GetString(cachekey);
-                        this.distributedCache.SetString(cachekey, token.ToString());
-                        distributedCache.SetString("1", cachekey);
-                       
+                        ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+                        IDatabase database = connectionMulitplexer.GetDatabase();
+                        database.StringSet(cachekey, token.ToString());
+                        database.StringGet(cachekey);
+                  
+                        //this.distributedCache.SetString(cachekey, token.ToString());
+                        //this.distributedCache.GetString(cachekey);
+               
+
+
+
                         var data = (new
                           {
                                  token = new JwtSecurityTokenHandler().WriteToken(token),
@@ -128,13 +138,15 @@ namespace FundooRepository.Repository
                         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
                         var token = new JwtSecurityToken(iconfiguration["Jwt:Issuer"],
-                          iconfiguration["Jwt:Issuer"],
+                          iconfiguration["Jwt:Audience"],
                           expires: DateTime.Now.AddMinutes(30),
                           signingCredentials: creds);
 
                         var cachekey = loginModel.Email;
-                        this.distributedCache.GetString(cachekey);
-                        this.distributedCache.SetString(cachekey, token.ToString());
+                        ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+                        IDatabase database = connectionMulitplexer.GetDatabase();
+                        database.StringSet(cachekey, token.ToString());
+                        database.StringGet(cachekey);
                         var data = (new
                         {
                             token = new JwtSecurityTokenHandler().WriteToken(token),
@@ -171,17 +183,19 @@ namespace FundooRepository.Repository
                         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
                         var token = new JwtSecurityToken(iconfiguration["Jwt:Issuer"],
-                          iconfiguration["Jwt:Issuer"],
+                          iconfiguration["Jwt:Audience"],
                           expires: DateTime.Now.AddMinutes(30),
                           signingCredentials: creds);
 
                         var cachekey = loginModel.Email;
-                        this.distributedCache.GetString(cachekey);
-                        this.distributedCache.SetString(cachekey, token.ToString());
+                        ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+                        IDatabase database = connectionMulitplexer.GetDatabase();
+                        database.StringSet(cachekey, token.ToString());
+                        database.StringGet(cachekey);
                         var data = (new
                         {
                             token = new JwtSecurityTokenHandler().WriteToken(token),
-                            experation = token.ValidTo
+                            experation = token.ValidFrom 
                         });
 
                         return data.ToString();

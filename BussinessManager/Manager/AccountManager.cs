@@ -71,7 +71,7 @@ namespace BussinessManager.Manager
         /// <returns></returns>
         public async Task<string> FacebookLoginAsync(LoginModel loginModel)
         {
-            var result = await this.accountRepository.LoginAsync(loginModel);
+            var result = await this.accountRepository.FacebookLoginAsync(loginModel);
             return ("USER SUCCESSFULLY LOGIN. = " + result);
 
         }
