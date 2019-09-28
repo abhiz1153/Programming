@@ -6,7 +6,7 @@
 // --------------------------------------------------------------------------------------------------------------------------------------------------
 namespace BussinessManager.Interface
 {
-    using Common.Models.NotesModels;
+    using Common.Models.CollaboratorModel;
     using Microsoft.AspNetCore.Http;
     using System;
     using System.Collections.Generic;
@@ -117,5 +117,10 @@ namespace BussinessManager.Interface
         /// <param name="color">The color.</param>
         /// <returns></returns>
         Task<string> SetColor(int id, string color);
+        /// <summary>
+        /// Gets the archive list.
+        /// </summary>
+        /// <returns></returns>
+        List<NotesModel> GetArchiveList();
     }
 }

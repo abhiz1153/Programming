@@ -4,7 +4,7 @@
 // </copyright>
 // <creator name="Abhishek Sharma"/>
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------
-namespace Common.Models.NotesModels
+namespace Common.Models.CollaboratorModel
 {
     using System;
     using System.Collections.Generic;

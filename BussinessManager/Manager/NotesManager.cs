@@ -1,5 +1,5 @@
 ﻿using BussinessManager.Interface;
-using Common.Models.NotesModels;
+using Common.Models.CollaboratorModel;
 using FundooRepository.Interface;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -109,6 +109,23 @@ namespace BussinessManager.Manager
             {
                 throw new Exception(e.Message);
             }
+        }
+        public List<NotesModel> GetArchiveList()
+        {
+            try
+            {
+                var list = new List<NotesModel>();
+                var result = this.notesRepository.ArchiveList();
+                foreach (var item in result)
+                {
+                    list.Add(item);
+                }
+                return list;
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+;           }
         }
         public async Task<string> IsTrashAsync(int id)
         {

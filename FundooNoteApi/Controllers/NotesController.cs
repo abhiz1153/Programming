@@ -10,7 +10,7 @@ namespace FundooNoteApi.Controllers
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using BussinessManager.Interface;
-    using Common.Models.NotesModels;
+    using Common.Models.CollaboratorModel;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -235,6 +235,12 @@ namespace FundooNoteApi.Controllers
             {
                 return this.BadRequest(e.Message);
             }
+        }
+        [HttpGet]
+        [Route("archivelist")]
+        public List<NotesModel> ArchiveListAll()
+        {
+            return this.notes.GetArchiveList();
         }
         /// <summary>
         /// Determines whether the specified identifier is pin.

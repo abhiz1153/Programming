@@ -9,7 +9,7 @@ namespace FundooRepository.DBContext
 {
     using Common.Models;
     using Common.Models.LabelModels;
-    using Common.Models.NotesModels;
+    using Common.Models.CollaboratorModel;
     using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
@@ -17,6 +17,7 @@ namespace FundooRepository.DBContext
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.Models.CollaboratorsModels;
 
     /// <summary>
     /// Piblic class for UserContext
@@ -49,5 +50,6 @@ namespace FundooRepository.DBContext
         public DbSet<NotesModel> Notes { get; set; }
         
         public DbSet<LabelModel> Labels { get; set; }
+        public DbSet<CollaboratorsModel> Collaborators { get; set; }
     }
 }

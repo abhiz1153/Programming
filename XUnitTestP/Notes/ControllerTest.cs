@@ -6,7 +6,7 @@
 namespace XUnitTestP.Notes
 {
     using BussinessManager.Interface;
-    using Common.Models.NotesModels;
+    using Common.Models.CollaboratorModel;
     using FundooNoteApi.Controllers;
     using Moq;
     using System;

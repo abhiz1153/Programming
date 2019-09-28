@@ -8,11 +8,12 @@ namespace FundooRepository.Repository
 {
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
-    using Common.Models.NotesModels;
+    using Common.Models.CollaboratorModel;
     using FundooRepository.DBContext;
     using FundooRepository.Interface;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
+    using StackExchange.Redis;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -57,6 +58,7 @@ namespace FundooRepository.Repository
                 IsPin = false,
                 Color = null
             };
+         
             userContext.Notes.Add(notes);
             return Task.Run(() => userContext.SaveChanges());
         }
@@ -95,6 +97,7 @@ namespace FundooRepository.Repository
                 note.Description = notesModel.Description;
                 note.ModifiedDate = DateTime.Now;
                 userContext.Notes.Update(note);
+               
             }
             return Task.Run(() => userContext.SaveChanges());
         }
@@ -222,6 +225,15 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+        public List<NotesModel> ArchiveList()
+        {
+            var result = this.userContext.Notes.Where(n => n.IsArchive == true).SingleOrDefault();
+            if (result != null)
+            {
+                return this.userContext.Notes.ToList<NotesModel>();
+            }
+            return null;
+        }
         /// <summary>
         /// Determines whether the specified identifier is pin.
         /// </summary>
@@ -304,6 +316,6 @@ namespace FundooRepository.Repository
 
             }
             return null;
-        }
+        }       
     }
 }

@@ -6,7 +6,7 @@
 // --------------------------------------------------------------------------------------------------------------------------------------------------
 namespace FundooRepository.Interface
 {
-    using Common.Models.NotesModels;
+    using Common.Models.CollaboratorModel;
     using Microsoft.AspNetCore.Http;
     using System;
     using System.Collections.Generic;
@@ -83,6 +83,11 @@ namespace FundooRepository.Interface
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         Task UnArchive(int id);
+        /// <summary>
+        /// Archives the list.
+        /// </summary>
+        /// <returns></returns>
+        List<NotesModel> ArchiveList();
         /// <summary>
         /// Uploads the images.
         /// </summary>

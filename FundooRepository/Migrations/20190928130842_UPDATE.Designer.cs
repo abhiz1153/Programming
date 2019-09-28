@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FundooRepository.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20190919060535_notes")]
-    partial class notes
+    [Migration("20190928130842_UPDATE")]
+    partial class UPDATE
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace FundooRepository.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Common.Models.NotesModels.NotesModel", b =>
+            modelBuilder.Entity("Common.Models.CollaboratorModel.NotesModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,8 +33,7 @@ namespace FundooRepository.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("Email");
 
                     b.Property<string>("Images");
 
@@ -52,9 +51,39 @@ namespace FundooRepository.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email");
-
                     b.ToTable("Notes");
+                });
+
+            modelBuilder.Entity("Common.Models.CollaboratorsModels.CollaboratorsModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("NoteId");
+
+                    b.Property<string>("ReciverEmail");
+
+                    b.Property<string>("SenderEmail");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Collaborators");
+                });
+
+            modelBuilder.Entity("Common.Models.LabelModels.LabelModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Label");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Labels");
                 });
 
             modelBuilder.Entity("Common.Models.UserModel", b =>
@@ -78,14 +107,6 @@ namespace FundooRepository.Migrations
                     b.HasKey("Email");
 
                     b.ToTable("Register");
-                });
-
-            modelBuilder.Entity("Common.Models.NotesModels.NotesModel", b =>
-                {
-                    b.HasOne("Common.Models.UserModel", "UserModel")
-                        .WithMany()
-                        .HasForeignKey("Email")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

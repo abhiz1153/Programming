@@ -32,11 +32,6 @@ namespace FundooNoteApi.Controllers
         /// </summary>
         private readonly IAccount account;
         /// <summary>
-        /// The connection
-        /// </summary>
-        //readonly Connection connection = new Connection();
-       // readonly Connection connection = new Connection();
-        /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
         /// </summary>
         /// <param name="account">The account.</param>
