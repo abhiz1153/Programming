@@ -59,5 +59,6 @@ namespace FundooRepository.Interface
         Task ForgetPasswordLinkAsync(ForgetPasswordModel forgetPasswordModel);
         Task<string> FacebookLoginAsync(LoginModel loginModel);
         Task<string> GoogleLoginAsync(LoginModel loginModel);
+        string Logout(LoginModel loginModel);
     }
 }

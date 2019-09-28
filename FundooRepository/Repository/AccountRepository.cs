@@ -36,14 +36,13 @@ namespace FundooRepository.Repository
         /// </summary>
         private readonly UserContext userContext;
         /// <summary>
-        /// The distributed cache
+        /// AccountRepository
         /// </summary>
-        private readonly IDistributedCache distributedCache;
-       // private SecurityKey signinKey;
-       public AccountRepository(UserContext userContext, IDistributedCache distributedCache, IConfiguration configuration)
+        /// <param name="userContext"></param>
+        /// <param name="configuration"></param>
+        public AccountRepository(UserContext userContext, IConfiguration configuration)
         {
             this.userContext = userContext;
-            this.distributedCache = distributedCache;
             this.iconfiguration = configuration;
         }
         /// <summary>
@@ -65,6 +64,28 @@ namespace FundooRepository.Repository
             };
             userContext.Register.Add(userModel);
             return Task.Run(() => userContext.SaveChanges());
+        }
+
+        /// <summary>
+        ///   public string Logout
+        /// </summary>
+        /// <param name="loginModel"></param>
+        /// <returns></returns>
+        public string Logout(LoginModel loginModel)
+        {
+            try
+            {
+                var cachekey = loginModel.Email;
+                ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+                IDatabase database = connectionMulitplexer.GetDatabase();
+                
+                database.KeyDelete(cachekey);
+                return "LOGOUT SUCCESSFULLY";
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
         /// <summary>
         /// public async Task LoginAsync
@@ -93,22 +114,15 @@ namespace FundooRepository.Repository
                         var cachekey = loginModel.Email;
                         ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
                         IDatabase database = connectionMulitplexer.GetDatabase();
-                        database.StringSet(cachekey, token.ToString());
-                        database.StringGet(cachekey);
-                  
-                        //this.distributedCache.SetString(cachekey, token.ToString());
-                        //this.distributedCache.GetString(cachekey);
-               
-
-
-
+                       
                         var data = (new
                           {
                                  token = new JwtSecurityTokenHandler().WriteToken(token),
                                  experation = token.ValidTo
                           });
-
-                            return data.ToString();
+                        database.StringSet(cachekey, data.ToString());
+                        database.StringGet(cachekey);
+                        return data.ToString();
                     }
                     catch (Exception e)
                     {
@@ -145,8 +159,7 @@ namespace FundooRepository.Repository
                         var cachekey = loginModel.Email;
                         ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
                         IDatabase database = connectionMulitplexer.GetDatabase();
-                        database.StringSet(cachekey, token.ToString());
-                        database.StringGet(cachekey);
+                       
                         var data = (new
                         {
                             token = new JwtSecurityTokenHandler().WriteToken(token),

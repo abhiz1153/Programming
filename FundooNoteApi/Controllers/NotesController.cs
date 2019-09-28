@@ -39,7 +39,7 @@ namespace FundooNoteApi.Controllers
         /// </summary>
         /// <param name="notesModel">The notes model.</param>
         /// <returns></returns>
-        [HttpPost, Authorize]
+        [HttpPost]
         [Route("add")]
         public async Task<IActionResult> Add(NotesModel notesModel)
         {
@@ -59,7 +59,7 @@ namespace FundooNoteApi.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        [HttpDelete, Authorize]
+        [HttpDelete]
         [Route("delete")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -78,7 +78,7 @@ namespace FundooNoteApi.Controllers
         /// </summary>
         /// <param name="notesModel">The notes model.</param>
         /// <returns></returns>
-        [HttpPut, Authorize]
+        [HttpPut]
         [Route("update")]
         public async Task<IActionResult> Update(NotesModel notesModel)
         {
@@ -107,7 +107,7 @@ namespace FundooNoteApi.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        [HttpGet, Authorize]
+        [HttpGet]
         [Route("note")]
         public  List<NotesModel> List(int id)
         {
@@ -118,7 +118,7 @@ namespace FundooNoteApi.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        [HttpPut, Authorize]
+        [HttpPut]
         [Route("trash")]
         public async Task<IActionResult> IsTrash(int id)
         {
@@ -133,11 +133,22 @@ namespace FundooNoteApi.Controllers
             }
         }
         /// <summary>
+        /// Alls the trash list.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet,Authorize]
+        [Route("trashlist")]
+        public List<NotesModel> AllTrashList()
+        {
+            return this.notes.TrashList();
+        }
+
+        /// <summary>
         /// Restores the specified identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        [HttpPut, Authorize]
+        [HttpPut]
         [Route("restore")]
         public async Task<IActionResult> Restore(int id)
         {
@@ -152,11 +163,47 @@ namespace FundooNoteApi.Controllers
             }
         }
         /// <summary>
+        /// Restores all.
+        /// </summary>
+        /// <returns></returns>
+        [HttpPut, Authorize]
+        [Route("restoreall")]
+        public async Task<IActionResult> RestoreAll()
+        {
+            try
+            {
+                var result = await this.notes.RestoreAllNote();
+                return this.Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
+        }
+        /// <summary>
+        /// Removes all.
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete,Authorize]
+        [Route("removetrash")]
+        public async Task<IActionResult> RemoveAll()
+        {
+            try
+            {
+                var result = await this.notes.RemoveAllTrash();
+                return this.Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
+        }
+        /// <summary>
         /// Determines whether the specified identifier is archive.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        [HttpPut, Authorize]
+        [HttpPut,]
         [Route("isarchive")]
         public async Task<IActionResult> IsArchive(int id)
         {
@@ -175,7 +222,7 @@ namespace FundooNoteApi.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        [HttpPut, Authorize]
+        [HttpPut]
         [Route("unarchive")]
         public async Task<IActionResult> UnArchive(int id)
         {
@@ -194,7 +241,7 @@ namespace FundooNoteApi.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        [HttpPut, Authorize]
+        [HttpPut]
         [Route("ispin")]
         public async Task<IActionResult> IsPin(int id)
         {
@@ -213,7 +260,7 @@ namespace FundooNoteApi.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        [HttpPut, Authorize]
+        [HttpPut]
         [Route("unpin")]
         public async Task<IActionResult> UnPin(int id)
         {
@@ -233,13 +280,41 @@ namespace FundooNoteApi.Controllers
         /// <param name="id">The identifier.</param>
         /// <param name="image">The image.</param>
         /// <returns></returns>
-        [HttpPut, Authorize]
+        [HttpPut]
         [Route("upload")]
         public IActionResult Upload(int id, IFormFile image)
         {
             try
             {
                 var result = this.notes.UploadImages(id, image);
+                return this.Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
+        }
+        [HttpPut]
+        [Route("reminder")]
+        public IActionResult Remainder(int id,string reminder)
+        {
+            try
+            {
+                var result = this.notes.RemainderValue(id, reminder);
+                return this.Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
+        }
+        [HttpPut]
+        [Route("color")]
+        public async Task<IActionResult> Color(int id,string color)
+        {
+            try
+            {
+                var result = await this.notes.SetColor(id,color);
                 return this.Ok(new { result });
             }
             catch (Exception e)

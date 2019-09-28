@@ -122,12 +122,53 @@ namespace BussinessManager.Manager
                 throw new Exception(e.Message);
             }
         }
+        public  List<NotesModel> TrashList()
+        {
+            try
+            {
+                var list = new List<NotesModel>();
+                var result = this.notesRepository.GetTrashList();
+                foreach (var item in result)
+                {
+                    list.Add(item);
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
         public async Task<string> RestoreAsync(int id)
         {
             try
             {
                 await this.notesRepository.Restore(id);
                 return "UPDATES SUCESSFULLY";
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public async Task<string> RestoreAllNote()
+        {
+            try
+            {
+                await this.notesRepository.RestoreAll();
+                return "Restore Successfully";
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public async Task<string> RemoveAllTrash()
+        {
+            try
+            {
+                 await this.notesRepository.RemoveTrash();
+                return "TRASH REMOVED";
             }
             catch (Exception e)
             {
@@ -169,6 +210,30 @@ namespace BussinessManager.Manager
             {
                 throw new Exception(e.Message);
             }         
+        }
+        public string RemainderValue(int id,string reminder)
+        {
+            try
+            {
+                this.notesRepository.Remainder(id, reminder);
+                return "Reminder Updated Succefully"; 
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public async Task<string> SetColor(int id, string color)
+        {
+            try
+            {
+                await this.notesRepository.Color(id,color);
+                return "UPDATES SUCESSFULLY";
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

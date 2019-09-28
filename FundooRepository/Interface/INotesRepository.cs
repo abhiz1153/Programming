@@ -52,6 +52,7 @@ namespace FundooRepository.Interface
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         Task IsTrash(int id);
+        List<NotesModel> GetTrashList();
         /// <summary>
         /// Determines whether the specified identifier is archive.
         /// </summary>
@@ -82,6 +83,36 @@ namespace FundooRepository.Interface
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         Task UnArchive(int id);
+        /// <summary>
+        /// Uploads the images.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="image">The image.</param>
+        /// <returns></returns>
         string UploadImages(int id, IFormFile image);
+        /// <summary>
+        /// Reminders the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="reminder">The date time.</param>
+        /// <returns></returns>
+        int Remainder(int id, string reminder);
+        /// <summary>
+        /// Restores all.
+        /// </summary>
+        /// <returns></returns>
+        Task RestoreAll();
+        /// <summary>
+        /// Removes the trash.
+        /// </summary>
+        /// <returns></returns>
+        Task RemoveTrash();
+        /// <summary>
+        /// Colors the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="color">The color.</param>
+        /// <returns></returns>
+        Task Color(int id, string color);
     }
 }

@@ -160,5 +160,12 @@ namespace FundooNoteApi.Controllers
                 return this.BadRequest(e.Message);
             }
         }
+        [HttpPost]
+        [Route("logout")]
+        public string Logout(LoginModel loginModel)
+        {
+            var result = this.account.LogoutAsync(loginModel);
+            return result;
+        }
     }
 }

@@ -1,16 +1,27 @@
-﻿using BussinessManager.Interface;
-using Common.Models;
-using FundooNoteApi.Controllers;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
-
+﻿// --------------------------------------------------------------------------------------------------------------------------------------------------
+// <copyright file=ControllerTest.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Abhishek Sharma"/>
+// --------------------------------------------------------------------------------------------------------------------------------------------------
 namespace XUnitTestP.Account
 {
+    using BussinessManager.Interface;
+    using Common.Models;
+    using FundooNoteApi.Controllers;
+    using Moq;
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using Xunit;
+    /// <summary>
+    /// public class for ControllerTest
+    /// </summary>
     public class ControllerTest
     {
+        /// <summary>
+        /// Registrations this instance.
+        /// </summary>
         [Fact]
         public void Registration()
         {
@@ -27,6 +38,9 @@ namespace XUnitTestP.Account
             var data = controller.Registration(add);
             Assert.NotNull(data);
         }
+        /// <summary>
+        /// Logins this instance.
+        /// </summary>
         [Fact]
         public void Login()
         {
@@ -40,6 +54,9 @@ namespace XUnitTestP.Account
             var data = controller.Login(login);
             Assert.NotNull(data);
         }
+        /// <summary>
+        /// Forgets the password.
+        /// </summary>
         [Fact]
         public void ForgetPassword()
         {
@@ -52,6 +69,9 @@ namespace XUnitTestP.Account
             var data = controller.ForgetPassword(add);
             Assert.NotNull(data);
         }
+        /// <summary>
+        /// Resets the password.
+        /// </summary>
         [Fact]
         public void ResetPassword()
         {

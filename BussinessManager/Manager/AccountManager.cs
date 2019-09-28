@@ -104,7 +104,12 @@ namespace BussinessManager.Manager
         public async Task<string> ForgetPasswordLinkAsync(ForgetPasswordModel forgetPasswordModel)
         {
             await this.accountRepository.ForgetPasswordLinkAsync(forgetPasswordModel);
-            return "PASSWORD HAD SUCCESSFULLY SEND TO REGISTER EMAIL ";
+            return "PASSWORD HAD SUCCESSFULLY SEND TO REGISTERED EMAIL ";
+        }
+        public  string LogoutAsync(LoginModel loginModel)
+        {
+           var result =  this.accountRepository.Logout(loginModel);
+            return result;
         }
     }
 

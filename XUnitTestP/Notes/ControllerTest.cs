@@ -1,16 +1,26 @@
-﻿using BussinessManager.Interface;
-using Common.Models.NotesModels;
-using FundooNoteApi.Controllers;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
-
+﻿// <copyright file=ControllerTest.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Abhishek Sharma"/>
+// --------------------------------------------------------------------------------------------------------------------------------------------------
 namespace XUnitTestP.Notes
 {
+    using BussinessManager.Interface;
+    using Common.Models.NotesModels;
+    using FundooNoteApi.Controllers;
+    using Moq;
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using Xunit;
+    /// <summary>
+    /// public calss for ControllerTest
+    /// </summary>
     public class ControllerTest
     {
+        /// <summary>
+        /// Adds the notes.
+        /// </summary>
         [Fact]
         public void AddNotes()
         {
@@ -30,6 +40,9 @@ namespace XUnitTestP.Notes
             var data = controller.Add(add);
             Assert.NotNull(data);
         }
+        /// <summary>
+        /// Updates the notes.
+        /// </summary>
         [Fact]
         public void UpdateNotes()
         {
@@ -49,6 +62,9 @@ namespace XUnitTestP.Notes
             var data = controller.Update(add);
             Assert.NotNull(data);
         }
+        /// <summary>
+        /// Deletes the notes.
+        /// </summary>
         [Fact]
         public void DeleteNotes()
         {

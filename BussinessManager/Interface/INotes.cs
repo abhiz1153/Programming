@@ -8,6 +8,7 @@ namespace BussinessManager.Interface
 {
     using Common.Models.NotesModels;
     using Microsoft.AspNetCore.Http;
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     /// <summary>
@@ -63,6 +64,11 @@ namespace BussinessManager.Interface
         /// <returns></returns>
         Task<string> IsTrashAsync(int id);
         /// <summary>
+        /// Trashes the list.
+        /// </summary>
+        /// <returns></returns>
+        List<NotesModel> TrashList();
+        /// <summary>
         /// Restores the asynchronous.
         /// </summary>
         /// <param name="id">The identifier.</param>
@@ -87,5 +93,29 @@ namespace BussinessManager.Interface
         /// <param name="image">The image.</param>
         /// <returns></returns>
         string UploadImages(int id, IFormFile image);
+        /// <summary>
+        /// Remainders the value.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="reminder">The reminder.</param>
+        /// <returns></returns>
+        string RemainderValue(int id, string reminder);
+        /// <summary>
+        /// Restores all note.
+        /// </summary>
+        /// <returns></returns>
+        Task<string> RestoreAllNote();
+        /// <summary>
+        /// Removes all trash.
+        /// </summary>
+        /// <returns></returns>
+        Task<string> RemoveAllTrash();
+        /// <summary>
+        /// Sets the color.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="color">The color.</param>
+        /// <returns></returns>
+        Task<string> SetColor(int id, string color);
     }
 }

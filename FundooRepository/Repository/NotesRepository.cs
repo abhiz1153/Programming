@@ -50,12 +50,12 @@ namespace FundooRepository.Repository
                 Description = notesModel.Description,
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now,
-                Images = notesModel.Images,
-                Reminder = notesModel.Reminder,
-                IsArchive = notesModel.IsArchive,
-                IsTrash = notesModel.IsTrash,
-                IsPin = notesModel.IsPin,
-                Color = notesModel.Color
+                Images = null,
+                Reminder = null,
+                IsArchive = false,
+                IsTrash = false,
+                IsPin = false,
+                Color = null
             };
             userContext.Notes.Add(notes);
             return Task.Run(() => userContext.SaveChanges());
@@ -94,13 +94,6 @@ namespace FundooRepository.Repository
                 note.Title = notesModel.Title;
                 note.Description = notesModel.Description;
                 note.ModifiedDate = DateTime.Now;
-                note.Images = notesModel.Images;
-                note.Reminder = notesModel.Reminder;
-                note.IsArchive = notesModel.IsArchive;
-                note.IsTrash = notesModel.IsTrash;
-                note.IsPin = notesModel.IsPin;
-                note.Color = notesModel.Color;
-
                 userContext.Notes.Update(note);
             }
             return Task.Run(() => userContext.SaveChanges());
@@ -143,6 +136,15 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+        public List<NotesModel> GetTrashList()
+        {
+            var result = this.userContext.Notes.Where(n => n.IsTrash == true).SingleOrDefault();
+            if (result != null)
+            {
+                return this.userContext.Notes.ToList<NotesModel>();
+            }
+            return null;
+        }
         /// <summary>
         /// Restores the specified identifier.
         /// </summary>
@@ -156,6 +158,36 @@ namespace FundooRepository.Repository
                 result.IsTrash = false;
                 return Task.Run(() => userContext.SaveChangesAsync());
 
+            }
+            return null;
+        }
+        public Task RestoreAll()
+        {
+            var data = from notes in this.userContext.Notes where notes.IsTrash == true select notes;
+            if (data != null)
+            {
+                foreach (var item in data)
+                {
+                    item.IsTrash = false;
+                }
+                return Task.Run(() => userContext.SaveChangesAsync());
+            }
+            return null;
+        }
+        /// <summary>
+        /// Removes the trash.
+        /// </summary>
+        /// <returns></returns>
+        public Task RemoveTrash()
+        {
+            var data = from notes in this.userContext.Notes where notes.IsTrash == true select notes;
+            if( data != null)
+            {
+                foreach (var items in data)
+                {
+                    this.userContext.Notes.Remove(items);
+                }
+                return Task.Run(() => userContext.SaveChangesAsync());
             }
             return null;
         }
@@ -251,6 +283,27 @@ namespace FundooRepository.Repository
             {
                 return e.Message;
             }
+        }
+        public int Remainder(int id,string reminder)
+        {
+            var user = this.userContext.Notes.Where(r => r.Id == id).SingleOrDefault();
+            if(user != null)
+            {
+                user.Reminder = reminder.ToString();
+                return userContext.SaveChanges();
+            }
+            return 0;
+        }
+        public Task Color(int id, string color)
+        {
+            var result = this.userContext.Notes.Where(n => n.Id == id).SingleOrDefault();
+            if (result != null)
+            {
+                result.Color = color;
+                return Task.Run(() => userContext.SaveChangesAsync());
+
+            }
+            return null;
         }
     }
 }
