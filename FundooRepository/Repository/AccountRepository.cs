@@ -21,6 +21,7 @@ namespace FundooRepository.Repository
     using Microsoft.Extensions.Configuration;
     using System.Text;
     using StackExchange.Redis;
+    using Common.Models.AdminModels;
 
     /// <summary>
     /// Public Class for AccountRepository
@@ -101,7 +102,8 @@ namespace FundooRepository.Repository
                 if (user)
                 {
                     try
-                    { 
+                    {
+                   //     var details = userContext.Notes.Where(r => r.Email == loginModel.Email).Single(); 
                         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iconfiguration["Jwt:Key"]));
                     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
@@ -122,6 +124,15 @@ namespace FundooRepository.Repository
                           });
                         database.StringSet(cachekey, data.ToString());
                         database.StringGet(cachekey);
+
+                        AdminModel admin = new AdminModel()
+                        {
+                            Email = loginModel.Email,
+                            LoginTime = DateTime.Now.ToString()
+                        };
+                        this.userContext.Admin.Add(admin);
+                        userContext.SaveChanges();
+
                         return data.ToString();
                     }
                     catch (Exception e)
@@ -233,6 +244,7 @@ namespace FundooRepository.Repository
             {
                 Email = user.Email
             };
+           
             return Task.Run(() => identityUser);
         }
         /// <summary>

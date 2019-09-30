@@ -41,6 +41,10 @@ namespace FundooNoteApi
             services.AddTransient<INotesRepository, NotesRepository>();
             services.AddTransient<ILabel, LabelManager>();
             services.AddTransient<ILabelRepository, LabelRepository>();
+            services.AddTransient<ICollaboratorsRepository, CollaboratorsRepository>();
+            services.AddTransient<ICollaborator, CollaboratorsManagers> ();
+            services.AddTransient<IAdminRepository, AdminRepository>();
+            services.AddTransient<IAdmin, AdminManager>();
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
