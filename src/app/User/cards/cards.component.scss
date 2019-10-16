@@ -1,0 +1,41 @@
+.front{
+    display: flex;
+    justify-content: space-around;
+}
+.back{
+    display: flex;
+    justify-content: space-around;
+}
+.first{
+    width:300px;
+    height:200px;
+    margin-top: 270px;
+    margin-left: 108px;
+}
+.second{
+    width:300px;
+    height:200px;
+    margin-top:-255px;
+}
+.p1{
+    font-family: cursive;
+    font-weight: 800;
+    font-size: 21px;
+}
+.p2{
+    font-family: monospace;
+    font-size: 20px;
+    font-weight: 700;
+    color: blue;
+}
+.p3{
+    font-family: cursive;
+    font-size: 17px;
+    font-weight: 600;
+}
+.links{
+    margin-top: 140px;
+    width: 299px;
+    margin-left: -9%;
+    height: 0%;
+}

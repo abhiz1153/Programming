@@ -1,0 +1,75 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border: groove;
+  width: 30%;
+  margin: auto;
+  min-width: 474px;
+  display: flow-root;
+  margin-top: 5%;
+  margin-bottom: auto;
+  height: 597px;
+}
+.register{
+  display: flex;
+  justify-content: center;
+}
+.title{
+  display: flex;
+}
+.t1{
+  color: blue;
+}
+.t2{
+  color: red;
+}
+.t3{
+  color:darkorange;
+}
+.t4{
+  color:blue;
+}
+.t5{
+  color:green;
+}
+.t6{
+  color:red;
+}
+.form-group{
+    display: flex;
+    justify-content: space-between;
+}
+.heading{
+  font-size: 21px;
+  color: darkmagenta;
+  margin-top: -5%;
+  margin-bottom: 6%;
+}
+.mat-card-title {
+  font-size: 24px;
+  font-weight: 400;
+  font-family: cursive;
+  font-weight: bolder;
+}
+.Email{
+  width: 98%;
+}
+.City{
+  width: 98%;
+}
+.sum{
+  display: flex;
+    justify-content: flex-start;
+    margin-top: 9%;
+    margin-bottom: -9%;
+    margin-left: 10%;
+    color:blue;
+}
+.signin{
+  display: flex;
+    justify-content: flex-end;
+    margin-right: 10%;
+    color: blue;
+}
