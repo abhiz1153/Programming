@@ -1,5 +1,4 @@
 C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\obj\Debug\netcoreapp2.1\FundooRepository.csprojAssemblyReference.cache
-C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\obj\Debug\netcoreapp2.1\FundooRepository.csproj.CoreCompileInputs.cache
 C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\obj\Debug\netcoreapp2.1\FundooRepository.AssemblyInfoInputs.cache
 C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\obj\Debug\netcoreapp2.1\FundooRepository.AssemblyInfo.cs
 C:\Users\admin\source\repos\FundooNoteApi\FundooRepository\bin\Debug\netcoreapp2.1\FundooRepository.deps.json

@@ -1,4 +1,5 @@
-﻿// <copyright file=ControllerTest.cs" company="Bridgelabz">
+﻿// --------------------------------------------------------------------------------------------------------------------------------------------------
+// <copyright file=ControllerTest.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="Abhishek Sharma"/>
@@ -10,8 +11,6 @@ namespace XUnitTestP.Notes
     using FundooNoteApi.Controllers;
     using Moq;
     using System;
-    using System.Collections.Generic;
-    using System.Text;
     using Xunit;
     /// <summary>
     /// public calss for ControllerTest

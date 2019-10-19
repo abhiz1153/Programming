@@ -1,5 +1,4 @@
 C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\obj\Debug\netcoreapp2.1\BussinessManager.csprojAssemblyReference.cache
-C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\obj\Debug\netcoreapp2.1\BussinessManager.csproj.CoreCompileInputs.cache
 C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\obj\Debug\netcoreapp2.1\BussinessManager.AssemblyInfoInputs.cache
 C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\obj\Debug\netcoreapp2.1\BussinessManager.AssemblyInfo.cs
 C:\Users\admin\source\repos\FundooNoteApi\BussinessManager\bin\Debug\netcoreapp2.1\BussinessManager.deps.json

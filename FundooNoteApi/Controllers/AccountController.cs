@@ -44,7 +44,7 @@ namespace FundooNoteApi.Controllers
         /// Registrations the specified user model.
         /// </summary>
         /// <param name="userModel">The user model.</param>
-        /// <returns></returns>
+        /// <returns>IActionResult</returns>
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Registration(UserModel userModel)
@@ -64,64 +64,44 @@ namespace FundooNoteApi.Controllers
         /// Logins the specified login model.
         /// </summary>
         /// <param name="loginModel">The login model.</param>
-        /// <returns></returns>
+        /// <returns>IActionResult</returns>
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login(LoginModel loginModel)
+        public async Task<UserModel> Login(LoginModel loginModel)
         {
-            try
-            {
-                var result = await this.account.LoginAsync(loginModel);
-                return this.Ok(new { result });
-            }
-            catch (Exception e)
-             {
-                return this.BadRequest(e.Message);
-            }
+               var result = await this.account.LoginAsync(loginModel);
+                return result;     
         }
         /// <summary>
         /// Facebooks the login.
         /// </summary>
         /// <param name="loginModel">The login model.</param>
-        /// <returns></returns>
+        /// <returns>IActionResult</returns>
         [HttpPost]
         [Route("facebooklogin")]
-        public async Task<IActionResult> FacebookLogin(LoginModel loginModel)
+        public async Task<UserModel> FacebookLogin(LoginModel loginModel)
         {
-            try
-            {
-                var result = await this.account.FacebookLoginAsync(loginModel);
-                return this.Ok(new { result });
-            }
-            catch (Exception e)
-            {
-                return this.BadRequest(e.Message);
-            }
+           
+            var result = await this.account.FacebookLoginAsync(loginModel);
+            return result;
         }
         /// <summary>
         /// Googles the login.
         /// </summary>
         /// <param name="loginModel">The login model.</param>
-        /// <returns></returns>
+        /// <returns>IActionResult</returns>
         [HttpPost]
         [Route("google")]
-        public async Task<IActionResult> GoogleLogin(LoginModel loginModel)
+        public async Task<UserModel> GoogleLogin(LoginModel loginModel)
         {
-            try
-            {
-                var result = await this.account.GoogleLoginAsync(loginModel);
-                return this.Ok(new { result });
-            }
-            catch (Exception e)
-            {
-                return this.BadRequest(e.Message);
-            }
+            var result = await this.account.GoogleLoginAsync(loginModel);
+            return result;
         }
         /// <summary>
         /// Resets the password.
         /// </summary>
         /// <param name="resetPasswordModel">The reset password model.</param>
-        /// <returns></returns>
+        /// <returns>IActionResult</returns>
         [HttpPut]
         [Route("resetpassword")]
         public async Task<IActionResult> ResetPassword(ResetPasswordModel resetPasswordModel)
@@ -140,7 +120,7 @@ namespace FundooNoteApi.Controllers
         /// Forgets the password.
         /// </summary>
         /// <param name="forgetPasswordModel">The forget password model.</param>
-        /// <returns></returns>
+        /// <returns>IActionResult</returns>
         [HttpPut]
         [Route("forgetpassword")]
         public async Task<IActionResult> ForgetPassword(ForgetPasswordModel forgetPasswordModel)
@@ -155,6 +135,11 @@ namespace FundooNoteApi.Controllers
                 return this.BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// Logouts the specified login model.
+        /// </summary>
+        /// <param name="loginModel">The login model.</param>
+        /// <returns>IActionResult</returns>
         [HttpPost]
         [Route("logout")]
         public string Logout(LoginModel loginModel)

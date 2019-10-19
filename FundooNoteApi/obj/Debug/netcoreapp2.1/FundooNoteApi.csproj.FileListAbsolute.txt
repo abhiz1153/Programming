@@ -1,5 +1,4 @@
 C:\Users\admin\source\repos\FundooNoteApi\FundooNoteApi\obj\Debug\netcoreapp2.1\FundooNoteApi.csprojAssemblyReference.cache
-C:\Users\admin\source\repos\FundooNoteApi\FundooNoteApi\obj\Debug\netcoreapp2.1\FundooNoteApi.csproj.CoreCompileInputs.cache
 C:\Users\admin\source\repos\FundooNoteApi\FundooNoteApi\obj\Debug\netcoreapp2.1\FundooNoteApi.RazorAssemblyInfo.cache
 C:\Users\admin\source\repos\FundooNoteApi\FundooNoteApi\obj\Debug\netcoreapp2.1\FundooNoteApi.RazorAssemblyInfo.cs
 C:\Users\admin\source\repos\FundooNoteApi\FundooNoteApi\obj\Debug\netcoreapp2.1\FundooNoteApi.AssemblyInfoInputs.cache
@@ -19,3 +18,6 @@ C:\Users\admin\source\repos\FundooNoteApi\FundooNoteApi\obj\Debug\netcoreapp2.1\
 C:\Users\admin\source\repos\FundooNoteApi\FundooNoteApi\obj\Debug\netcoreapp2.1\FundooNoteApi.csproj.CopyComplete
 C:\Users\admin\source\repos\FundooNoteApi\FundooNoteApi\obj\Debug\netcoreapp2.1\FundooNoteApi.dll
 C:\Users\admin\source\repos\FundooNoteApi\FundooNoteApi\obj\Debug\netcoreapp2.1\FundooNoteApi.pdb
+C:\Users\admin\source\repos\FundooNoteApi\FundooNoteApi\bin\Debug\netcoreapp2.1\appsettings.Development.json
+C:\Users\admin\source\repos\FundooNoteApi\FundooNoteApi\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\admin\source\repos\FundooNoteApi\FundooNoteApi\bin\Debug\netcoreapp2.1\Properties\launchSettings.json

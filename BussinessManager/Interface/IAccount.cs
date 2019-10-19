@@ -24,7 +24,7 @@ namespace BussinessManager.Interface
         /// </summary>
         /// <param name="loginModel">The login model.</param>
         /// <returns></returns>
-        Task<string> LoginAsync(LoginModel loginModel);
+        Task<UserModel> LoginAsync(LoginModel loginModel);
         /// <summary>
         /// Resets the password asynchronous.
         /// </summary>
@@ -42,13 +42,13 @@ namespace BussinessManager.Interface
         /// </summary>
         /// <param name="loginModel">The login model.</param>
         /// <returns></returns>
-        Task<string> FacebookLoginAsync(LoginModel loginModel);
+        Task<UserModel> FacebookLoginAsync(LoginModel loginModel);
         /// <summary>
         /// Googles the login asynchronous.
         /// </summary>
         /// <param name="loginModel">The login model.</param>
         /// <returns></returns>
-        Task<string> GoogleLoginAsync(LoginModel loginModel);
+        Task<UserModel> GoogleLoginAsync(LoginModel loginModel);
         string LogoutAsync(LoginModel loginModel);
     }
 }

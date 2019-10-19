@@ -25,7 +25,7 @@ namespace FundooRepository.Interface
         /// </summary>
         /// <param name="loginModel">The login model.</param>
         /// <returns></returns>
-        Task<string> LoginAsync(LoginModel loginModel);
+        Task<UserModel> LoginAsync(LoginModel loginModel);
         /// <summary>
         /// Checks the password asynchronous.
         /// </summary>
@@ -57,8 +57,8 @@ namespace FundooRepository.Interface
         /// <param name="forgetPasswordModel">The forget password model.</param>
         /// <returns></returns>
         Task ForgetPasswordLinkAsync(ForgetPasswordModel forgetPasswordModel);
-        Task<string> FacebookLoginAsync(LoginModel loginModel);
-        Task<string> GoogleLoginAsync(LoginModel loginModel);
+        Task<UserModel> FacebookLoginAsync(LoginModel loginModel);
+        Task<UserModel> GoogleLoginAsync(LoginModel loginModel);
         string Logout(LoginModel loginModel);
     }
 }

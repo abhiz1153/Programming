@@ -45,6 +45,7 @@ namespace FundooNoteApi
             services.AddTransient<ICollaborator, CollaboratorsManagers> ();
             services.AddTransient<IAdminRepository, AdminRepository>();
             services.AddTransient<IAdmin, AdminManager>();
+            
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -76,14 +77,22 @@ namespace FundooNoteApi
                     googleOptions.ClientId = "934977231069-8mtj2ihulrvr0eikc58cj5bdeepg6vui.apps.googleusercontent.com";
                     googleOptions.ClientSecret = "Xy3GTZL_cxsiyBf_bfbvvIwW";
                 });
+            // Add Cors
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             //Add distributed cache service backed by Redis cache
             //services.AddDistributedRedisCache(o =>
             //{
-               
+
             //    o.Configuration = "127.0.0.1:6379";
             //    o.InstanceName = "redis";
             //});        
-        }       
+        }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -105,10 +114,9 @@ namespace FundooNoteApi
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "FUNDOO NOTE API");
             });
-          
             app.UseHttpsRedirection();
             app.UseAuthentication();
-        
+            app.UseCors("MyPolicy");
             app.UseMvc();
         }
     }

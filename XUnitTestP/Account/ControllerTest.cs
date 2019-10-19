@@ -64,7 +64,7 @@ namespace XUnitTestP.Account
             var controller = new AccountController(service.Object);
             var add = new ForgetPasswordModel()
             {
-                Email = "abhiz@gmail.com"               
+                Email = "abhiz@gmail.com"
             };
             var data = controller.ForgetPassword(add);
             Assert.NotNull(data);
@@ -84,6 +84,38 @@ namespace XUnitTestP.Account
 
             };
             var data = controller.ResetPassword(add);
+            Assert.NotNull(data);
+        }
+        /// <summary>
+        /// Facebook login.
+        /// </summary>
+        [Fact]
+        public void FacebookLogin()
+        {
+            var service = new Mock<IAccount>();
+            var controller = new AccountController(service.Object);
+            var add = new LoginModel()
+            {
+                Email = "abhiz@gmail.com"
+
+            };
+            var data = controller.FacebookLogin(add);
+            Assert.NotNull(data);
+        }
+        /// <summary>
+        /// Google login.
+        /// </summary>
+        [Fact]
+        public void GoogleLogin()
+        {
+            var service = new Mock<IAccount>();
+            var controller = new AccountController(service.Object);
+            var add = new LoginModel()
+            {
+                Email = "abhiz@gmail.com"
+
+            };
+            var data = controller.GoogleLogin(add);
             Assert.NotNull(data);
         }
     }

@@ -45,13 +45,14 @@ namespace FundooRepository.Interface
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        List<NotesModel> GetNotes(int id);
+        List<NotesModel> GetNotes(string Email);
         /// <summary>
         /// Determines whether the specified identifier is trash.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         Task IsTrash(int id);
+        List<NotesModel> GetReminder(string Email);
         List<NotesModel> GetTrashList();
         /// <summary>
         /// Determines whether the specified identifier is archive.
@@ -83,6 +84,7 @@ namespace FundooRepository.Interface
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         Task UnArchive(int id);
+        List<NotesModel> ArchiveNote(string Email);
         /// <summary>
         /// Archives the list.
         /// </summary>
@@ -119,5 +121,6 @@ namespace FundooRepository.Interface
         /// <param name="color">The color.</param>
         /// <returns></returns>
         Task Color(int id, string color);
+        List<NotesModel> Search(string title);
     }
 }

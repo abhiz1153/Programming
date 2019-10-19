@@ -109,9 +109,9 @@ namespace FundooNoteApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("note")]
-        public  List<NotesModel> List(int id)
+        public  List<NotesModel> List(string Email)
         {
-            return this.notes.GetNotesAsync(id);
+            return this.notes.GetNotesAsync(Email);
         }
         /// <summary>
         /// Determines whether the specified identifier is trash.
@@ -136,7 +136,6 @@ namespace FundooNoteApi.Controllers
         /// Alls the trash list.
         /// </summary>
         /// <returns></returns>
-        [HttpGet,Authorize]
         [Route("trashlist")]
         public List<NotesModel> AllTrashList()
         {
@@ -203,7 +202,7 @@ namespace FundooNoteApi.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        [HttpPut,]
+        [HttpPut]
         [Route("isarchive")]
         public async Task<IActionResult> IsArchive(int id)
         {
@@ -235,6 +234,12 @@ namespace FundooNoteApi.Controllers
             {
                 return this.BadRequest(e.Message);
             }
+        }
+        [HttpGet]
+        [Route("archivenote")]
+        public List<NotesModel> ArchiveNoteList(string Email)
+        {
+            return this.notes.GetArchiveNote(Email);
         }
         [HttpGet]
         [Route("archivelist")]
@@ -327,6 +332,18 @@ namespace FundooNoteApi.Controllers
             {
                 return this.BadRequest(e.Message);
             }
+        }
+        [HttpGet]
+        [Route("search")]
+        public List<NotesModel> Search(string title)
+        {
+            return this.notes.SearchNotes(title);
+        }
+        [HttpGet]
+        [Route("getReminder")]
+        public List<NotesModel> ReminderList(string Email)
+        {
+            return this.notes.GetReminderAsync(Email);
         }
     }
 }

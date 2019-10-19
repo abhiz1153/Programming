@@ -13,6 +13,7 @@ namespace Common.Models
         private string email;
         private string city;
         private string password;
+        private string cardType;
        
         [Required(ErrorMessage = "Enter FirstName")]
         public string FirstName
@@ -43,11 +44,16 @@ namespace Common.Models
         [Required(ErrorMessage = "Enter Passsword")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        [StringLength(15, MinimumLength = 8, ErrorMessage = "Atlest enter minimum 8 character")]
+        [StringLength(15, MinimumLength = 6, ErrorMessage = "Atlest enter minimum 6 character")]
         public string Password
         {
             set { this.password = value; }
             get { return this.password; }
+        }
+        public string CardType
+        {
+            set { this.cardType = value; }
+            get { return this.cardType; }
         }
     }
 }

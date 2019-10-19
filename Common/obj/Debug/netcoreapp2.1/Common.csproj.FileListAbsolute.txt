@@ -3,7 +3,6 @@ C:\Users\admin\source\repos\FundooNoteApi\Common\bin\Debug\netcoreapp2.1\Common.
 C:\Users\admin\source\repos\FundooNoteApi\Common\bin\Debug\netcoreapp2.1\Common.runtimeconfig.dev.json
 C:\Users\admin\source\repos\FundooNoteApi\Common\bin\Debug\netcoreapp2.1\Common.dll
 C:\Users\admin\source\repos\FundooNoteApi\Common\bin\Debug\netcoreapp2.1\Common.pdb
-C:\Users\admin\source\repos\FundooNoteApi\Common\obj\Debug\netcoreapp2.1\Common.csproj.CoreCompileInputs.cache
 C:\Users\admin\source\repos\FundooNoteApi\Common\obj\Debug\netcoreapp2.1\Common.AssemblyInfoInputs.cache
 C:\Users\admin\source\repos\FundooNoteApi\Common\obj\Debug\netcoreapp2.1\Common.AssemblyInfo.cs
 C:\Users\admin\source\repos\FundooNoteApi\Common\obj\Debug\netcoreapp2.1\Common.dll

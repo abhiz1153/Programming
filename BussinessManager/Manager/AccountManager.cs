@@ -39,7 +39,7 @@ namespace BussinessManager.Manager
         /// Registrations the asynchronous.
         /// </summary>
         /// <param name="userModels">The user models.</param>
-        /// <returns></returns>
+        /// <returns>string</returns>
         /// <exception cref="Exception"></exception>
         public async Task<string> RegistrationAsync(UserModel userModels)
         {
@@ -57,40 +57,40 @@ namespace BussinessManager.Manager
         /// Logins the asynchronous.
         /// </summary>
         /// <param name="loginModel">The login model.</param>
-        /// <returns></returns>
-        public async Task<string> LoginAsync(LoginModel loginModel)
+        /// <returns>string</returns>
+        public async Task<UserModel> LoginAsync(LoginModel loginModel)
         {
             var result = await this.accountRepository.LoginAsync(loginModel);
-            return ("USER SUCCESSFULLY LOGIN. = " + result);
+            return result;
 
         }
         /// <summary>
         /// Facebooks the login asynchronous.
         /// </summary>
         /// <param name="loginModel">The login model.</param>
-        /// <returns></returns>
-        public async Task<string> FacebookLoginAsync(LoginModel loginModel)
+        /// <returns>string</returns>
+        public async Task<UserModel> FacebookLoginAsync(LoginModel loginModel)
         {
             var result = await this.accountRepository.FacebookLoginAsync(loginModel);
-            return ("USER SUCCESSFULLY LOGIN. = " + result);
+            return result;
 
         }
         /// <summary>
         /// Googles the login asynchronous.
         /// </summary>
         /// <param name="loginModel">The login model.</param>
-        /// <returns></returns>
-        public async Task<string> GoogleLoginAsync(LoginModel loginModel)
+        /// <returns>string</returns>
+        public async Task<UserModel> GoogleLoginAsync(LoginModel loginModel)
         {
             var result = await this.accountRepository.GoogleLoginAsync(loginModel);
-            return ("USER SUCCESSFULLY LOGIN. = " + result);
+            return result;
 
         }
         /// <summary>
         /// Resets the password asynchronous.
         /// </summary>
         /// <param name="resetPasswordModel">The reset password model.</param>
-        /// <returns></returns>
+        /// <returns>string</returns>
         public async Task<object> ResetPasswordAsync(ResetPasswordModel resetPasswordModel)
         {
             await this.accountRepository.ResetPasswordAsync(resetPasswordModel);
@@ -100,13 +100,18 @@ namespace BussinessManager.Manager
         /// Forgets the password link asynchronous.
         /// </summary>
         /// <param name="forgetPasswordModel">The forget password model.</param>
-        /// <returns></returns>
+        /// <returns>string</returns>
         public async Task<string> ForgetPasswordLinkAsync(ForgetPasswordModel forgetPasswordModel)
         {
             await this.accountRepository.ForgetPasswordLinkAsync(forgetPasswordModel);
             return "PASSWORD HAD SUCCESSFULLY SEND TO REGISTERED EMAIL ";
         }
-        public  string LogoutAsync(LoginModel loginModel)
+        /// <summary>
+        /// Logouts the asynchronous.
+        /// </summary>
+        /// <param name="loginModel">The login model.</param>
+        /// <returns>result</returns>
+        public string LogoutAsync(LoginModel loginModel)
         {
            var result =  this.accountRepository.Logout(loginModel);
             return result;

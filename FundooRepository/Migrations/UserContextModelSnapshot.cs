@@ -120,6 +120,8 @@ namespace FundooRepository.Migrations
                     b.Property<string>("Email")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("CardType");
+
                     b.Property<string>("City")
                         .IsRequired();
 

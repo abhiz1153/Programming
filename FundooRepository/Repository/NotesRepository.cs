@@ -51,10 +51,10 @@ namespace FundooRepository.Repository
                 Description = notesModel.Description,
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now,
-                Images = null,
-                Reminder = null,
-                IsArchive = false,
-                IsTrash = false,
+                Images = notesModel.Images,
+                Reminder = notesModel.Reminder,
+                IsArchive = notesModel.IsArchive,
+                IsTrash = notesModel.IsTrash,
                 IsPin = false,
                 Color = null
             };
@@ -114,12 +114,21 @@ namespace FundooRepository.Repository
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public List<NotesModel> GetNotes(int id)
+        public List<NotesModel> GetNotes(string Email)
         {
-            var note = userContext.Notes.Where(r => r.Id == id).SingleOrDefault();
+            var note = userContext.Notes.Where(r => r.Email == Email).First();
             if (note != null)
             {
-                return userContext.Notes.Where(r => r.Id == id).ToList();
+                return userContext.Notes.Where(r => r.Email == Email).ToList();
+            }
+            return null;
+        }
+        public List<NotesModel> GetReminder(string Email)
+        {
+            var note = userContext.Notes.Where(r => r.Email == Email && r.Reminder != null).First();
+            if (note != null)
+            {
+                return userContext.Notes.Where(r => r.Email == Email && r.Reminder != null).ToList();
             }
             return null;
         }
@@ -225,6 +234,15 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+        public List<NotesModel> ArchiveNote(string Email)
+        {
+            var result = this.userContext.Notes.Where(n =>n.Email== Email && n.IsArchive == true).First();
+            if (result != null)
+            {
+                return userContext.Notes.Where(n => n.Email == Email && n.IsArchive == true).ToList();
+            }
+            return null;
+        }
         public List<NotesModel> ArchiveList()
         {
             var result = this.userContext.Notes.Where(n => n.IsArchive == true).SingleOrDefault();
@@ -295,7 +313,7 @@ namespace FundooRepository.Repository
             {
                 return e.Message;
             }
-        }
+        }  
         public int Remainder(int id,string reminder)
         {
             var user = this.userContext.Notes.Where(r => r.Id == id).SingleOrDefault();
@@ -316,6 +334,15 @@ namespace FundooRepository.Repository
 
             }
             return null;
-        }       
+        }
+        public List<NotesModel> Search(string title)
+        {
+            var note = userContext.Notes.Where(r => r.Title == title).Single();
+            if (note != null)
+            {
+                return userContext.Notes.Where(r => r.Title == title).ToList();
+            }
+            return null;
+        }
     }
 }

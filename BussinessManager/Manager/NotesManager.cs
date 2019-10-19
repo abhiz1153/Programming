@@ -69,12 +69,29 @@ namespace BussinessManager.Manager
                 throw new Exception(e.Message);
             }
         }
-        public List<NotesModel> GetNotesAsync(int id)
+        public List<NotesModel> GetNotesAsync(string Email)
         {
             try
             {
                 var list = new List<NotesModel>();
-                var result = this.notesRepository.GetNotes(id);
+                var result = this.notesRepository.GetNotes(Email);
+                foreach (var item in result)
+                {
+                    list.Add(item);
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public List<NotesModel> GetReminderAsync(string Email)
+        {
+            try
+            {
+                var list = new List<NotesModel>();
+                var result = this.notesRepository.GetReminder(Email);
                 foreach (var item in result)
                 {
                     list.Add(item);
@@ -104,6 +121,23 @@ namespace BussinessManager.Manager
             {
                 await this.notesRepository.UnArchive(id);
                 return "UNARCHIVE SUCCESS";
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public List<NotesModel> GetArchiveNote(string Email)
+        {
+            try
+            {
+                var list = new List<NotesModel>();
+                var result = this.notesRepository.ArchiveNote(Email);
+                foreach (var item in result)
+                {
+                    list.Add(item);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -246,6 +280,23 @@ namespace BussinessManager.Manager
             {
                 await this.notesRepository.Color(id,color);
                 return "UPDATES SUCESSFULLY";
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public List<NotesModel> SearchNotes(string title)
+        {
+            try
+            {
+                var list = new List<NotesModel>();
+                var result = this.notesRepository.Search(title);
+                foreach (var item in result)
+                {
+                    list.Add(item);
+                }
+                return list;
             }
             catch (Exception e)
             {

@@ -61,7 +61,8 @@ namespace FundooRepository.Repository
                 LastName = userModels.LastName,
                 Email = userModels.Email,
                 City = userModels.City,
-                Password = userModels.Password
+                Password = userModels.Password,
+                CardType = userModels.CardType
             };
             userContext.Register.Add(userModel);
             return Task.Run(() => userContext.SaveChanges());
@@ -93,7 +94,7 @@ namespace FundooRepository.Repository
         /// </summary>
         /// <param name="loginModel"></param>
         /// <returns></returns>
-        public async Task<string> LoginAsync(LoginModel loginModel)
+        public async Task<UserModel> LoginAsync(LoginModel loginModel)
         {
             var result = await this.FindByEmailAsync(loginModel.Email);
             if (result != null)
@@ -133,7 +134,8 @@ namespace FundooRepository.Repository
                         this.userContext.Admin.Add(admin);
                         userContext.SaveChanges();
 
-                        return data.ToString();
+                       var userData= userContext.Register.Where(r => r.Email == loginModel.Email).Single();
+                        return userData;
                     }
                     catch (Exception e)
                     {
@@ -141,7 +143,7 @@ namespace FundooRepository.Repository
                     }
                 }
             }
-            return "INVALID USER";
+            return null;
         }
         /// <summary>
         /// Facebooks the login asynchronous.
@@ -149,14 +151,14 @@ namespace FundooRepository.Repository
         /// <param name="loginModel">The login model.</param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<string> FacebookLoginAsync(LoginModel loginModel)
+        public async Task<UserModel> FacebookLoginAsync(LoginModel loginModel)
         {
             var result = await this.FindByEmailAsync(loginModel.Email);
             if (result != null)
             {
-                bool user = userContext.Register.Any(p => p.Password == loginModel.Password && p.Email == loginModel.Email);
-                if (user)
-                {
+                //bool user = userContext.Register.Any(p => p.Password == loginModel.Password && p.Email == loginModel.Email);
+                //if (user)
+                //{
                     try
                     {
                         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iconfiguration["Jwt:Key"]));
@@ -176,16 +178,16 @@ namespace FundooRepository.Repository
                             token = new JwtSecurityTokenHandler().WriteToken(token),
                             experation = token.ValidTo
                         });
-
-                        return data.ToString();
-                    }
-                    catch (Exception e)
-                    {
-                        throw new Exception(e.Message);
-                    }
+                    var userData = userContext.Register.Where(r => r.Email == loginModel.Email).Single();
+                    return userData;
+            }
+             catch (Exception e)
+                {
+                    throw new Exception(e.Message);
                 }
             }
-            return "INVALID USER";
+       
+            return null;
         }
         /// <summary>
         /// Googles the login asynchronous.
@@ -193,14 +195,14 @@ namespace FundooRepository.Repository
         /// <param name="loginModel">The login model.</param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<string> GoogleLoginAsync(LoginModel loginModel)
+        public async Task<UserModel> GoogleLoginAsync(LoginModel loginModel)
         {
             var result = await this.FindByEmailAsync(loginModel.Email);
             if (result != null)
             {
-                bool user = userContext.Register.Any(p => p.Password == loginModel.Password && p.Email == loginModel.Email);
-                if (user)
-                {
+                //bool user = userContext.Register.Any(p => p.Password == loginModel.Password && p.Email == loginModel.Email);
+                //if (user)
+                //{
                     try
                     {
                         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iconfiguration["Jwt:Key"]));
@@ -221,16 +223,15 @@ namespace FundooRepository.Repository
                             token = new JwtSecurityTokenHandler().WriteToken(token),
                             experation = token.ValidFrom 
                         });
-
-                        return data.ToString();
-                    }
-                    catch (Exception e)
-                    {
-                        throw new Exception(e.Message);
-                    }
+                    var userData = userContext.Register.Where(r => r.Email == loginModel.Email).Single();
+                    return userData;
+                     }
+                  catch (Exception e)
+                {
+                    throw new Exception(e.Message);
                 }
             }
-            return "INVALID USER";
+            return null;
         }
         /// <summary>
         /// public Task<IdentityUser> for FindByEmailAsync
@@ -287,7 +288,7 @@ namespace FundooRepository.Repository
             var fromPassword = "Abhi98shek@";
             var toAddress = new MailAddress(forgetPasswordModel.Email);
             string subject = "Reset Password";
-            string body = "To reset your password click link :-  https://localhost:5001/api/resetpassword";
+            string body = "To reset your password click link :-  http://localhost:4200/reset";
             SmtpClient smtp = new SmtpClient
             {
                 Host = "smtp.gmail.com",

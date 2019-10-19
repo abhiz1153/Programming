@@ -44,7 +44,7 @@ namespace BussinessManager.Interface
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        List<NotesModel> GetNotesAsync(int id);
+        List<NotesModel> GetNotesAsync(string Email);
         /// <summary>
         /// Determines whether [is archive asynchronous] [the specified identifier].
         /// </summary>
@@ -117,10 +117,13 @@ namespace BussinessManager.Interface
         /// <param name="color">The color.</param>
         /// <returns></returns>
         Task<string> SetColor(int id, string color);
+        List<NotesModel> GetArchiveNote(string Email); 
         /// <summary>
         /// Gets the archive list.
         /// </summary>
         /// <returns></returns>
         List<NotesModel> GetArchiveList();
+        List<NotesModel> SearchNotes(string title);
+        List<NotesModel> GetReminderAsync(string Email); 
     }
 }

@@ -1847,8 +1847,7 @@
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "Microsoft.Extensions.Caching.Redis": "2.1.0",
-          "Microsoft.Extensions.Caching.Redis.Core": "1.0.3",
-          "Microsoft.NETCore.App": "2.1.0"
+          "Microsoft.Extensions.Caching.Redis.Core": "1.0.3"
         },
         "compile": {
           "bin/placeholder/Common.dll": {}
@@ -6355,10 +6354,16 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
-        "warn": true
+        "warn": true,
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

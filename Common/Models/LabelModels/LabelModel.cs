@@ -1,19 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-
+﻿// ----------------------------------------------------------------------------------------------------------------------------------
+// <copyright file=LabelModel.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Abhishek Sharma"/>
+// ----------------------------------------------------------------------------------------------------------------------------------
 namespace Common.Models.LabelModels
 {
-     public class LabelModel
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Text;
+    /// <summary>
+    /// public class LabelModel
+    /// </summary>
+    public class LabelModel
     {
+        /// <summary>
+        /// The identifier
+        /// </summary>
+        private int id;
+        /// <summary>
+        /// The email
+        /// </summary>
+        private string email;
+        /// <summary>
+        /// The label
+        /// </summary>
+        private string label;
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>
         /// The identifier.
         /// </value>
-        public int Id { get; set; }
+        public int Id
+        {
+            set { this.id = value; }
+            get { return this.id; }
+        }
         /// <summary>
         /// Gets or sets the email.
         /// </summary>
@@ -21,13 +45,21 @@ namespace Common.Models.LabelModels
         /// The email.
         /// </value>
         [ForeignKey("UserModel")]
-        public string Email { get; set; }
+        public string Email
+        {
+            set { this.email = value; }
+            get { return this.email; }
+        }
         /// <summary>
         /// Gets or sets the label.
         /// </summary>
         /// <value>
         /// The label.
         /// </value>
-        public string Label { get; set; }
-     }
+        public string Label
+        {
+            set { this.label = value; }
+            get { return this.label; }
+        }
+    }
 }
