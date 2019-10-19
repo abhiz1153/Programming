@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatSelectModule, MatInputModule, MatLabel, MatMenuModule } from '@angular/material';
+import { MatFormFieldModule, MatSelectModule, MatInputModule, MatLabel, MatMenuModule, MatNativeDateModule } from '@angular/material';
 import { RegisterComponent } from './User/register/register.component';
 import {AppRoutingModule} from './app-routing.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -17,6 +17,13 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ResetComponent } from './User/reset/reset.component';
 import { DashboardComponent } from './User/dashboard/dashboard.component';
 import { CardsComponent } from './User/cards/cards.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { NotesComponent } from './User/notes/notes.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DisplayNoteComponent } from './User/display-note/display-note.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ReminderComponent } from './User/reminder/reminder.component';
+import { ArchiveComponent } from './User/archive/archive.component';
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
       [
@@ -40,7 +47,11 @@ export function getAuthServiceConfigs() {
     ForgetPasswordComponent,
     ResetComponent,
     DashboardComponent,
-    CardsComponent
+    CardsComponent,
+    NotesComponent,
+    DisplayNoteComponent,
+    ReminderComponent,
+    ArchiveComponent
 
   ],
   imports: [
@@ -61,7 +72,11 @@ export function getAuthServiceConfigs() {
     HttpClientModule,
     SocialLoginModule,
     MatSnackBarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatExpansionModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
     ],
   providers: [UserService,
     { provide: AuthServiceConfig, useFactory: getAuthServiceConfigs }

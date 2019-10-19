@@ -1,0 +1,18 @@
+.mat-class1{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 68px;
+}
+.mat-class2{
+    @extend .mat-class1;
+}
+.card1{
+    width: 429px;
+    border-radius: 24px;
+}
+.card2{
+    @extend .card1;
+    height: 150px; 
+    
+}

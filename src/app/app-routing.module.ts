@@ -8,14 +8,28 @@ import { ForgetPasswordComponent } from './User/forget-password/forget-password.
 import {ResetComponent} from './User/reset/reset.component';
 import { DashboardComponent } from './User/dashboard/dashboard.component';
 import {CardsComponent} from './User/cards/cards.component';
+import { NotesComponent } from './User/notes/notes.component';
+import { DisplayNoteComponent } from './User/display-note/display-note.component';
+import { ReminderComponent } from './User/reminder/reminder.component';
+import { ArchiveComponent } from './User/archive/archive.component';
 const appRoutes: Routes = ([
   // {path : '' ,redirectTo:'./register' ,pathMatch:'full'},
   {path : 'register', component: RegisterComponent},
   {path : 'login', component: LoginComponent},
   {path : 'forget' , component: ForgetPasswordComponent},
   {path : 'reset' , component: ResetComponent},
-  {path : 'dashboard' , component : DashboardComponent},
-  {path : 'cards' , component : CardsComponent}
+  {path : 'dashboard' , component : DashboardComponent,
+  children: [
+    { path: '', component: DisplayNoteComponent},
+    { path : 'displaynote', component: DisplayNoteComponent},
+    { path : 'reminder', component: ReminderComponent},
+    {path : 'archive' , component: ArchiveComponent}
+  ]
+},
+
+  {path : 'cards' , component : CardsComponent},
+  {path: 'notes' , component : NotesComponent},
+  {path : 'displaynote', component: DisplayNoteComponent}
 ]);
 @NgModule({
   imports: [

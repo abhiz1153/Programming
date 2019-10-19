@@ -1,6 +1,6 @@
-
-<mat-card class="register-container" > 
-      <form [formGroup]='register'> 
+<div class="head">
+<mat-card class="register-container" *ngIf="reg"> 
+      <form [formGroup]='register' > 
   <mat-card-title><div class="title">
       <p class="t1">F</p>
       <p class="t2">U</p>
@@ -76,6 +76,11 @@
    <button type="submit"  routerLink="/login" mat-button id="SIGN IN">SIGN IN</button>
    </div>
 </form>
+
 </mat-card>
+<div class="service">
+<app-cards (registerevent)="registerevent($event)"></app-cards>
+</div>
+</div>
 
 

@@ -1,21 +1,65 @@
+.tool{
+    background-color: aqua;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    font-size: 130%;
+    font-family: cursive;
+  font-weight: bolder;
+}
+.t1{
+    color: blue;
+}
+.t2{
+    color: red;
+}
+.t3{
+    color:darkorange;
+}
+.t4{
+    color:blue;
+}
+.t5{
+    color:green;
+}
+.t6{
+    color:red;
+}
 .front{
     display: flex;
     justify-content: space-around;
 }
-.back{
+.para{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    margin-top: 2px;
+    font-size: x-large;
+    font-family: cursive;
+    font-weight: bolder;
+}
+.service-card{
+    @extend .para;
+}
+.back{
+    @extend .front;
 }
 .first{
     width:300px;
     height:200px;
-    margin-top: 270px;
+    margin-top: 93px;
     margin-left: 108px;
+    background-color: aqua;
 }
 .second{
     width:300px;
     height:200px;
     margin-top:-255px;
+    background-color: azure;
 }
 .p1{
     font-family: cursive;
@@ -33,9 +77,8 @@
     font-size: 17px;
     font-weight: 600;
 }
-.links{
-    margin-top: 140px;
-    width: 299px;
-    margin-left: -9%;
-    height: 0%;
+.sign{
+    display: flex;
+    justify-content: center;
+    margin-top: 63px;
 }

@@ -10,7 +10,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class RegisterComponent implements OnInit {
   register: FormGroup;
-
+  reg = false;
   constructor(public userService: UserService, private snackBar: MatSnackBar) { }
   ngOnInit() {
     this.register = new FormGroup({
@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
    onSubmit(form: NgForm) {
 
     console.log('under submit', this.register.value);
-     this.userService.registerUser(this.register.value).subscribe((data: any) => {
+     this.userService.registerUser(this.register.value, this.reg).subscribe((data: any) => {
        console.log(data.result);
        this.snackBar.open(data.result);
      });
@@ -38,4 +38,7 @@ export class RegisterComponent implements OnInit {
     //   }
 
     // }
+    registerevent($event) {
+      this.reg = $event;
+    }
   }

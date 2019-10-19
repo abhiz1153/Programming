@@ -1,25 +1,35 @@
 <div class="main">
-    <mat-toolbar>Fundoo Notes</mat-toolbar>
+    <mat-toolbar class="tool" *ngIf="!control"><div class="title">
+        <p class="t1">F</p>
+        <p class="t2">U</p>
+        <p class="t3">N</p>
+        <p class="t4">D</p>
+        <p class="t5">O</p>
+        <p class="t6">O</p>
+    </div></mat-toolbar>
+    <div class="service-card" *ngIf="!control"><p>Service Cards</p></div>
+    <div class="para" *ngIf="!control"><p>Fundoo Notes offered. Choose below service to Register.</p></div>
     <div class="back">
-        <mat-card  class="first">
-            <p class="cardlink">Link</p>
+        <mat-card  class="first"  *ngIf="!card1">
+            <p class="cardlink" style="margin-top:140px; margin-top: 140px; font-weight: 800;" (click)="basic()">{{select}}</p>
         </mat-card>
-       <mat-card  class="first">
-          <p class="cardlink" routerLink="." margin-top="137px">Link</p>
+       <mat-card  class="first" *ngIf="!card2">
+          <p class="cardlink" style="margin-top:140px; margin-top: 140px; font-weight: 800;" (click)="advance()">{{select}}</p>
        </mat-card>
    </div>
-  <div class="front">
-      <mat-card  class="second">
+  <div class="front" >
+      <mat-card  class="second"  *ngIf="!card1">
         <p class="p1">Price :- $99 per month</p>
-        <p class="p2">Advance</p> 
+        <p class="p2">Advance Service</p> 
         <p class="p3">* $99/month <br>
           * Ability to title, description, images, label, colour etc.</p>
       </mat-card>
-     <mat-card  class="second">
+     <mat-card  class="second" *ngIf="!card2"> 
         <p class="p1">Price :- $49 per month</p>
-        <p class="p2">Basic</p> 
+        <p class="p2">Basic Service</p> 
         <p class="p3">* $49/month <br>
           * Ability to add only title and  description</p>
      </mat-card>
   </div>
+  <div class="sign" *ngIf="!control"> <button mat-raised-button routerLink="/login" color="primary">SIGN IN</button></div>
   </div>

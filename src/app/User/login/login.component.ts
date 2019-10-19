@@ -30,9 +30,11 @@ user: any = SocialUser;
      let socialPlatformProvider;
      console.log('Facebook');
    socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    this.socialAuthService.signIn(socialPlatformProvider).then((userData) =>{
+    this.socialAuthService.signIn(socialPlatformProvider).then((userData) => {
      console.log('userdata', userData);
      this.userService. facebook(userData.email).subscribe((data: any) => {
+      console.log(data.result);
+      localStorage.setItem('userData',JSON.stringify(data));
         this.router.navigate(['/dashboard']);
     });
  });
@@ -45,14 +47,17 @@ user: any = SocialUser;
      console.log('user data', userData);
      console.log('user email', userData.email);
      this.userService. google(userData.email).subscribe((data: any) => {
+      console.log(data.email);
+      localStorage.setItem('userData', JSON.stringify(data));
         this.router.navigate(['/dashboard']);
     });
  });
 }
- onSubmit(form: NgForm) {
-
+ onSubmit() {
     console.log('under submit', this.login.value);
      this.userService.loginUser(this.login.value).subscribe((data: any) => {
+      console.log(data.result);
+      localStorage.setItem('userData', JSON.stringify(data));
       this.router.navigate(['/dashboard']);
       }
      );

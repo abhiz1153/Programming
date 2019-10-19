@@ -41,6 +41,7 @@
     justify-content: flex-start;
     margin: -23%;
     margin-left: -18%;
+    outline: none;
 }
 
   .example-sidenav {
@@ -50,12 +51,14 @@
     font-family: inherit;
     font-size: 100%;
     font-weight: 400;
+    outline: none;
   }
   .trashbutton{
     margin-top: -7%;
     font-family: inherit;
     font-size: 100%;
     font-weight: 400;
+    outline: none;
   }
   .reminder{
     display: flex;
@@ -98,33 +101,36 @@
     height: 15px;
     left: 27%;
     top: 2.7%;
-   border-radius: 21px;
+    border-radius: 21px;
     box-shadow: 0 1px 20px 1px;
 }
 .refresh-button{
     position: absolute;
     left:78%;
-   top:3%;
+    top:3%;
+    outline: none;
   }
   .listview-button{
     position: absolute;
     left:83%;
-   top:3%;
+    top:3%;
+    outline: none;
   }
   .settings-button{
     position: absolute;
     left:88%;
-   top:3%; 
+    top:3%; 
   }
   #profile-icon{
     margin-top:-10px;
     width: 49px;
     height: 50px;
-    
+    outline: none;
     border-radius: 50%;
   }
   .search-button,#search-button {
     margin-top: -11px;
+    outline: none;
   }
 .form-control {
     width: 90%;
@@ -132,7 +138,8 @@
     border: none;
     font-size: 16px;
     margin-top: -11px;
-    outline:0;
+    outline: none;
+
 }
 .suffix{
     margin-top: -38%;
@@ -147,7 +154,9 @@
   display: flex;
   justify-content: center;
   margin-left: 76%;
+  outline: none;
 }
 .profilemenu{
   margin-top: 10%;
+  outline: none;
 }

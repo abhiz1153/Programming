@@ -16,6 +16,10 @@
   display: flex;
   justify-content: center;
 }
+.head{
+ @extend .register;
+}
+
 .title{
   display: flex;
 }
@@ -72,4 +76,8 @@
     justify-content: flex-end;
     margin-right: 10%;
     color: blue;
+}
+.service{
+  @extend .head;
+    margin: auto;
 }
