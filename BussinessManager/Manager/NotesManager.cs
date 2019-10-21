@@ -47,61 +47,67 @@ namespace BussinessManager.Manager
                 await this.notesRepository.UpdateNotes(notesModel);
                 return "NOTES DETALS UPDATES SUCESSFULLY";
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
         }
         public List<NotesModel> GetAllListAsync()
         {
-            try
+
+            var list = new List<NotesModel>();
+            var result = this.notesRepository.GetList();
+            if (result != null)
             {
-                var list = new List<NotesModel>();
-                var result = this.notesRepository.GetList();
-                foreach(var item in result)
+                foreach (var item in result)
                 {
                     list.Add(item);
                 }
                 return list;
             }
-            catch (Exception e)
+            else
             {
-                throw new Exception(e.Message);
+                return null;
             }
+
         }
         public List<NotesModel> GetNotesAsync(string Email)
         {
-            try
+
+            var list = new List<NotesModel>();
+            var result = this.notesRepository.GetNotes(Email);
+            if (result != null)
             {
-                var list = new List<NotesModel>();
-                var result = this.notesRepository.GetNotes(Email);
                 foreach (var item in result)
                 {
                     list.Add(item);
                 }
                 return list;
             }
-            catch (Exception e)
+            else
             {
-                throw new Exception(e.Message);
+                return null;
             }
+
         }
         public List<NotesModel> GetReminderAsync(string Email)
         {
-            try
+            var list = new List<NotesModel>();
+            var result = this.notesRepository.GetReminder(Email);
+            if (result != null)
             {
-                var list = new List<NotesModel>();
-                var result = this.notesRepository.GetReminder(Email);
                 foreach (var item in result)
                 {
                     list.Add(item);
                 }
                 return list;
             }
-            catch (Exception e)
+            else
             {
-                throw new Exception(e.Message);
+                return null;
             }
+
+
         }
         public async Task<string> IsArchiveAsync(int id)
         {
@@ -117,49 +123,48 @@ namespace BussinessManager.Manager
         }
         public async Task<string> UnArchiveAsync(int id)
         {
-            try
-            {
-                await this.notesRepository.UnArchive(id);
-                return "UNARCHIVE SUCCESS";
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+
+            await this.notesRepository.UnArchive(id);
+            return "UNARCHIVE SUCCESS";
         }
         public List<NotesModel> GetArchiveNote(string Email)
         {
-            try
+
             {
                 var list = new List<NotesModel>();
                 var result = this.notesRepository.ArchiveNote(Email);
-                foreach (var item in result)
+                if (result != null)
                 {
-                    list.Add(item);
+                    foreach (var item in result)
+                    {
+                        list.Add(item);
+                    }
+                    return list;
                 }
-                return list;
+                else
+                {
+                    return null;
+                }
             }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+
         }
         public List<NotesModel> GetArchiveList()
         {
-            try
+            var list = new List<NotesModel>();
+            var result = this.notesRepository.ArchiveList();
+            if (result != null)
             {
-                var list = new List<NotesModel>();
-                var result = this.notesRepository.ArchiveList();
                 foreach (var item in result)
                 {
                     list.Add(item);
                 }
                 return list;
             }
-            catch(Exception e)
+            else
             {
-                throw new Exception(e.Message);
-;           }
+                return null;
+            }
+
         }
         public async Task<string> IsTrashAsync(int id)
         {
@@ -173,84 +178,59 @@ namespace BussinessManager.Manager
                 throw new Exception(e.Message);
             }
         }
-        public  List<NotesModel> TrashList()
+        public List<NotesModel> TrashList(string Email)
         {
-            try
+            var list = new List<NotesModel>();
+            var result = this.notesRepository.GetTrashList(Email);
+            if (result != null)
             {
-                var list = new List<NotesModel>();
-                var result = this.notesRepository.GetTrashList();
                 foreach (var item in result)
                 {
                     list.Add(item);
                 }
                 return list;
             }
-            catch (Exception e)
+            else
             {
-                throw new Exception(e.Message);
+                return null;
             }
+
         }
         public async Task<string> RestoreAsync(int id)
         {
-            try
-            {
-                await this.notesRepository.Restore(id);
-                return "UPDATES SUCESSFULLY";
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+
+            await this.notesRepository.Restore(id);
+            return "UPDATES SUCESSFULLY";
+
         }
-        public async Task<string> RestoreAllNote()
+        public async Task<string> RestoreAllNote(string Email)
         {
-            try
-            {
-                await this.notesRepository.RestoreAll();
-                return "Restore Successfully";
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            await this.notesRepository.RestoreAll(Email);
+            return "Restore Successfully";
         }
-        public async Task<string> RemoveAllTrash()
+        public async Task<string> RemoveAllTrash(string Email)
         {
-            try
-            {
-                 await this.notesRepository.RemoveTrash();
-                return "TRASH REMOVED";
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+
+            await this.notesRepository.RemoveTrash(Email);
+            return "TRASH REMOVED";
+
         }
+
         public async Task<string> IsPinAsync(int id)
         {
-            try
-            {
-                await this.notesRepository.IsPin(id);
-                return "UPDATES SUCESSFULLY";
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+
+            await this.notesRepository.IsPin(id);
+            return "UPDATES SUCESSFULLY";
+
         }
         public async Task<string> UnPinAsync(int id)
         {
-            try
-            {
-                await this.notesRepository.UnPin(id);
-                return "UPDATES SUCESSFULLY";
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+
+            await this.notesRepository.UnPin(id);
+            return "UPDATES SUCESSFULLY";
+
         }
-        public string UploadImages(int id,IFormFile image)
+        public string UploadImages(int id, IFormFile image)
         {
             try
             {
@@ -260,16 +240,16 @@ namespace BussinessManager.Manager
             catch (Exception e)
             {
                 throw new Exception(e.Message);
-            }         
+            }
         }
-        public string RemainderValue(int id,string reminder)
+        public string RemainderValue(int id, string reminder)
         {
             try
             {
                 this.notesRepository.Remainder(id, reminder);
-                return "Reminder Updated Succefully"; 
+                return "Reminder Updated Succefully";
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
@@ -278,7 +258,7 @@ namespace BussinessManager.Manager
         {
             try
             {
-                await this.notesRepository.Color(id,color);
+                await this.notesRepository.Color(id, color);
                 return "UPDATES SUCESSFULLY";
             }
             catch (Exception e)
@@ -288,20 +268,24 @@ namespace BussinessManager.Manager
         }
         public List<NotesModel> SearchNotes(string title)
         {
-            try
+
+            var list = new List<NotesModel>();
+            var result = this.notesRepository.Search(title);
+            if (result != null)
             {
-                var list = new List<NotesModel>();
-                var result = this.notesRepository.Search(title);
                 foreach (var item in result)
                 {
                     list.Add(item);
                 }
                 return list;
+
             }
-            catch (Exception e)
+            else
             {
-                throw new Exception(e.Message);
+                return null;
             }
+
+
         }
     }
 }

@@ -136,10 +136,11 @@ namespace FundooNoteApi.Controllers
         /// Alls the trash list.
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         [Route("trashlist")]
-        public List<NotesModel> AllTrashList()
+        public List<NotesModel> AllTrashList(string Email)
         {
-            return this.notes.TrashList();
+            return this.notes.TrashList(Email);
         }
 
         /// <summary>
@@ -165,13 +166,13 @@ namespace FundooNoteApi.Controllers
         /// Restores all.
         /// </summary>
         /// <returns></returns>
-        [HttpPut, Authorize]
+        [HttpPut]
         [Route("restoreall")]
-        public async Task<IActionResult> RestoreAll()
+        public async Task<IActionResult> RestoreAll(string Email)
         {
             try
             {
-                var result = await this.notes.RestoreAllNote();
+                var result = await this.notes.RestoreAllNote(Email);
                 return this.Ok(new { result });
             }
             catch (Exception e)
@@ -183,13 +184,13 @@ namespace FundooNoteApi.Controllers
         /// Removes all.
         /// </summary>
         /// <returns></returns>
-        [HttpDelete,Authorize]
+        [HttpDelete]
         [Route("removetrash")]
-        public async Task<IActionResult> RemoveAll()
+        public async Task<IActionResult> RemoveAll(string Email)
         {
             try
             {
-                var result = await this.notes.RemoveAllTrash();
+                var result = await this.notes.RemoveAllTrash(Email);
                 return this.Ok(new { result });
             }
             catch (Exception e)
@@ -197,6 +198,7 @@ namespace FundooNoteApi.Controllers
                 return this.BadRequest(e.Message);
             }
         }
+       
         /// <summary>
         /// Determines whether the specified identifier is archive.
         /// </summary>

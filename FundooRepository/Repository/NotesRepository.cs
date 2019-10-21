@@ -119,14 +119,14 @@ namespace FundooRepository.Repository
             var note = userContext.Notes.Where(r => r.Email == Email).First();
             if (note != null)
             {
-                return userContext.Notes.Where(r => r.Email == Email).ToList();
+                return userContext.Notes.Where(r => r.Email == Email && r.IsArchive == false && r.IsTrash == false).ToList();
             }
             return null;
         }
         public List<NotesModel> GetReminder(string Email)
         {
-            var note = userContext.Notes.Where(r => r.Email == Email && r.Reminder != null).First();
-            if (note != null)
+            var note = userContext.Notes.Any(r => r.Email == Email && r.Reminder != null);
+            if (note)
             {
                 return userContext.Notes.Where(r => r.Email == Email && r.Reminder != null).ToList();
             }
@@ -148,12 +148,12 @@ namespace FundooRepository.Repository
             }
             return null;
         }
-        public List<NotesModel> GetTrashList()
+        public List<NotesModel> GetTrashList(string Email)
         {
-            var result = this.userContext.Notes.Where(n => n.IsTrash == true).SingleOrDefault();
-            if (result != null)
+            var result = this.userContext.Notes.Any(n => n.Email == Email && n.IsTrash == true);
+            if (result)
             {
-                return this.userContext.Notes.ToList<NotesModel>();
+                return this.userContext.Notes.Where(n => n.Email == Email && n.IsTrash == true).ToList();
             }
             return null;
         }
@@ -173,9 +173,9 @@ namespace FundooRepository.Repository
             }
             return null;
         }
-        public Task RestoreAll()
+        public Task RestoreAll(string Email)
         {
-            var data = from notes in this.userContext.Notes where notes.IsTrash == true select notes;
+            var data = this.userContext.Notes.Where(n => n.Email == Email && n.IsTrash == true).ToList();
             if (data != null)
             {
                 foreach (var item in data)
@@ -190,10 +190,10 @@ namespace FundooRepository.Repository
         /// Removes the trash.
         /// </summary>
         /// <returns></returns>
-        public Task RemoveTrash()
+        public Task RemoveTrash(string Email)
         {
-            var data = from notes in this.userContext.Notes where notes.IsTrash == true select notes;
-            if( data != null)
+            var data = this.userContext.Notes.Where(n => n.Email == Email && n.IsTrash == true).ToList();
+            if (data != null)
             {
                 foreach (var items in data)
                 {
@@ -203,6 +203,7 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+        
         /// <summary>
         /// Determines whether the specified identifier is archive.
         /// </summary>
@@ -236,8 +237,8 @@ namespace FundooRepository.Repository
         }
         public List<NotesModel> ArchiveNote(string Email)
         {
-            var result = this.userContext.Notes.Where(n =>n.Email== Email && n.IsArchive == true).First();
-            if (result != null)
+            var result = this.userContext.Notes.Any(n =>n.Email== Email && n.IsArchive == true);
+            if (result)
             {
                 return userContext.Notes.Where(n => n.Email == Email && n.IsArchive == true).ToList();
             }

@@ -67,7 +67,7 @@ namespace BussinessManager.Interface
         /// Trashes the list.
         /// </summary>
         /// <returns></returns>
-        List<NotesModel> TrashList();
+        List<NotesModel> TrashList(string email);
         /// <summary>
         /// Restores the asynchronous.
         /// </summary>
@@ -104,12 +104,12 @@ namespace BussinessManager.Interface
         /// Restores all note.
         /// </summary>
         /// <returns></returns>
-        Task<string> RestoreAllNote();
+        Task<string> RestoreAllNote(string Email);
         /// <summary>
         /// Removes all trash.
         /// </summary>
         /// <returns></returns>
-        Task<string> RemoveAllTrash();
+        Task<string> RemoveAllTrash(string Email);
         /// <summary>
         /// Sets the color.
         /// </summary>

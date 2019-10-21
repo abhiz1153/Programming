@@ -53,7 +53,7 @@ namespace FundooRepository.Interface
         /// <returns></returns>
         Task IsTrash(int id);
         List<NotesModel> GetReminder(string Email);
-        List<NotesModel> GetTrashList();
+        List<NotesModel> GetTrashList(string Email);
         /// <summary>
         /// Determines whether the specified identifier is archive.
         /// </summary>
@@ -108,12 +108,13 @@ namespace FundooRepository.Interface
         /// Restores all.
         /// </summary>
         /// <returns></returns>
-        Task RestoreAll();
+        Task RestoreAll(string Email);
         /// <summary>
         /// Removes the trash.
         /// </summary>
         /// <returns></returns>
-        Task RemoveTrash();
+        Task RemoveTrash(string Email);
+    
         /// <summary>
         /// Colors the specified identifier.
         /// </summary>
