@@ -24,6 +24,9 @@ import { DisplayNoteComponent } from './User/display-note/display-note.component
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ReminderComponent } from './User/reminder/reminder.component';
 import { ArchiveComponent } from './User/archive/archive.component';
+import { TrashComponent } from './User/trash/trash.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { EditComponent } from './User/edit/edit.component';
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
       [
@@ -51,7 +54,9 @@ export function getAuthServiceConfigs() {
     NotesComponent,
     DisplayNoteComponent,
     ReminderComponent,
-    ArchiveComponent
+    ArchiveComponent,
+    TrashComponent,
+    EditComponent
 
   ],
   imports: [
@@ -76,8 +81,11 @@ export function getAuthServiceConfigs() {
     MatExpansionModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
     ],
+    entryComponents: [EditComponent],
   providers: [UserService,
     { provide: AuthServiceConfig, useFactory: getAuthServiceConfigs }
   ],

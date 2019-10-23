@@ -7,3 +7,13 @@
     height: 156px;
     border-radius: 24px;
 }
+.colorpalette-card {
+    width: 175px;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }

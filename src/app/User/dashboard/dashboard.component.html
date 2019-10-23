@@ -1,81 +1,76 @@
 <div class="tool">
-    <mat-drawer-container class="example">
-  <mat-toolbar color="" class="toolbar" >
-    <button mat-icon-button (click)="drawer.toggle()" style="outline: none;">
-      <mat-icon>dehaze</mat-icon>
-    </button>
-    <img class="img" src="..\assets\keep.png" height="40px">
-    <div class="fundoo">Fundoo Notes </div>
-    <div class="search-div">
-      <mat-card class="search-bar">
-        <button id="search-button" mat-icon-button style="outline: none;">
-          <mat-icon matSuffix class="suffix">search</mat-icon>
-        </button>
-        <input class="form-control" type="text" name="search" autocomplete="off" placeholder="search ">
-        <button class="search-button" mat-icon-button>
-          <mat-icon matSuffix class="suffix">clear</mat-icon>
-        </button>
-      </mat-card>
-    </div>
-    <div>
-      <button class="refresh-button" mat-icon-button>
-        <mat-icon aria-hidden="false" aria-label="Example home icon">refresh</mat-icon>
+  <mat-drawer-container class="example">
+    <mat-toolbar color="" class="toolbar">
+      <button mat-icon-button (click)="drawer.toggle()" style="outline: none;">
+        <mat-icon>dehaze</mat-icon>
       </button>
-    </div>
-    <div>
-      <button class="listview-button" mat-icon-button>
-        <mat-icon aria-hidden="false" aria-label="Example home icon">list view</mat-icon>
-      </button>
-    </div>
-       <div class="profile">
+      <img class="img" src="..\assets\keep.png" height="40px">
+      <div class="fundoo">Fundoo Notes </div>
+      <div class="search-div">
+        <mat-card class="search-bar">
+          <button id="search-button" mat-icon-button style="outline: none;">
+            <mat-icon matSuffix class="suffix">search</mat-icon>
+          </button>
+          <input class="form-control" type="text" name="search" autocomplete="off" placeholder="search ">
+          <button class="search-button" mat-icon-button>
+            <mat-icon matSuffix class="suffix">clear</mat-icon>
+          </button>
+        </mat-card>
+      </div>
       <div>
-        <button  style="outline: none;" mat-fab [matMenuTriggerFor]="belowMenu">Below</button>
+        <button class="refresh-button" mat-icon-button>
+          <mat-icon aria-hidden="false" aria-label="Example home icon">refresh</mat-icon>
+        </button>
       </div>
-      <mat-menu #belowMenu="matMenu" yPosition="below">
-          <button mat-fab>IMAGE</button>
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
-      </mat-menu>
-     </div> 
-       </mat-toolbar>
+      <div>
+        <button class="listview-button" mat-icon-button>
+          <mat-icon aria-hidden="false" aria-label="Example home icon">list view</mat-icon>
+        </button>
+      </div>
+      <div class="profile">
+          <button [matMenuTriggerFor]="menu"  mat-fab>IMAGE</button>
+        </div>        
+    </mat-toolbar>
     <mat-drawer-container class="example-container">
-        
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-      <div class="note">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" class="bulb">
-          <path
-            d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z">
-          </path>
-        </svg>
-        <button mat-button class="button"   routerLink="/dashboard"color="">
-          Notes </button>
-      </div>
-      <div class="reminder">
-        <img class="r" src="..\assets\reminder.png" height="28px;">
-        <button mat-button  routerLink="/dashboard/reminder" class="button" color="">
-          Reminders </button>
-      </div>
-      <mat-divider class="divider"></mat-divider>
-      <p class="label">LABELS</p>
-      <div class="edit">
-        <img src="..\assets\edit.png" height="28px;">
-        <button mat-button class="button" color="">
-          Edit labels </button>
-      </div>
-      <mat-divider class="divider"></mat-divider>
-      <div class="edit">
-        <img src="..\assets\archive.png" height="23px;" class="eimg">
-        <button mat-button class="button" routerLink="/dashboard/archive" color="">
-          Archive </button>
-      </div>
-      <div class="trash">
-        <img src="..\assets\trash.png" height="23px;" class="timg">
-        <button mat-button class="trashbutton" color="">
-          Trash </button>
-      </div>
-    </mat-drawer> 
-    <router-outlet></router-outlet>
-  </mat-drawer-container>  
+      <mat-drawer #drawer class="example-sidenav" mode="side">
+        <div class="note">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" class="bulb">
+            <path
+              d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z">
+            </path>
+          </svg>
+          <button mat-button class="button" routerLink="/dashboard" color="">
+            Notes </button>
+        </div>
+        <div class="reminder">
+          <img class="r" src="..\assets\reminder.png" height="28px;">
+          <button mat-button routerLink="/dashboard/reminder" class="button" color="">
+            Reminders </button>
+        </div>
+        <mat-divider class="divider"></mat-divider>
+        <p class="label">LABELS</p>
+        <div class="edit">
+          <img src="..\assets\edit.png" height="28px;">
+          <button mat-button class="button" color="">
+            Edit labels </button>
+        </div>
+        <mat-divider class="divider"></mat-divider>
+        <div class="edit">
+          <img src="..\assets\archive.png" height="23px;" class="eimg">
+          <button mat-button class="button" routerLink="/dashboard/archive" color="">
+            Archive </button>
+        </div>
+        <div class="trash">
+          <img src="..\assets\trash.png" height="23px;" class="timg">
+          <button mat-button class="trashbutton" routerLink="/dashboard/trash" color="">
+            Trash </button>
+        </div>
+      </mat-drawer>
+      <mat-menu #menu="matMenu" style = " position: relative; bottom: 5%;">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+      <router-outlet></router-outlet>
+    </mat-drawer-container>
   </mat-drawer-container>
-  
 </div>

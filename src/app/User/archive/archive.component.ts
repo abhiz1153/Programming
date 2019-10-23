@@ -19,5 +19,10 @@ export class ArchiveComponent implements OnInit {
     console.log('ALL NOTES', this.notes);
     });
   }
+  unarchive(id) {
+    console.log('ID' , id);
+    this.notesService.RemoveArchive(id).subscribe((data: any) => {
+    });
+  }
 
 }

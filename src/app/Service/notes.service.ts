@@ -34,4 +34,38 @@ AddArchive(id) {
 GetArchive(note) {
   return this.http.get(this.rootUrl + '/archivenote?email=' + note);
 }
+RemoveArchive(id) {
+  console.log('ID' , id);
+  return this.http.put(this.rootUrl + '/unarchive?id=' + id, null);
+}
+AddTrash?(id) {
+  console.log('ID' , id);
+  return this.http.put(this.rootUrl + '/trash?id=' + id, null);
+}
+GetTrash(email) {
+  return this.http.get(this.rootUrl + '/trashlist?email=' + email);
+}
+Delete(id) {
+  return this.http.delete(this.rootUrl + '/delete?id=' + id);
+}
+Restore(id) {
+  return this.http.put(this.rootUrl + '/restore?id=' + id, null);
+}
+DeleteAll(Email) {
+  return this.http.delete(this.rootUrl + '/removetrash?Email=' + Email);
+}
+RestoreAll(Email) {
+  return this.http.put(this.rootUrl + '/restoreall?Email=' + Email, null);
+}
+UpdateNotes(Title, Description, Id) {
+  const updatenote = {
+    Id: Id,
+    Title: Title,
+    Description: Description
+     };
+     return this.http.put(this.rootUrl + '/update', updatenote);
+}
+AddColor(id, color) {
+  return this.http.put(this.rootUrl + '/color?id=' + id + '&color=' + color, null);
+}
 }

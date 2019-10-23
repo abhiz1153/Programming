@@ -160,3 +160,16 @@
   margin-top: 10%;
   outline: none;
 }
+.option{
+  display: flex;
+  justify-content: flex-end;
+}
+// :host ::ng-deep .cdk-overlay-connected-position-bounding-box{
+//   top: 38.9965px !important;
+//     right: 59.1285px !important;
+// }
+
+:host ::ng-deep .cdk-overlay-pane.mat-menu-panel {
+  margin-top: 25px !important;
+  margin-right: 21px !important;
+}

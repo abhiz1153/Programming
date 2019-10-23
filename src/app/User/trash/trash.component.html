@@ -1,0 +1,27 @@
+<div>
+<div class="button" >
+    <button mat-raised-button color="primary" (click)="restoreAll()">Restore All Notes</button>
+    <button mat-raised-button color="warn" (click)="deleteAll()" style="margin-left: 33px;margin-right: 33px;">Delete All Notes</button>
+</div>
+<div class="format"> 
+       <mat-card *ngFor="let note of notes; let noteindex=index" class="matcard">
+      <input type="text"   mat-input autocomplete="off" class="titlebox" style="outline: none;font-size:large;border:none" value="{{note.title}}">
+      <br>
+      <input type="text" matInput style="font-size: large; border:none; margin-top: 4px; outline: none;" value="{{note.description}}">
+     <br>
+     
+        <button mat-icon-button [matMenuTriggerFor]="menu" >
+            <mat-icon><img class="img" src="..\assets\more.png" height="20px"></mat-icon>
+          </button>              
+          <div>
+              <mat-menu #menu="matMenu">
+                  <div mat-menu-item>
+                   <button type="submit" mat-button  (click)="Remove(note.id)">Delete</button>
+                    </div>
+              <div mat-menu-item>
+                <button type="submit" mat-button  (click)="Restore(note.id)">Restore</button>
+              </div>
+              </mat-menu>
+            </div>
+     </mat-card>
+</div> 

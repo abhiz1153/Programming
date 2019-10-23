@@ -16,8 +16,8 @@
           <button mat-icon-button >
             <mat-icon><img class="img" src="..\assets\image.png" height="20px"></mat-icon>
           </button>
-          <button mat-icon-button >
-            <mat-icon><img class="img" src="..\assets\archive.png" height="20px"></mat-icon>
+          <button mat-icon-button  (click)="unarchive(note.id)">
+            <mat-icon><img class="img" src="..\assets\unarchive.png" height="20px"></mat-icon>
           </button>
           <button mat-icon-button  >
             <mat-icon><img class="img" src="..\assets\more.png" height="20px"></mat-icon>

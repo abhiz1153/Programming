@@ -9,9 +9,10 @@ import {ResetComponent} from './User/reset/reset.component';
 import { DashboardComponent } from './User/dashboard/dashboard.component';
 import {CardsComponent} from './User/cards/cards.component';
 import { NotesComponent } from './User/notes/notes.component';
-import { DisplayNoteComponent } from './User/display-note/display-note.component';
 import { ReminderComponent } from './User/reminder/reminder.component';
 import { ArchiveComponent } from './User/archive/archive.component';
+import { TrashComponent } from './User/trash/trash.component';
+import { DisplayNoteComponent } from './User/display-note/display-note.component';
 const appRoutes: Routes = ([
   // {path : '' ,redirectTo:'./register' ,pathMatch:'full'},
   {path : 'register', component: RegisterComponent},
@@ -23,7 +24,8 @@ const appRoutes: Routes = ([
     { path: '', component: DisplayNoteComponent},
     { path : 'displaynote', component: DisplayNoteComponent},
     { path : 'reminder', component: ReminderComponent},
-    {path : 'archive' , component: ArchiveComponent}
+    {path : 'archive' , component: ArchiveComponent},
+    {path : 'trash' , component : TrashComponent}
   ]
 },
 
