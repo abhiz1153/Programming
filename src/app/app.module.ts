@@ -27,6 +27,8 @@ import { ArchiveComponent } from './User/archive/archive.component';
 import { TrashComponent } from './User/trash/trash.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { EditComponent } from './User/edit/edit.component';
+import { CollaboratorComponent } from './User/collaborator/collaborator.component';
+import { AvatarModule } from 'ngx-avatar';
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
       [
@@ -56,7 +58,8 @@ export function getAuthServiceConfigs() {
     ReminderComponent,
     ArchiveComponent,
     TrashComponent,
-    EditComponent
+    EditComponent,
+    CollaboratorComponent
 
   ],
   imports: [
@@ -83,9 +86,10 @@ export function getAuthServiceConfigs() {
     MatDatepickerModule,
     MatNativeDateModule,
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
+    AvatarModule
     ],
-    entryComponents: [EditComponent],
+    entryComponents: [EditComponent, CollaboratorComponent],
   providers: [UserService,
     { provide: AuthServiceConfig, useFactory: getAuthServiceConfigs }
   ],

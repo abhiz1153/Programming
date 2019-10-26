@@ -3,6 +3,7 @@ import { NotesService} from 'src/app/Service/notes.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { EditComponent } from '../edit/edit.component';
 import { Router } from '@angular/router';
+import { CollaboratorComponent } from '../collaborator/collaborator.component';
 
 export interface DialogData {
   title: string;
@@ -34,7 +35,7 @@ constructor(private notesService: NotesService, public dialog: MatDialog, privat
   userData = JSON.parse(localStorage.getItem('userData'));
   ngOnInit() {
     this.notesService.GetNotes(this.userData.email).subscribe((data: any) => {
-      this.notes = data;
+      this.notes = data.sort((a, b) => b.isPin - a.isPin);
       console.log(this.notes);
       });
   }
@@ -60,11 +61,34 @@ constructor(private notesService: NotesService, public dialog: MatDialog, privat
       panelClass: 'custom-modalbox',
       data: {notesData: note}
     });
-}
+  }
+    openCollaborator(note):  void {
+      const collaboratordailog = this.dialog.open(CollaboratorComponent, {
+        panelClass: 'custom-modalbox',  height: '300px',
+        data: {notesData: note}
+      });
+    }
 updatecolor(color, id) {
   console.log('Color', color);
   console.log('ID', id);
-  this.notesService.AddColor(id, color).subscribe((data: any) => {
+  this.notesService.AddColor(id, color).subscribe(() => {
+  });
+}
+pin(index, id) {
+  this.notesService.addPin(id).subscribe((status: any) => {
+    this.notes[index].isPin = 1;
+    this.notes = this.notes.sort((a, b) => b.isPin - a.isPin);
+    console.log(status);
+  }, (error: any) => {
+   alert(error);
+  });
+}
+
+unpin(index, id) {
+  this.notesService.unPin(id).subscribe((status: any) => {
+    this.notes[index].isPin = 0;
+    this.notes = this.notes.sort((a, b) => b.isPin - a.isPin);
+    console.log(status);
   });
 }
 

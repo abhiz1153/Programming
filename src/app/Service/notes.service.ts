@@ -68,4 +68,12 @@ UpdateNotes(Title, Description, Id) {
 AddColor(id, color) {
   return this.http.put(this.rootUrl + '/color?id=' + id + '&color=' + color, null);
 }
+addPin(id) {
+  return this.http.put(this.rootUrl + '/ispin?id=' + id, null);
+}
+unPin(id) {
+  return this.http.put(this.rootUrl + '/unpin?id=' + id, null);
+}
+
+
 }

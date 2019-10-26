@@ -34,7 +34,7 @@ user: any = SocialUser;
      console.log('userdata', userData);
      this.userService. facebook(userData.email).subscribe((data: any) => {
       console.log(data.result);
-      localStorage.setItem('userData',JSON.stringify(data));
+      localStorage.setItem('userData', JSON.stringify(data));
         this.router.navigate(['/dashboard']);
     });
  });

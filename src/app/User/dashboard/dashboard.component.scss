@@ -169,7 +169,18 @@
 //     right: 59.1285px !important;
 // }
 
-:host ::ng-deep .cdk-overlay-pane.mat-menu-panel {
-  margin-top: 25px !important;
-  margin-right: 21px !important;
+::ng-deep .cdk-overlay-pane {
+  margin-top: 70px;
+}
+.imgclass{
+  height: 40px;
+  width: 40px;
+  border-radius: 25px;
+}
+.changepic{
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+  margin-top: -23px;
+  margin-left: -8px;
 }

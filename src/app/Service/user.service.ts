@@ -49,4 +49,8 @@ export class UserService {
   console.log('data in user service', user);
   return this.http.post(this.rootUrl + 'api/account/google', body);
 }
+getProfile(email , formData) {
+  console.log('data in user service', formData);
+return this.http.put(this.rootUrl + 'api/account/upload?email=' + email , formData);
+}
 }

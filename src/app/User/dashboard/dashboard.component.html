@@ -27,8 +27,13 @@
           <mat-icon aria-hidden="false" aria-label="Example home icon">list view</mat-icon>
         </button>
       </div>
+      <div>
+        <button class="settings-button" mat-icon-button>
+          <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>
+        </button>
+      </div>
       <div class="profile">
-          <button [matMenuTriggerFor]="menu"  mat-fab>IMAGE</button>
+          <button [matMenuTriggerFor]="menu" > <img src="{{tempimage}}" class="imgclass"> </button>
         </div>        
     </mat-toolbar>
     <mat-drawer-container class="example-container">
@@ -66,11 +71,19 @@
             Trash </button>
         </div>
       </mat-drawer>
-      <mat-menu #menu="matMenu" style = " position: relative; bottom: 5%;">
-          <button mat-menu-item>Item 1</button>
-          <button mat-menu-item>Item 2</button>
+      <mat-menu #menu="matMenu" style = " position: relative; bottom: 5%; margin-top: 70px;">
+        <input style="display: none" type="file" (change)="onFileUpload($event)" #selectFile>  
+        <button mat-fab (click)="selectFile.click()" style="width: 80px; height: 80px; margin-left: 43px;">
+                <img src="{{tempimage}}" class="changepic"> </button>
+          <div style="margin-left: 17px; margin-top: 18px;">
+            <span>{{userData.firstName}} {{userData.lastName}} </span>
+          </div>
+          <div>
+            <span>{{userData.email}}</span>
+          </div>
+          <button mat-raised-button color="primary" (click)="signout()">SIGN OUT</button>
         </mat-menu>
-      <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
     </mat-drawer-container>
   </mat-drawer-container>
 </div>

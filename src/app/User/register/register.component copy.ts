@@ -11,7 +11,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class RegisterComponent implements OnInit {
   register: FormGroup;
   reg = false;
-  registerForm: any;
   constructor(public userService: UserService, private snackBar: MatSnackBar) { }
   ngOnInit() {
     this.register = new FormGroup({

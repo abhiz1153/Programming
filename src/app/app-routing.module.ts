@@ -14,7 +14,7 @@ import { ArchiveComponent } from './User/archive/archive.component';
 import { TrashComponent } from './User/trash/trash.component';
 import { DisplayNoteComponent } from './User/display-note/display-note.component';
 const appRoutes: Routes = ([
-  // {path : '' ,redirectTo:'./register' ,pathMatch:'full'},
+   {path : '' , redirectTo: './login' , pathMatch: 'full'},
   {path : 'register', component: RegisterComponent},
   {path : 'login', component: LoginComponent},
   {path : 'forget' , component: ForgetPasswordComponent},
