@@ -19,6 +19,7 @@ namespace FundooRepository.DBContext
     using System.Threading.Tasks;
     using Common.Models.CollaboratorsModels;
     using Common.Models.AdminModels;
+    using Common.Models.NotesLabelsModels;
 
     /// <summary>
     /// Piblic class for UserContext
@@ -54,5 +55,12 @@ namespace FundooRepository.DBContext
         public DbSet<CollaboratorsModel> Collaborators { get; set; }
         public DbSet<AdminModel> Admin { get; set; }
         public DbSet<AdminLoginModel> AdminLogin { get; set; }
+        /// <summary>
+        /// Gets or sets the notes label models.
+        /// </summary>
+        /// <value>
+        /// The notes label models.
+        /// </value>
+        public DbSet<NoteLabelModel> NotesLabelModels { get; set; }
     }
 }

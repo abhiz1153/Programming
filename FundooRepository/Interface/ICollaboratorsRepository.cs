@@ -9,6 +9,13 @@ namespace FundooRepository.Interface
     public interface ICollaboratorsRepository
     {
         Task AddCollaboratorsToNotes(CollaboratorsModel collaboratorsModel);
-        Task DeleteCollaboratorsNotes(CollaboratorsModel collaboratorsModels);
+
+        /// <summary>
+        /// Deletes the collaborators notes.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        Task DeleteCollaboratorsNotes(int id);
+        List<CollaboratorsModel> GetCollaborator(int notesId);
     }
 }

@@ -7,6 +7,7 @@
 namespace BussinessManager.Interface
 {
     using Common.Models.CollaboratorModel;
+    using Common.Models.NotesLabelsModels;
     using Microsoft.AspNetCore.Http;
     using System;
     using System.Collections.Generic;
@@ -124,6 +125,10 @@ namespace BussinessManager.Interface
         /// <returns></returns>
         List<NotesModel> GetArchiveList();
         List<NotesModel> SearchNotes(string title);
-        List<NotesModel> GetReminderAsync(string Email); 
+        List<NotesModel> GetReminderAsync(string Email);
+        string AddNotesLabel(NoteLabelModel model);
+        List<NoteLabelModel> GetNotesLabel(int noteId);
+        string DeleteNotesLabel(int id);
+        List<NoteLabelModel> GetAllLabelListAsync();
     }
 }

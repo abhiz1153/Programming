@@ -70,9 +70,9 @@ namespace FundooNoteApi.Controllers
         }
         [HttpGet]
         [Route("label")]
-        public List<LabelModel> List(int id)
+        public List<LabelModel> List(string email)
         {
-            return this.label.GetLabel(id);
+            return this.label.GetLabel(email);
         }
     }
 }

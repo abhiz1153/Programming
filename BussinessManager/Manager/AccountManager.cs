@@ -9,6 +9,7 @@ namespace BussinessManager.Manager
     using BussinessManager.Interface;
     using Common.Models;
     using FundooRepository.Interface;
+    using Microsoft.AspNetCore.Http;
     using System;
     using System.Collections.Generic;
     using System.Text;
@@ -115,6 +116,18 @@ namespace BussinessManager.Manager
         {
            var result =  this.accountRepository.Logout(loginModel);
             return result;
+        }
+        public string UploadImages(string email, IFormFile profilePicture)
+        {
+            try
+            {
+               var result = this.accountRepository.UploadImages(email, profilePicture);
+                return  result;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 

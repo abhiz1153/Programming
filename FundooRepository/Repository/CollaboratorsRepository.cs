@@ -42,11 +42,11 @@ namespace FundooRepository.Repository
                 throw new Exception(e.Message);
             }
         }
-        public Task DeleteCollaboratorsNotes(CollaboratorsModel collaboratorsModels)
+        public Task DeleteCollaboratorsNotes(int id)
         {
             try
             {
-                var result = this.userContext.Collaborators.Where(r => r.NoteId == collaboratorsModels.NoteId).Single();
+                var result = this.userContext.Collaborators.Where(r => r.Id == id).Single();
                 this.userContext.Collaborators.Remove(result);
                 return Task.Run(() => userContext.SaveChanges());
             }
@@ -54,6 +54,15 @@ namespace FundooRepository.Repository
             {
                 throw new Exception(e.Message);
             }
+        }
+        public List<CollaboratorsModel> GetCollaborator(int notesId)
+        {
+            bool result = userContext.Collaborators.Any(r => r.NoteId == notesId);
+            if (result)
+            {
+                return userContext.Collaborators.Where(r => r.NoteId == notesId).ToList();
+            }
+            return null;
         }
     }
 }

@@ -34,17 +34,26 @@ namespace FundooNoteApi.Controllers
         }
         [HttpDelete]
         [Route("remove")]
-        public async Task<IActionResult> Delete(CollaboratorsModel collaboratorsModel)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                var result = await this.collaborators.RemoveCollaboratorAsync(collaboratorsModel);
-                return this.Ok(new { result});
+                var result = await this.collaborators.RemoveCollaboratorAsync(id);
+                return this.Ok(new { result });
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return this.BadRequest(e.Message);
             }
+        }
+        [HttpGet]
+        [Route("list")]
+        public List<CollaboratorsModel> GetCollaborator(int notesId)
+        {         
+           
+             var result = this.collaborators.CollaboratorList(notesId);
+             return result;        
+           
         }
     }
 }

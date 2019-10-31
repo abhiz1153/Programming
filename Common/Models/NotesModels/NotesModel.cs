@@ -53,7 +53,6 @@ namespace Common.Models.CollaboratorModel
         /// </summary>
         private bool isArchive;
         /// <summary>
-        /// The is trash
         /// </summary>
         private bool isTrash;
         /// <summary>

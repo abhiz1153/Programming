@@ -7,6 +7,7 @@
 namespace FundooRepository.Interface
 {
     using Common.Models.CollaboratorModel;
+    using Common.Models.NotesLabelsModels;
     using Microsoft.AspNetCore.Http;
     using System;
     using System.Collections.Generic;
@@ -123,5 +124,9 @@ namespace FundooRepository.Interface
         /// <returns></returns>
         Task Color(int id, string color);
         List<NotesModel> Search(string title);
+        Task AddNotesLabel(NoteLabelModel model);
+        List<NoteLabelModel> GetNotesLabel(int noteid);
+        string DeleteNotesLabel(int id);
+        List<NoteLabelModel> GetLabelList();
     }
 }

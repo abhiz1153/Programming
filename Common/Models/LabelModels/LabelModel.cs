@@ -27,6 +27,7 @@ namespace Common.Models.LabelModels
         /// The label
         /// </summary>
         private string label;
+        private int noteId;
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
@@ -61,5 +62,6 @@ namespace Common.Models.LabelModels
             set { this.label = value; }
             get { return this.label; }
         }
+      
     }
 }

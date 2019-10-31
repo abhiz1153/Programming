@@ -11,6 +11,7 @@ namespace FundooNoteApi.Controllers
     using System.Threading.Tasks;
     using BussinessManager.Interface;
     using Common.Models.CollaboratorModel;
+    using Common.Models.NotesLabelsModels;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -346,6 +347,42 @@ namespace FundooNoteApi.Controllers
         public List<NotesModel> ReminderList(string Email)
         {
             return this.notes.GetReminderAsync(Email);
+        }
+        [HttpPost]
+        [Route("addlabel")]
+        public IActionResult AddNoteLabel(NoteLabelModel label)
+        {
+            var result = this.notes.AddNotesLabel(label);
+            return this.Ok(new { result });
+        } 
+        [HttpGet]
+        [Route("getlabel")]
+        public IActionResult GetNoteLabel(int noteId)
+        {
+            IList<NoteLabelModel> result = this.notes.GetNotesLabel(noteId);
+            if (result == null)
+            {
+                return this.NotFound();
+            }
+            return this.Ok(new { result });
+        }
+
+        [HttpDelete]
+        [Route("deletelabel")]
+        public IActionResult DeleteNotelabel(int id)
+        {
+            var result = this.notes.DeleteNotesLabel(id);
+            if (result == null)
+            {
+                return this.NotFound();
+            }
+            return this.Ok(new { result });
+        }
+        [HttpGet]
+        [Route("viewall")]
+        public List<NoteLabelModel> LabelList()
+        {
+            return this.notes.GetAllLabelListAsync();
         }
     }
 }

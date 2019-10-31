@@ -58,7 +58,7 @@ namespace FundooRepository.Repository
             var result = userContext.Labels.Where(r => r.Id == labelModel.Id).SingleOrDefault();
             if (result != null)
             {
-                result.Email = labelModel.Email;
+               // result.Email = labelModel.Email;
                 result.Label = labelModel.Label;
 
                 userContext.Labels.Update(result);
@@ -94,12 +94,12 @@ namespace FundooRepository.Repository
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public List<LabelModel> GetLabel(int id)
+        public List<LabelModel> GetLabel(string email)
         {
-            var note = userContext.Labels.Where(r => r.Id == id).SingleOrDefault();
+            var note = userContext.Labels.Where(r => r.Email == email).FirstOrDefault();
             if (note != null)
             {
-                return userContext.Labels.Where(r => r.Id == id).ToList();
+                return userContext.Labels.Where(r => r.Email == email).ToList();
             }
             return null;
         }

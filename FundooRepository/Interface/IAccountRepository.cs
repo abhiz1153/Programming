@@ -7,6 +7,7 @@
 namespace FundooRepository.Interface
 {
     using Common.Models;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using System.Threading.Tasks;
     /// <summary>
@@ -60,5 +61,6 @@ namespace FundooRepository.Interface
         Task<UserModel> FacebookLoginAsync(LoginModel loginModel);
         Task<UserModel> GoogleLoginAsync(LoginModel loginModel);
         string Logout(LoginModel loginModel);
+        string UploadImages(string email, IFormFile profilePicture);
     }
 }

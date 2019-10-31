@@ -14,7 +14,8 @@ namespace Common.Models
         private string city;
         private string password;
         private string cardType;
-       
+        private string profilePicture;
+
         [Required(ErrorMessage = "Enter FirstName")]
         public string FirstName
         {
@@ -54,6 +55,11 @@ namespace Common.Models
         {
             set { this.cardType = value; }
             get { return this.cardType; }
+        }
+        public string ProfilePicture
+        {
+            set { this.profilePicture = value; }
+            get { return this.profilePicture; }
         }
     }
 }

@@ -147,5 +147,19 @@ namespace FundooNoteApi.Controllers
             var result = this.account.LogoutAsync(loginModel);
             return result;
         }
+        [HttpPut]
+        [Route("upload")]
+        public IActionResult Upload(string email, IFormFile profilePicture)
+        {
+            try
+            {
+                var result = this.account.UploadImages(email, profilePicture);
+                return this.Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
+        }
     }
 }

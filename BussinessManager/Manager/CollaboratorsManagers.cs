@@ -27,11 +27,11 @@ namespace BussinessManager.Manager
                 throw new Exception(e.Message);
             }
         }
-        public async Task<string> RemoveCollaboratorAsync(CollaboratorsModel collaboratorsModel)
+        public async Task<string> RemoveCollaboratorAsync(int id)
         {
             try
             {
-                await this.collaboratorRepository.DeleteCollaboratorsNotes(collaboratorsModel);
+                await this.collaboratorRepository.DeleteCollaboratorsNotes(id);
                 return "COLLABORATION DELETED SUCCESSFULLY";
             }
             catch(Exception e)
@@ -39,5 +39,25 @@ namespace BussinessManager.Manager
                 throw new Exception(e.Message);
             }
         }
+        public List<CollaboratorsModel> CollaboratorList(int notesId)
+        {
+            
+                var list = new List<CollaboratorsModel>();
+                var result = this.collaboratorRepository.GetCollaborator(notesId);
+                if (result != null)
+                {
+                    foreach (var item in result)
+                    {
+                        list.Add(item);
+                    }
+                    return list;
+                }
+                else
+                {
+                    return null;
+                }
+            
+            
+        }       
     }
 }

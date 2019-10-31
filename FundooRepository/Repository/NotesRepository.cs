@@ -9,6 +9,7 @@ namespace FundooRepository.Repository
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
     using Common.Models.CollaboratorModel;
+    using Common.Models.NotesLabelsModels;
     using FundooRepository.DBContext;
     using FundooRepository.Interface;
     using Microsoft.AspNetCore.Http;
@@ -344,6 +345,76 @@ namespace FundooRepository.Repository
                 return userContext.Notes.Where(r => r.Title == title).ToList();
             }
             return null;
+        }
+        /// <summary>
+        /// Adds the notes.
+        /// </summary>
+        /// <param name="notesModel">The notes model.</param>
+        /// <returns></returns>
+        /// <summary>
+        /// Adds the notes label.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public Task AddNotesLabel(NoteLabelModel model)
+        {
+            try
+            {
+                NoteLabelModel data = new NoteLabelModel
+                {
+                    LableId = model.LableId,
+                    NoteId = model.NoteId,
+                    Label = model.Label
+                };
+                userContext.NotesLabelModels.Add(data);
+                return Task.Run(() => userContext.SaveChanges());
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// Gets the notes label.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public List<NoteLabelModel> GetNotesLabel(int noteid)
+        {
+            var result = this.userContext.NotesLabelModels.Any(n => n.NoteId == noteid);
+            if (result)
+            {
+                return this.userContext.NotesLabelModels.Where(n => n.NoteId == noteid).ToList();
+
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Deletes the notes label.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public string DeleteNotesLabel(int id)
+        {
+            var label = this.userContext.NotesLabelModels.Where<NoteLabelModel>(t => t.Id == id).FirstOrDefault();
+            try
+            {
+                this.userContext.NotesLabelModels.Remove(label); var result = this.userContext.SaveChanges();
+                return result.ToString();
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+        public List<NoteLabelModel> GetLabelList()
+        {
+            return this.userContext.NotesLabelModels.ToList<NoteLabelModel>();
         }
     }
 }

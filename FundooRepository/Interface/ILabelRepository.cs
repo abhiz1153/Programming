@@ -44,6 +44,6 @@ namespace FundooRepository.Interface
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        List<LabelModel> GetLabel(int id);
+        List<LabelModel> GetLabel(string email);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BussinessManager.Interface;
 using Common.Models.CollaboratorModel;
+using Common.Models.NotesLabelsModels;
 using FundooRepository.Interface;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -285,6 +286,57 @@ namespace BussinessManager.Manager
                 return null;
             }
 
+
+        }
+        public string AddNotesLabel(NoteLabelModel model)
+        {
+            this.notesRepository.AddNotesLabel(model);
+            return "LABELS ADDED TO NOTES";
+        }
+        public List<NoteLabelModel> GetNotesLabel(int noteId)
+        {
+            var list = new List<NoteLabelModel>();
+            var result = this.notesRepository.GetNotesLabel(noteId);
+            if (result != null)
+            {
+                foreach (var item in result)
+                {
+                    list.Add(item);
+                }
+                return list;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Deletes the notes label.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public string DeleteNotesLabel(int id)
+        {
+            return this.notesRepository.DeleteNotesLabel(id);
+        }
+        public List<NoteLabelModel> GetAllLabelListAsync()
+        {
+
+            var list = new List<NoteLabelModel>();
+            var result = this.notesRepository.GetLabelList();
+            if (result != null)
+            {
+                foreach (var item in result)
+                {
+                    list.Add(item);
+                }
+                return list;
+            }
+            else
+            {
+                return null;
+            }
 
         }
     }

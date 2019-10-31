@@ -22,6 +22,9 @@ namespace FundooRepository.Repository
     using System.Text;
     using StackExchange.Redis;
     using Common.Models.AdminModels;
+    using Microsoft.AspNetCore.Http;
+    using CloudinaryDotNet.Actions;
+    using CloudinaryDotNet;
 
     /// <summary>
     /// Public Class for AccountRepository
@@ -138,7 +141,7 @@ namespace FundooRepository.Repository
                         return userData;
                     }
                     catch (Exception e)
-                    {
+                    { 
                         throw new Exception(e.Message);
                     }
                 }
@@ -307,6 +310,30 @@ namespace FundooRepository.Repository
             })
 
                 smtp.Send(message);
+        }
+        public string UploadImages(string email, IFormFile profilePicture)
+        {
+            var stream = profilePicture.OpenReadStream();
+            var name = profilePicture.FileName;
+            CloudinaryDotNet.Account account = new CloudinaryDotNet.Account("abhishek-sharma", "558464398819742", "y0fRr8Oww5WMgxaW73er-0pQ0iY");
+            CloudinaryDotNet.Cloudinary cloudinary = new CloudinaryDotNet.Cloudinary(account);
+            var uploadfile = new ImageUploadParams()
+            {
+                File = new FileDescription(name, stream)
+            };
+            var uploadResult = cloudinary.Upload(uploadfile);
+            var data = this.userContext.Register.Where(n => n.Email == email).SingleOrDefault();
+            data.ProfilePicture = uploadResult.Uri.ToString();
+            int result = 0;
+            try
+            {
+                result = this.userContext.SaveChanges();
+                return data.ProfilePicture;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }

@@ -68,12 +68,12 @@ namespace BussinessManager.Manager
                 throw new Exception(e.Message);
             }
         }
-        public List<LabelModel> GetLabel(int id)
+        public List<LabelModel> GetLabel(string email)
         {
             try
             {
                 var list = new List<LabelModel>();
-                var result = this.labelRepository.GetLabel(id);
+                var result = this.labelRepository.GetLabel(email);
                 foreach (var item in result)
                 {
                     list.Add(item);

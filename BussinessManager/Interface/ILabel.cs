@@ -12,6 +12,6 @@ namespace BussinessManager.Interface
         string Update(LabelModel labelModel);
         string Delete(int id);
         List<LabelModel> GetAllList();
-        List<LabelModel> GetLabel(int id);
+        List<LabelModel> GetLabel(string email);
     }
 }

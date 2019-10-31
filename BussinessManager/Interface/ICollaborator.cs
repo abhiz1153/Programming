@@ -9,6 +9,7 @@ namespace BussinessManager.Interface
     public interface ICollaborator
     {
         Task<string> AddCollaboratorAsync(CollaboratorsModel collaboratorsModel);
-        Task<string> RemoveCollaboratorAsync(CollaboratorsModel collaboratorsModel);
+        Task<string> RemoveCollaboratorAsync(int id);
+        List<CollaboratorsModel> CollaboratorList(int notesId);
     }
 }
