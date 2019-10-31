@@ -1,11 +1,22 @@
-.format{
+.viewgrid{
     display: flex;
     justify-content: space-around;
     margin-top: 44px;
 }
-.matcard{
-    height: 156px;
+.viewlist{
+    justify-content: center;
+    margin-top: 4%;
+    margin-left: 33%;
+}
+.grid{
+    height: auto;
     border-radius: 24px;
+}
+.list{
+    height: auto;
+    width: 500px;
+    border-radius: 24px;
+    margin-top: 5%;
 }
 .colorpalette-card {
     width: 175px;

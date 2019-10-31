@@ -4,6 +4,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { EditComponent } from '../edit/edit.component';
 import { Router } from '@angular/router';
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
+import { DataService } from 'src/app/Service/data.service';
+import { LabelsService } from 'src/app/Service/labels.service';
 
 export interface DialogData {
   title: string;
@@ -15,6 +17,9 @@ export interface DialogData {
   styleUrls: ['./display-note.component.scss']
 })
 export class DisplayNoteComponent implements OnInit {
+  listview = false;
+  allLabels = [];
+  labels = [];
   notes = [];
   adddate: string;
   colorPalette = [
@@ -31,13 +36,35 @@ export class DisplayNoteComponent implements OnInit {
     { name: 'gray', colorCode: '#eeeeee' },
     { name: 'Brown', colorCode: '#bcaaa4' },
   ];
-constructor(private notesService: NotesService, public dialog: MatDialog, private router: Router) { }
+constructor(private notesService: NotesService,
+            public dialog: MatDialog,
+            private router: Router,
+            private data: DataService,
+            private labelservice: LabelsService) { }
+
   userData = JSON.parse(localStorage.getItem('userData'));
   ngOnInit() {
+    this.data.dash$.subscribe((result: boolean) => {
+      console.log('list', result);
+      this.listview = result;
+    });
+    this.notesService.GetNotesLabels().subscribe((labelresult: any) => {
+      console.log('list', labelresult);
+      this.allLabels = labelresult;
+    });
     this.notesService.GetNotes(this.userData.email).subscribe((data: any) => {
       this.notes = data.sort((a, b) => b.isPin - a.isPin);
       console.log(this.notes);
       });
+      this.labelservice.GetLabel(this.userData.email).subscribe((labellist: any) => {
+        this.labels = labellist;
+      });
+  }
+  stopPropagation(event) {
+    event.stopPropagation();
+  }
+  private newMethod() {
+    return this;
   }
 
   reminder(id) {
@@ -90,6 +117,4 @@ unpin(index, id) {
     this.notes = this.notes.sort((a, b) => b.isPin - a.isPin);
     console.log(status);
   });
-}
-
-}
+}}

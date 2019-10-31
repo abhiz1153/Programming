@@ -1,0 +1,15 @@
+<div>
+  <h3 style="margin-left: 5px;margin-top: 5px;">Edit labels</h3>
+</div>
+<mat-divider></mat-divider>
+<div>
+  <input type="text" mat-input [(ngModel)]="label" placeholder="Create new label" style="outline: none;font-size:large;border:none;margin-top: 26px;">
+  <button (click)="addLabel()" style="border: none;background-color: snow;"> <i  class="material-icons-outlined">done</i></button>
+</div>
+<div  *ngFor="let onelabel of labels">
+  <button (click)="deleteLabels(onelabel.id)" style="border: none;background-color: snow;"> <i  class="material-icons-outlined">delete</i></button>
+  <input type="text" mat-input  value="{{onelabel.label}}" #title style="outline: none;font-size:large;border:none;margin-top: 10px;margin-left: 30px;">
+  <button (click)="updateLabel(onelabel.id,title.value)" style="border: none;background-color: snow; margin-left: -80px"> <i  class="material-icons-outlined">edit</i></button> 
+</div>
+<mat-divider style="margin-top: 20px;"></mat-divider>
+

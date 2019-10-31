@@ -8,3 +8,14 @@
      <input type="text" matInput style="font-size: large; border:none; margin-top: 4px; outline: none;" value="{{note.reminder}}">
      </mat-card>
 </div>
+<!-- <div style="margin-right:auto;margin-top: 10px;">
+  <mat-chip-list style="margin-bottom: -2px" class="mat-chip-list-stacked" *ngIf="note.remaider"
+      aria-orientation=" vertical">
+      <mat-chip matTooltip="{{note.remaider}}">
+          <mat-icon>alarm</mat-icon>
+          {{note.remaider.slice(0,25).toString()}}
+          <mat-icon matChipRemove (click)="removeRemainder(note.id)">
+              cancel</mat-icon>
+      </mat-chip>
+  </mat-chip-list>
+</div> -->

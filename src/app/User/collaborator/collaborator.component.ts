@@ -9,6 +9,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 })
 export class CollaboratorComponent implements OnInit {
   note;
+  items = [];
   addemail: string;
   userData = JSON.parse(localStorage.getItem('userData'));
   constructor( private collaboratordailog: MatDialogRef<CollaboratorComponent>,
@@ -17,10 +18,26 @@ export class CollaboratorComponent implements OnInit {
      }
 
   ngOnInit() {
+    this.getList();
   }
   sendData() {
    this.collaborator.add(this.userData.email, this.note.id, this.addemail).subscribe((data: any) => {
     console.log(data.result);
   });
+  }
+  getList() {
+    this.collaborator.getCollaborators(this.note.id).subscribe((status: any) => {
+   console.log('colaborators', status);
+   this.items = status;
+    });
+  }
+  deleteCollaborator(id) {
+    this.collaborator.removeCollaborator(id).subscribe((status: any) => {
+      console.log(status);
+      this.collaboratordailog.close();
+    });
+  }
+  closeCollaborator() {
+    this.collaboratordailog.close();
   }
 }

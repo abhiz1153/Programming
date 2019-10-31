@@ -74,6 +74,7 @@ addPin(id) {
 unPin(id) {
   return this.http.put(this.rootUrl + '/unpin?id=' + id, null);
 }
-
-
+GetNotesLabels() {
+  return this.http.get(this.rootUrl + '/viewall');
+}
 }

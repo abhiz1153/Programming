@@ -16,4 +16,10 @@ add(sender, id, reciver) {
     };
     return this.http.post(this.rootUrl + '/add', body);
 }
+getCollaborators(id) {
+  return this.http.get(this.rootUrl + '/list?notesId=' + id);
+}
+removeCollaborator(id) {
+  return this.http.delete(this.rootUrl + '/remove?id=' + id);
+}
 }

@@ -13,6 +13,7 @@ import { ReminderComponent } from './User/reminder/reminder.component';
 import { ArchiveComponent } from './User/archive/archive.component';
 import { TrashComponent } from './User/trash/trash.component';
 import { DisplayNoteComponent } from './User/display-note/display-note.component';
+import { LabelsComponent } from './User/labels/labels.component';
 const appRoutes: Routes = ([
    {path : '' , redirectTo: './login' , pathMatch: 'full'},
   {path : 'register', component: RegisterComponent},
@@ -25,7 +26,8 @@ const appRoutes: Routes = ([
     { path : 'displaynote', component: DisplayNoteComponent},
     { path : 'reminder', component: ReminderComponent},
     {path : 'archive' , component: ArchiveComponent},
-    {path : 'trash' , component : TrashComponent}
+    {path : 'trash' , component : TrashComponent},
+    {path : 'label' , component : LabelsComponent}
   ]
 },
 

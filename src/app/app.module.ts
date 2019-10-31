@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatSelectModule, MatInputModule, MatLabel, MatMenuModule, MatNativeDateModule } from '@angular/material';
+import { MatFormFieldModule, MatSelectModule, MatInputModule, MatLabel, MatMenuModule, MatNativeDateModule, MatCheckboxModule, MatTooltipModule } from '@angular/material';
 import { RegisterComponent } from './User/register/register.component';
 import {AppRoutingModule} from './app-routing.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -29,6 +29,9 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { EditComponent } from './User/edit/edit.component';
 import { CollaboratorComponent } from './User/collaborator/collaborator.component';
 import { AvatarModule } from 'ngx-avatar';
+import { LabelsComponent } from './User/labels/labels.component';
+import {MatChipsModule} from '@angular/material/chips';
+
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
       [
@@ -59,7 +62,8 @@ export function getAuthServiceConfigs() {
     ArchiveComponent,
     TrashComponent,
     EditComponent,
-    CollaboratorComponent
+    CollaboratorComponent,
+    LabelsComponent
 
   ],
   imports: [
@@ -87,9 +91,13 @@ export function getAuthServiceConfigs() {
     MatNativeDateModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    AvatarModule
+    AvatarModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatTooltipModule
     ],
-    entryComponents: [EditComponent, CollaboratorComponent],
+    entryComponents: [EditComponent, CollaboratorComponent, LabelsComponent],
   providers: [UserService,
     { provide: AuthServiceConfig, useFactory: getAuthServiceConfigs }
   ],

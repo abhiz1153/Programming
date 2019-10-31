@@ -23,9 +23,12 @@
         </button>
       </div>
       <div>
-        <button class="listview-button" mat-icon-button>
-          <mat-icon aria-hidden="false" aria-label="Example home icon">list view</mat-icon>
+        <button class="listview-button" mat-icon-button *ngIf="!popup1" (click)="listview()">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">list</mat-icon>
         </button>
+        <button class="listview-button" mat-icon-button *ngIf="!popup2" (click)="gridview()">
+            <mat-icon><img class="img" src="..\assets\grid.png" height="20px"></mat-icon>
+       </button>
       </div>
       <div>
         <button class="settings-button" mat-icon-button>
@@ -51,12 +54,16 @@
           <img class="r" src="..\assets\reminder.png" height="28px;">
           <button mat-button routerLink="/dashboard/reminder" class="button" color="">
             Reminders </button>
-        </div>
+        </div >
         <mat-divider class="divider"></mat-divider>
         <p class="label">LABELS</p>
+        <div  *ngFor="let onelabel of labels" style="display: flex;justify-content: flex-start;" >
+          <i class="material-icons-outlined" style="margin-left: -21px;">label</i>
+          <p style="margin-left: 21px;">{{onelabel.label}}</p>
+        </div>
         <div class="edit">
           <img src="..\assets\edit.png" height="28px;">
-          <button mat-button class="button" color="">
+          <button mat-button class="button" (click)="openEdit()" color="">
             Edit labels </button>
         </div>
         <mat-divider class="divider"></mat-divider>
