@@ -77,4 +77,18 @@ unPin(id) {
 GetNotesLabels() {
   return this.http.get(this.rootUrl + '/viewall');
 }
+AddNotesLabel(id, Labelid, label) {
+  const add = {
+    LableId: Labelid,
+    NoteId: id,
+    Label: label
+     };
+     return this.http.post(this.rootUrl + '/addlabel', add);
+}
+RemoveNotesLabel(id) {
+  return this.http.delete(this.rootUrl + '/deletelabel?id=' + id);
+}
+AddImages(id, formData) {
+  return this.http.put(this.rootUrl + '/upload?id=' + id , formData);
+}
 }

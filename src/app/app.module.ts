@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatSelectModule, MatInputModule, MatLabel, MatMenuModule, MatNativeDateModule, MatCheckboxModule, MatTooltipModule } from '@angular/material';
+import { MatFormFieldModule, MatSelectModule, MatInputModule, MatLabel, MatMenuModule, MatNativeDateModule,
+   MatCheckboxModule, MatTooltipModule } from '@angular/material';
 import { RegisterComponent } from './User/register/register.component';
 import {AppRoutingModule} from './app-routing.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -31,7 +32,7 @@ import { CollaboratorComponent } from './User/collaborator/collaborator.componen
 import { AvatarModule } from 'ngx-avatar';
 import { LabelsComponent } from './User/labels/labels.component';
 import {MatChipsModule} from '@angular/material/chips';
-
+import {DragDropModule} from '@angular/cdk/drag-drop';
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
       [
@@ -95,7 +96,8 @@ export function getAuthServiceConfigs() {
     MatListModule,
     MatCheckboxModule,
     MatChipsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    DragDropModule
     ],
     entryComponents: [EditComponent, CollaboratorComponent, LabelsComponent],
   providers: [UserService,

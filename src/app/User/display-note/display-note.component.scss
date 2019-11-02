@@ -1,7 +1,9 @@
 .viewgrid{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     margin-top: 44px;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 .viewlist{
     justify-content: center;

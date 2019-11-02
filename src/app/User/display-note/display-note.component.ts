@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
 import { DataService } from 'src/app/Service/data.service';
 import { LabelsService } from 'src/app/Service/labels.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 export interface DialogData {
   title: string;
@@ -22,6 +23,7 @@ export class DisplayNoteComponent implements OnInit {
   labels = [];
   notes = [];
   adddate: string;
+  image: File =  null;
   colorPalette = [
     { name: 'default', colorCode: '#FDFEFE' },
     { name: 'Red', colorCode: '#ef9a9a' },
@@ -117,4 +119,36 @@ unpin(index, id) {
     this.notes = this.notes.sort((a, b) => b.isPin - a.isPin);
     console.log(status);
   });
-}}
+}
+notesLabel(id, noteid, label) {
+this.notesService.AddNotesLabel(id, noteid, label).subscribe((result: any) => {});
+}
+removeLabel(id) {
+  this.notesService.RemoveNotesLabel(id).subscribe((result: any) => {});
+  console.log('NOTE ID', id);
+}
+onFileUpload(event, id) {
+  this.image = <File>event.target.files[0];
+  this.addImages(id);
+  console.log(' NOTE ID', id);
+  console.log(' pic', event.target.files[0]);
+}
+ addImages(id) {
+  const formData = new FormData();
+  formData.append('image', this.image);
+   console.log(' NOTE ID', id);
+   this.notesService.AddImages(id, formData).subscribe((status: any) => {
+  //  this.tempimage = status.result;
+  //  this.userData.profilePicture = this.tempimage;
+  //  localStorage.setItem('userData', JSON.stringify(this.userData));
+       console.log(' result', status);
+ });
+}
+drop(event: CdkDragDrop<string[]>) {
+  console.log(' NOTES', this.notes);
+  console.log(' PREVIOUS',  event.previousIndex);
+  console.log(' CURRENT', event.currentIndex);
+  moveItemInArray(this.notes, event.previousIndex, event.currentIndex);
+ 
+}
+}
