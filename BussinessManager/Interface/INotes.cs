@@ -126,7 +126,7 @@ namespace BussinessManager.Interface
         List<NotesModel> GetArchiveList();
         List<NotesModel> SearchNotes(string title);
         List<NotesModel> GetReminderAsync(string Email);
-        string AddNotesLabel(NoteLabelModel model);
+        Task<string> AddNotesLabelAsync(NoteLabelModel model);
         List<NoteLabelModel> GetNotesLabel(int noteId);
         string DeleteNotesLabel(int id);
         List<NoteLabelModel> GetAllLabelListAsync();

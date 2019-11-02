@@ -288,10 +288,18 @@ namespace BussinessManager.Manager
 
 
         }
-        public string AddNotesLabel(NoteLabelModel model)
+     
+        public async Task<string> AddNotesLabelAsync(NoteLabelModel model)
         {
-            this.notesRepository.AddNotesLabel(model);
-            return "LABELS ADDED TO NOTES";
+            try
+            {
+                await this.notesRepository.AddNotesLabel(model);
+                return "LABELS ADDED TO NOTES";
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
         public List<NoteLabelModel> GetNotesLabel(int noteId)
         {

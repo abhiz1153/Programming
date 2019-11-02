@@ -57,7 +57,7 @@ namespace FundooRepository.Repository
                 IsArchive = notesModel.IsArchive,
                 IsTrash = notesModel.IsTrash,
                 IsPin = false,
-                Color = null
+                Color = 0.ToString()
             };
          
             userContext.Notes.Add(notes);
@@ -369,7 +369,7 @@ namespace FundooRepository.Repository
                 };
                 userContext.NotesLabelModels.Add(data);
                 return Task.Run(() => userContext.SaveChanges());
-            }
+            }          
             catch (Exception exception)
             {
                 throw new Exception(exception.Message);
@@ -401,7 +401,7 @@ namespace FundooRepository.Repository
         /// <exception cref="Exception"></exception>
         public string DeleteNotesLabel(int id)
         {
-            var label = this.userContext.NotesLabelModels.Where<NoteLabelModel>(t => t.Id == id).FirstOrDefault();
+            var label = this.userContext.NotesLabelModels.Where<NoteLabelModel>(t => t.NoteId == id).FirstOrDefault();
             try
             {
                 this.userContext.NotesLabelModels.Remove(label); var result = this.userContext.SaveChanges();

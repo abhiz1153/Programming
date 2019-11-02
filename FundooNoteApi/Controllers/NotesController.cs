@@ -350,11 +350,19 @@ namespace FundooNoteApi.Controllers
         }
         [HttpPost]
         [Route("addlabel")]
-        public IActionResult AddNoteLabel(NoteLabelModel label)
+        public async Task<IActionResult> AddNoteLabel(NoteLabelModel label)
         {
-            var result = this.notes.AddNotesLabel(label);
-            return this.Ok(new { result });
-        } 
+            try
+            {
+
+                var result = await this.notes.AddNotesLabelAsync(label);
+                return this.Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
+        }
         [HttpGet]
         [Route("getlabel")]
         public IActionResult GetNoteLabel(int noteId)
