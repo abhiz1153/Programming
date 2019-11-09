@@ -15,7 +15,7 @@ describe('RegisterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ,CardsComponent],
+      declarations: [ RegisterComponent , CardsComponent],
       imports: [ReactiveFormsModule,
         FormsModule,
         MatSnackBarModule,

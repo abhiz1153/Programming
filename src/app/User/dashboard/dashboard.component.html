@@ -4,14 +4,15 @@
       <button mat-icon-button (click)="drawer.toggle()" style="outline: none;">
         <mat-icon>dehaze</mat-icon>
       </button>
-      <img class="img" src="..\assets\keep.png" height="40px">
+      <img class="img" src="..\assets\f.jpg" height="75px">
       <div class="fundoo">Fundoo Notes </div>
       <div class="search-div">
         <mat-card class="search-bar">
           <button id="search-button" mat-icon-button style="outline: none;">
             <mat-icon matSuffix class="suffix">search</mat-icon>
           </button>
-          <input class="form-control" type="text" name="search" autocomplete="off" placeholder="search ">
+          <input class="form-control" type="text" name="search" autocomplete="off" placeholder="search "
+          (keyup)="search(item.value);"  #item>
           <button class="search-button" mat-icon-button>
             <mat-icon matSuffix class="suffix">clear</mat-icon>
           </button>
@@ -44,13 +45,13 @@
         <div style="width: 100%;
         height: 100%;
         overflow: initial">
-        <div class="note">
+        <div class="note" routerLink="/dashboard">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" class="bulb">
             <path
               d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z">
             </path>
           </svg>
-          <button mat-button class="button" routerLink="/dashboard" color="">
+          <button mat-button class="button"  color="">
             Notes </button>
         </div>
         <div class="reminder">

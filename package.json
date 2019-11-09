@@ -1,7 +1,7 @@
 {
   "name": "fundoo-notes",
   "version": "0.0.0",
-  "scripts": {
+  "scrip ts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",

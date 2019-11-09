@@ -14,12 +14,14 @@ import { ArchiveComponent } from './User/archive/archive.component';
 import { TrashComponent } from './User/trash/trash.component';
 import { DisplayNoteComponent } from './User/display-note/display-note.component';
 import { LabelsComponent } from './User/labels/labels.component';
+import { AdminPageComponent } from './User/admin-page/admin-page.component';
 const appRoutes: Routes = ([
-   {path : '' , redirectTo: './login' , pathMatch: 'full'},
+   {path : '' , component: LoginComponent},
   {path : 'register', component: RegisterComponent},
   {path : 'login', component: LoginComponent},
   {path : 'forget' , component: ForgetPasswordComponent},
   {path : 'reset' , component: ResetComponent},
+  {path : 'AdminPage' , component : AdminPageComponent},
   {path : 'dashboard' , component : DashboardComponent,
   children: [
     { path: '', component: DisplayNoteComponent},

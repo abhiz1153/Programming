@@ -53,4 +53,15 @@ getProfile(email , formData) {
   console.log('data in user service', formData);
 return this.http.put(this.rootUrl + 'api/account/upload?email=' + email , formData);
 }
+adminLogin(user) {
+  const body = {
+    Email: user.email,
+    Password: user.password
+  };
+  console.log('test', body);
+   return this.http.post(this.rootUrl + 'api/admin/login', body);
+}
+userList() {
+  return this.http.get(this.rootUrl + 'api/account/viewall');
+}
 }

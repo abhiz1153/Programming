@@ -1,49 +1,99 @@
-<div class="main" >
-<mat-card class="login-container" > 
-    <form [formGroup]='login'> 
-<mat-card-title>
-    <div class="title">
-        <p class="t1">F</p>
-        <p class="t2">U</p>
-        <p class="t3">N</p>
-        <p class="t4">D</p>
-        <p class="t5">O</p>
-        <p class="t6">O</p>
-    </div>
-</mat-card-title>
- <h3 class="heading">Sign In</h3>
- <p class="msg">To Continue Your FUNDOO Account</p>
- <div class="email">
-    <mat-form-field  class="password" appearance="outline" >
-        <mat-label for="email">Email</mat-label>
-        <input matInput placeholder=" " type="text" formControlName="email">   
-        <mat-error *ngIf="login.get('email').hasError('required')">
-                Enter Email.
-             </mat-error>             
-      </mat-form-field>
- </div>
- <div class="password">
-    <mat-form-field  class="password" appearance="outline" >
-        <mat-label for="password" >Password</mat-label>
-        <input matInput placeholder=" " type="password" formControlName="password">
-        <mat-error *ngIf="login.get('password').hasError('required')">
-                Enter Password.
-             </mat-error>    
-    </mat-form-field>
- </div>
- <div class="buttons">       
-        <button type="submit" (click)="onSubmit()" class="signin" mat-button id="SUBMIT">SIGN IN</button>
- </div>
- <div class="forget"><a routerLink="/forget" target="_blank" href=""><u>Forgot Password?</u></a></div>
- <div class="google">       
-        <button mat-raised-button color="warn" type="submit" (click)="googlelogin()" class="googlelogin" mat-button id="google"><img class="googleicon" src="..\assets\google.png"> Login with Google</button>
- </div>
- <div class="facebook">       
-        <button mat-raised-button color="primary" (click)="facebooklogin()" type="submit" class="facebooklogin" mat-button id="facebook"><img class="facebookicon" src="..\assets\icons8-facebook-50.png"> Login with Facebook </button>
-        </div>
-   <div class="register">
-        <a mat-button routerLink="/register">Create New User</a>
-   </div>
-</form>  
-</mat-card>
+<button mat-raised-button color="primary" (click)="admin()">ADMIN</button>
+<button mat-raised-button color="warn" (click)="userLogin()" style="margin-left: 33px;margin-right: 33px;">USER</button>
+
+<div class="main" *ngIf="cardss">
+    <mat-card class="login-container">
+        <form [formGroup]='login'>
+            <mat-card-title>
+                <div class="title">
+                    <p class="t1">F</p>
+                    <p class="t2">U</p>
+                    <p class="t3">N</p>
+                    <p class="t4">D</p>
+                    <p class="t5">O</p>
+                    <p class="t6">O</p>
+                </div>
+            </mat-card-title>
+            <h3 class="heading">Sign In</h3>
+            <p class="msg">To Continue Your FUNDOO Account</p>
+            <div class="email">
+                <mat-form-field class="password" appearance="outline">
+                    <mat-label for="email">Email</mat-label>
+                    <input matInput placeholder=" " type="text" formControlName="email">
+                    <mat-error *ngIf="login.get('email').hasError('required')">
+                        Enter Email.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="password">
+                <mat-form-field class="password" appearance="outline">
+                    <mat-label for="password">Password</mat-label>
+                    <input matInput placeholder=" " type="password" formControlName="password">
+                    <mat-error *ngIf="login.get('password').hasError('required')">
+                        Enter Password.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="buttons">
+                <button type="submit" (click)="onSubmit()" class="signin" mat-button id="SUBMIT">SIGN IN</button>
+            </div>
+            <div class="forget"><a routerLink="/forget" target="_blank" href=""><u>Forgot Password?</u></a></div>
+            <div class="google">
+                <button mat-raised-button color="warn" type="submit" (click)="googlelogin()" class="googlelogin"
+                    mat-button id="google"><img class="googleicon" src="..\assets\google.png"> Login with
+                    Google</button>
+            </div>
+            <div class="facebook">
+                <button mat-raised-button color="primary" (click)="facebooklogin()" type="submit" class="facebooklogin"
+                    mat-button id="facebook"><img class="facebookicon" src="..\assets\icons8-facebook-50.png"> Login
+                    with Facebook </button>
+            </div>
+            <div class="register">
+                <a mat-button routerLink="/register">Create New User</a>
+            </div>
+        </form>
+    </mat-card>
+</div>
+
+<div class="main" *ngIf="!cardss">
+    <mat-card style=" display: flex; justify-content: center;width: 33%;margin: auto; height: 60%; margin-top: 45px;">
+        <form [formGroup]='login'>
+            <mat-card-title>
+                <div class="title">
+                    <p class="t1">F</p>
+                    <p class="t2">U</p>
+                    <p class="t3">N</p>
+                    <p class="t4">D</p>
+                    <p class="t5">O</p>
+                    <p class="t6">O</p>
+                </div>
+            </mat-card-title>
+            <h3 class="heading">Sign In As Admin</h3>
+            <p class="msg">To Continue Your FUNDOO Account</p>
+            <div class="email">
+                <mat-form-field class="password" appearance="outline">
+                    <mat-label for="email">Email</mat-label>
+                    <input matInput placeholder=" " type="text" formControlName="email">
+                    <mat-error *ngIf="login.get('email').hasError('required')">
+                        Enter Email.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="password">
+                <mat-form-field class="password" appearance="outline">
+                    <mat-label for="password">Password</mat-label>
+                    <input matInput placeholder=" " type="password" formControlName="password">
+                    <mat-error *ngIf="login.get('password').hasError('required')">
+                        Enter Password.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="buttons">
+                <button type="submit" (click)="adminLogin()" class="signin" mat-button id="SUBMIT">SIGN IN</button>
+            </div>
+            <div class="register">
+                <a mat-button routerLink="/register">Create New User</a>
+            </div>
+        </form>
+    </mat-card>
 </div>

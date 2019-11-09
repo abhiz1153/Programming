@@ -24,6 +24,8 @@ export class DisplayNoteComponent implements OnInit {
   notes = [];
   adddate: string;
   image: File =  null;
+  searchkey = 1;
+  temp;
   colorPalette = [
     { name: 'default', colorCode: '#FDFEFE' },
     { name: 'Red', colorCode: '#ef9a9a' },
@@ -60,6 +62,18 @@ constructor(private notesService: NotesService,
       });
       this.labelservice.GetLabel(this.userData.email).subscribe((labellist: any) => {
         this.labels = labellist;
+      });
+      this.data.dashh$.subscribe((result: string) => {
+        if ( this.searchkey) {
+          this.temp = this.notes;
+          this.searchkey = 0;
+        }
+        if (!(/^\s*$/.test(result))) {
+        const re = new RegExp(result, 'gi');
+        setTimeout(() => {
+          this.notes =  this.temp.filter(ele => (ele.title.match(re) || ele.description.match(re)));
+        }, 200);
+      }
       });
   }
   stopPropagation(event) {
@@ -149,6 +163,8 @@ drop(event: CdkDragDrop<string[]>) {
   console.log(' PREVIOUS',  event.previousIndex);
   console.log(' CURRENT', event.currentIndex);
   moveItemInArray(this.notes, event.previousIndex, event.currentIndex);
- 
+  this.notesService.AddIndex(this.userData.email, event.currentIndex, event.previousIndex).subscribe((status: any) => {
+    console.log(status);
+  });
 }
 }

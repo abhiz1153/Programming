@@ -69,4 +69,8 @@ openEdit ():  void {
     // data: {notesData: note}
   });
 }
+search(key) {
+  console.log('search',key);
+    return this.data.searchData(key);
+  }
 }

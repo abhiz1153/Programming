@@ -91,4 +91,7 @@ RemoveNotesLabel(id) {
 AddImages(id, formData) {
   return this.http.put(this.rootUrl + '/upload?id=' + id , formData);
 }
+AddIndex(email, newindex, oldindex) {
+  return this.http.put(this.rootUrl + '/index?Email=' + email + '&PreviousIndex = ' + oldindex + '&IndexValue=' + newindex , null);
+}
 }

@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 login: FormGroup;
+cardss =  false;
 user: any = SocialUser;
   constructor(
     public userService: UserService,
@@ -62,4 +63,18 @@ user: any = SocialUser;
       }
      );
   }
+  adminLogin() {
+    // this.userService.adminLogin(this.login.value).subscribe((data: any) => {
+    //   console.log(data.result);
+    this.router.navigate(['/AdminPage']);
+    //   }
+    //  );
+  }
+  admin() {
+    this.cardss = false;
+  }
+  userLogin() {
+    this.cardss = true;
+  }
+
 }

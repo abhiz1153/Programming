@@ -33,6 +33,10 @@ import { AvatarModule } from 'ngx-avatar';
 import { LabelsComponent } from './User/labels/labels.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { AdminPageComponent } from './User/admin-page/admin-page.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTabsModule} from '@angular/material/tabs';
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
       [
@@ -64,8 +68,8 @@ export function getAuthServiceConfigs() {
     TrashComponent,
     EditComponent,
     CollaboratorComponent,
-    LabelsComponent
-
+    LabelsComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +101,10 @@ export function getAuthServiceConfigs() {
     MatCheckboxModule,
     MatChipsModule,
     MatTooltipModule,
-    DragDropModule
+    DragDropModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatTabsModule
     ],
     entryComponents: [EditComponent, CollaboratorComponent, LabelsComponent],
   providers: [UserService,
