@@ -8,6 +8,7 @@ namespace BussinessManager.Interface
 {
     using Common.Models;
     using Microsoft.AspNetCore.Http;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     /// <summary>
     /// Public Interface for IAccount
@@ -52,5 +53,6 @@ namespace BussinessManager.Interface
         Task<UserModel> GoogleLoginAsync(LoginModel loginModel);
         string LogoutAsync(LoginModel loginModel);
         string UploadImages(string email, IFormFile profilePicture);
+        List<UserModel> GetAllUserListAsync();
     }
 }

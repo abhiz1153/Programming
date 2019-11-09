@@ -25,6 +25,7 @@ namespace FundooRepository.Repository
     using Microsoft.AspNetCore.Http;
     using CloudinaryDotNet.Actions;
     using CloudinaryDotNet;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Public Class for AccountRepository
@@ -114,7 +115,7 @@ namespace FundooRepository.Repository
                     var token = new JwtSecurityToken(
                         issuer: iconfiguration["Jwt:Issuer"],
                         audience: iconfiguration["Jwt:Audience"],
-                      expires: DateTime.UtcNow.AddMinutes(30),
+                     
                       signingCredentials: creds);              
                         
                         var cachekey = loginModel.Email;
@@ -128,16 +129,17 @@ namespace FundooRepository.Repository
                           });
                         database.StringSet(cachekey, data.ToString());
                         database.StringGet(cachekey);
-
+                        var userData = userContext.Register.Where(r => r.Email == loginModel.Email).Single();
                         AdminModel admin = new AdminModel()
                         {
                             Email = loginModel.Email,
-                            LoginTime = DateTime.Now.ToString()
+                            LoginTime = DateTime.Now.ToString(),
+                            Service = userData.CardType
                         };
                         this.userContext.Admin.Add(admin);
                         userContext.SaveChanges();
 
-                       var userData= userContext.Register.Where(r => r.Email == loginModel.Email).Single();
+                     
                         return userData;
                     }
                     catch (Exception e)
@@ -334,6 +336,10 @@ namespace FundooRepository.Repository
             {
                 return e.Message;
             }
+        }
+        public List<UserModel> GetUserList()
+        {
+            return this.userContext.Register.ToList<UserModel>();
         }
     }
 }

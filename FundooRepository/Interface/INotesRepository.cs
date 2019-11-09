@@ -128,5 +128,6 @@ namespace FundooRepository.Interface
         List<NoteLabelModel> GetNotesLabel(int noteid);
         string DeleteNotesLabel(int id);
         List<NoteLabelModel> GetLabelList();
+        Task DragAndDrop(string Email, int Id, int IndexValue);
     }
 }

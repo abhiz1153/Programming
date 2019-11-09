@@ -130,5 +130,6 @@ namespace BussinessManager.Interface
         List<NoteLabelModel> GetNotesLabel(int noteId);
         string DeleteNotesLabel(int id);
         List<NoteLabelModel> GetAllLabelListAsync();
+        Task<string> DragAndDropAsync(string Email, int PreviousIndex, int IndexValue);
     }
 }

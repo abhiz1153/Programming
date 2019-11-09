@@ -27,10 +27,9 @@ namespace Common.Models.LabelModels
         /// The label
         /// </summary>
         private string label;
-        private int noteId;
         /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
+        /// /// Gets or sets the identifier.
+          /// </summary>
         /// <value>
         /// The identifier.
         /// </value>

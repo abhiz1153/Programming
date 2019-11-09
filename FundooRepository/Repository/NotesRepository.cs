@@ -45,22 +45,25 @@ namespace FundooRepository.Repository
         /// <returns></returns>
         public Task AddNotes(NotesModel notesModel)
         {
-            NotesModel notes = new NotesModel()
+            var user = userContext.Register.Where(p => p.Email == notesModel.Email).Single();
             {
-                Email = notesModel.Email,
-                Title = notesModel.Title,
-                Description = notesModel.Description,
-                CreatedDate = DateTime.Now,
-                ModifiedDate = DateTime.Now,
-                Images = notesModel.Images,
-                Reminder = notesModel.Reminder,
-                IsArchive = notesModel.IsArchive,
-                IsTrash = notesModel.IsTrash,
-                IsPin = false,
-                Color = 0.ToString()
-            };
-         
-            userContext.Notes.Add(notes);
+
+                NotesModel notes = new NotesModel()
+                {
+                    Email = notesModel.Email,
+                    Title = notesModel.Title,
+                    Description = notesModel.Description,
+                    CreatedDate = DateTime.Now,
+                    Images = notesModel.Images,
+                    Reminder = notesModel.Reminder,
+                    IsArchive = notesModel.IsArchive,
+                    IsTrash = notesModel.IsTrash,
+                    IsPin = false,
+                    Color = 0.ToString()
+                };
+                userContext.Notes.Add(notes);
+                user.TotalNotes++;
+            }
             return Task.Run(() => userContext.SaveChanges());
         }
         /// <summary>
@@ -69,11 +72,13 @@ namespace FundooRepository.Repository
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         public Task DeleteNotes(int id)
-        {
+        {            
             var note = userContext.Notes.Where(r => r.Id == id).SingleOrDefault();
             if (note != null)
             {
+                var user = userContext.Register.Where(p => p.Email == note.Email).Single();
                 userContext.Notes.Remove(note);
+                user.TotalNotes--;
                 userContext.SaveChanges();
                 return Task.Run(() => userContext.SaveChanges());
             }
@@ -98,7 +103,29 @@ namespace FundooRepository.Repository
                 note.Description = notesModel.Description;
                 note.ModifiedDate = DateTime.Now;
                 userContext.Notes.Update(note);
-               
+
+            }
+            return Task.Run(() => userContext.SaveChanges());
+        }
+        public Task DragAndDrop(string Email, int PreviousIndex, int IndexValue)
+        {
+            var data = userContext.Notes.Where(n => n.Email == Email).ToList();
+            if (data != null)
+            {
+                foreach (var item in data)
+                {
+                    if (item.IndexValue == PreviousIndex)
+                    {
+                        item.IndexValue = IndexValue;
+                        userContext.Notes.Update(item);
+                    }
+                    else if (IndexValue >= item.IndexValue)
+                    {
+                        item.IndexValue = item.IndexValue + 1;
+                        userContext.Notes.Update(item);
+                    }
+                }
+
             }
             return Task.Run(() => userContext.SaveChanges());
         }
@@ -204,7 +231,7 @@ namespace FundooRepository.Repository
             }
             return null;
         }
-        
+
         /// <summary>
         /// Determines whether the specified identifier is archive.
         /// </summary>
@@ -238,7 +265,7 @@ namespace FundooRepository.Repository
         }
         public List<NotesModel> ArchiveNote(string Email)
         {
-            var result = this.userContext.Notes.Any(n =>n.Email== Email && n.IsArchive == true);
+            var result = this.userContext.Notes.Any(n => n.Email == Email && n.IsArchive == true);
             if (result)
             {
                 return userContext.Notes.Where(n => n.Email == Email && n.IsArchive == true).ToList();
@@ -302,7 +329,7 @@ namespace FundooRepository.Repository
             {
                 File = new FileDescription(name, stream)
             };
-            var  uploadResult = cloudinary.Upload(uploadfile);
+            var uploadResult = cloudinary.Upload(uploadfile);
             var data = this.userContext.Notes.Where(n => n.Id == id).SingleOrDefault();
             data.Images = uploadResult.Uri.ToString();
             int result = 0;
@@ -311,15 +338,15 @@ namespace FundooRepository.Repository
                 result = this.userContext.SaveChanges();
                 return data.Images;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return e.Message;
             }
-        }  
-        public int Remainder(int id,string reminder)
+        }
+        public int Remainder(int id, string reminder)
         {
             var user = this.userContext.Notes.Where(r => r.Id == id).SingleOrDefault();
-            if(user != null)
+            if (user != null)
             {
                 user.Reminder = reminder.ToString();
                 return userContext.SaveChanges();
@@ -369,7 +396,7 @@ namespace FundooRepository.Repository
                 };
                 userContext.NotesLabelModels.Add(data);
                 return Task.Run(() => userContext.SaveChanges());
-            }          
+            }
             catch (Exception exception)
             {
                 throw new Exception(exception.Message);

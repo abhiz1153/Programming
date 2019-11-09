@@ -15,8 +15,9 @@ namespace Common.Models
         private string password;
         private string cardType;
         private string profilePicture;
+        private int totalNotes;
 
-        [Required(ErrorMessage = "Enter FirstName")]
+        
         public string FirstName
         {
             set { this.firstName = value; }
@@ -60,6 +61,11 @@ namespace Common.Models
         {
             set { this.profilePicture = value; }
             get { return this.profilePicture; }
+        }
+        public int TotalNotes
+        {
+            set { this.totalNotes = value; }
+            get { return this.totalNotes; }
         }
     }
 }

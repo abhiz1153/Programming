@@ -129,6 +129,24 @@ namespace BussinessManager.Manager
                 throw new Exception(e.Message);
             }
         }
+        public List<UserModel> GetAllUserListAsync()
+        {
+            var list = new List<UserModel>();
+            var result = this.accountRepository.GetUserList();
+            if (result != null)
+            {
+                foreach (var item in result)
+                {
+                    list.Add(item);
+                }
+                return list;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
     }
 
 }

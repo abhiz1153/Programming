@@ -69,8 +69,8 @@ namespace FundooNoteApi.Controllers
         [Route("login")]
         public async Task<UserModel> Login(LoginModel loginModel)
         {
-               var result = await this.account.LoginAsync(loginModel);
-                return result;     
+            var result = await this.account.LoginAsync(loginModel);
+            return result;
         }
         /// <summary>
         /// Facebooks the login.
@@ -81,7 +81,7 @@ namespace FundooNoteApi.Controllers
         [Route("facebooklogin")]
         public async Task<UserModel> FacebookLogin(LoginModel loginModel)
         {
-           
+
             var result = await this.account.FacebookLoginAsync(loginModel);
             return result;
         }
@@ -111,7 +111,7 @@ namespace FundooNoteApi.Controllers
                 var result = await this.account.ResetPasswordAsync(resetPasswordModel);
                 return this.Ok(new { result });
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return this.BadRequest(e.Message);
             }
@@ -160,6 +160,12 @@ namespace FundooNoteApi.Controllers
             {
                 return this.BadRequest(e.Message);
             }
+        }
+        [HttpGet]
+        [Route("viewall")]
+        public List<UserModel> UserList()
+        {
+            return this.account.GetAllUserListAsync();
         }
     }
 }

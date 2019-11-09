@@ -392,6 +392,20 @@ namespace FundooNoteApi.Controllers
         {
             return this.notes.GetAllLabelListAsync();
         }
+        [HttpPut]
+        [Route("index")]
+        public async Task<IActionResult> DragAndDrop(string Email, int PreviousIndex, int IndexValue)
+         {
+            try
+            {
+                var result = await this.notes.DragAndDropAsync(Email, PreviousIndex, IndexValue);
+                return this.Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
+        }
     }
 }
 

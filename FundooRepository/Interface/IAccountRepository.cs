@@ -9,6 +9,7 @@ namespace FundooRepository.Interface
     using Common.Models;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     /// <summary>
     /// Public interface for IAccountRepository 
@@ -62,5 +63,6 @@ namespace FundooRepository.Interface
         Task<UserModel> GoogleLoginAsync(LoginModel loginModel);
         string Logout(LoginModel loginModel);
         string UploadImages(string email, IFormFile profilePicture);
+        List<UserModel> GetUserList();
     }
 }

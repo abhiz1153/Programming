@@ -26,6 +26,10 @@ namespace Common.Models.AdminModels
         /// </summary>
         private string loginTime;
         /// <summary>
+        /// The service
+        /// </summary>
+        private string service;
+        /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>
@@ -59,6 +63,17 @@ namespace Common.Models.AdminModels
         {
             set { this.loginTime = value; }
             get { return this.loginTime; }
+        }
+        /// <summary>
+        /// Gets or sets the service.
+        /// </summary>
+        /// <value>
+        /// The service.
+        /// </value>
+        public string Service
+        {
+            set { this.service = value; }
+            get { return this.service; }
         }
     }
 }

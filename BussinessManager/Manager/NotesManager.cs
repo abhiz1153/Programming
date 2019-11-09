@@ -204,6 +204,11 @@ namespace BussinessManager.Manager
             return "UPDATES SUCESSFULLY";
 
         }
+        public async Task<string> DragAndDropAsync(string Email, int Id, int IndexValue)
+        {
+            await this.notesRepository.DragAndDrop(Email, Id, IndexValue);
+            return "Index Added Successfully";
+        }
         public async Task<string> RestoreAllNote(string Email)
         {
             await this.notesRepository.RestoreAll(Email);

@@ -114,9 +114,9 @@ namespace FundooNoteApi
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "FUNDOO NOTE API");
             });
-            app.UseHttpsRedirection();
-            app.UseAuthentication();
+            app.UseHttpsRedirection();            
             app.UseCors("MyPolicy");
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

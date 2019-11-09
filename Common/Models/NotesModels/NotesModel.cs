@@ -63,12 +63,14 @@ namespace Common.Models.CollaboratorModel
         /// The color
         /// </summary>
         private string color;
+        private int indexValue;
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>
         /// The identifier.
         /// </value>
+        
         public int Id
         {
             set { this.id = value; }
@@ -196,6 +198,12 @@ namespace Common.Models.CollaboratorModel
         {
             set { this.color = value; }
             get { return this.color; }
+        }
+        public int IndexValue
+        {
+
+            set { this.indexValue = value; }
+            get { return this.indexValue; }
         }
     }
 }
