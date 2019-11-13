@@ -7,8 +7,7 @@
 namespace Common.Models
 {
     using System;
-    using System.Collections.Generic;
-    using System.Text;
+
     /// <summary>
     /// public class ForgetPasswordModel
     /// </summary>
@@ -18,6 +17,7 @@ namespace Common.Models
         /// The email
         /// </summary>
         private string email;
+
         /// <summary>
         /// Gets or sets the email.
         /// </summary>

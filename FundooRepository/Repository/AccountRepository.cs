@@ -1,4 +1,4 @@
-﻿ // --------------------------------------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file=AccountRepository.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
@@ -36,10 +36,12 @@ namespace FundooRepository.Repository
         /// The iconfiguration
         /// </summary>
         private readonly IConfiguration iconfiguration;
+
         /// <summary>
         /// private User Context
         /// </summary>
         private readonly UserContext userContext;
+
         /// <summary>
         /// AccountRepository
         /// </summary>
@@ -50,6 +52,7 @@ namespace FundooRepository.Repository
             this.userContext = userContext;
             this.iconfiguration = configuration;
         }
+
         /// <summary>
         /// public Task CreateAsync
         /// </summary>
@@ -57,16 +60,15 @@ namespace FundooRepository.Repository
         /// <returns></returns>
         public Task CreateAsync(UserModel userModels)
         {
-
             UserModel userModel = new UserModel()
-
             {
                 FirstName = userModels.FirstName,
                 LastName = userModels.LastName,
                 Email = userModels.Email,
                 City = userModels.City,
                 Password = userModels.Password,
-                CardType = userModels.CardType
+                CardType = userModels.CardType,
+                Status = "In-Active"
             };
             userContext.Register.Add(userModel);
             return Task.Run(() => userContext.SaveChanges());
@@ -84,8 +86,15 @@ namespace FundooRepository.Repository
                 var cachekey = loginModel.Email;
                 ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
                 IDatabase database = connectionMulitplexer.GetDatabase();
-                
+
                 database.KeyDelete(cachekey);
+                var update = this.userContext.Register.Where(n => n.Email == loginModel.Email).Single();
+                if (update != null)
+                {
+                    update.Status = "In-Active";
+                    this.userContext.SaveChangesAsync();
+
+                }
                 return "LOGOUT SUCCESSFULLY";
             }
             catch (Exception e)
@@ -93,6 +102,7 @@ namespace FundooRepository.Repository
                 throw new Exception(e.Message);
             }
         }
+
         /// <summary>
         /// public async Task LoginAsync
         /// </summary>
@@ -108,27 +118,33 @@ namespace FundooRepository.Repository
                 {
                     try
                     {
-                   //     var details = userContext.Notes.Where(r => r.Email == loginModel.Email).Single(); 
                         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iconfiguration["Jwt:Key"]));
-                    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                    var token = new JwtSecurityToken(
-                        issuer: iconfiguration["Jwt:Issuer"],
-                        audience: iconfiguration["Jwt:Audience"],
-                     
-                      signingCredentials: creds);              
-                        
+                        var token = new JwtSecurityToken(
+                            issuer: iconfiguration["Jwt:Issuer"],
+                            audience: iconfiguration["Jwt:Audience"],
+
+                          signingCredentials: creds);
+
                         var cachekey = loginModel.Email;
                         ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
                         IDatabase database = connectionMulitplexer.GetDatabase();
-                       
+
                         var data = (new
-                          {
-                                 token = new JwtSecurityTokenHandler().WriteToken(token),
-                                 experation = token.ValidTo
-                          });
+                        {
+                            token = new JwtSecurityTokenHandler().WriteToken(token),
+                            experation = token.ValidTo
+                        });
                         database.StringSet(cachekey, data.ToString());
                         database.StringGet(cachekey);
+                        var update = this.userContext.Register.Where(n => n.Email == loginModel.Email).Single();
+                        if (update != null)
+                        {
+                            update.Status = "Active";
+                            await userContext.SaveChangesAsync();
+
+                        }
                         var userData = userContext.Register.Where(r => r.Email == loginModel.Email).Single();
                         AdminModel admin = new AdminModel()
                         {
@@ -139,17 +155,18 @@ namespace FundooRepository.Repository
                         this.userContext.Admin.Add(admin);
                         userContext.SaveChanges();
 
-                     
+
                         return userData;
                     }
                     catch (Exception e)
-                    { 
+                    {
                         throw new Exception(e.Message);
                     }
                 }
             }
             return null;
         }
+
         /// <summary>
         /// Facebooks the login asynchronous.
         /// </summary>
@@ -161,39 +178,52 @@ namespace FundooRepository.Repository
             var result = await this.FindByEmailAsync(loginModel.Email);
             if (result != null)
             {
-                //bool user = userContext.Register.Any(p => p.Password == loginModel.Password && p.Email == loginModel.Email);
-                //if (user)
-                //{
-                    try
+                try
+                {
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iconfiguration["Jwt:Key"]));
+                    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+                    var token = new JwtSecurityToken(iconfiguration["Jwt:Issuer"],
+                      iconfiguration["Jwt:Audience"],
+                      expires: DateTime.Now.AddMinutes(30),
+                      signingCredentials: creds);
+
+                    var cachekey = loginModel.Email;
+                    ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+                    IDatabase database = connectionMulitplexer.GetDatabase();
+
+                    var data = (new
                     {
-                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iconfiguration["Jwt:Key"]));
-                        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                        token = new JwtSecurityTokenHandler().WriteToken(token),
+                        experation = token.ValidTo
+                    });
+                    var update = this.userContext.Register.Where(n => n.Email == loginModel.Email).Single();
+                    if (update != null)
+                    {
+                        update.Status = "Active";
+                        await userContext.SaveChangesAsync();
 
-                        var token = new JwtSecurityToken(iconfiguration["Jwt:Issuer"],
-                          iconfiguration["Jwt:Audience"],
-                          expires: DateTime.Now.AddMinutes(30),
-                          signingCredentials: creds);
-
-                        var cachekey = loginModel.Email;
-                        ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
-                        IDatabase database = connectionMulitplexer.GetDatabase();
-                       
-                        var data = (new
-                        {
-                            token = new JwtSecurityTokenHandler().WriteToken(token),
-                            experation = token.ValidTo
-                        });
+                    }
                     var userData = userContext.Register.Where(r => r.Email == loginModel.Email).Single();
+                    AdminModel admin = new AdminModel()
+                    {
+                        Email = loginModel.Email,
+                        LoginTime = DateTime.Now.ToString(),
+                        Service = userData.CardType
+                    };
+                    this.userContext.Admin.Add(admin);
+                    userContext.SaveChanges();
                     return userData;
-            }
-             catch (Exception e)
+                }
+                catch (Exception e)
                 {
                     throw new Exception(e.Message);
                 }
             }
-       
+
             return null;
         }
+
         /// <summary>
         /// Googles the login asynchronous.
         /// </summary>
@@ -205,39 +235,53 @@ namespace FundooRepository.Repository
             var result = await this.FindByEmailAsync(loginModel.Email);
             if (result != null)
             {
-                //bool user = userContext.Register.Any(p => p.Password == loginModel.Password && p.Email == loginModel.Email);
-                //if (user)
-                //{
-                    try
+                try
+                {
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iconfiguration["Jwt:Key"]));
+                    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+                    var token = new JwtSecurityToken(iconfiguration["Jwt:Issuer"],
+                      iconfiguration["Jwt:Audience"],
+                      expires: DateTime.Now.AddMinutes(30),
+                      signingCredentials: creds);
+
+                    var cachekey = loginModel.Email;
+                    ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+                    IDatabase database = connectionMulitplexer.GetDatabase();
+                    database.StringSet(cachekey, token.ToString());
+                    database.StringGet(cachekey);
+                    var data = (new
                     {
-                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iconfiguration["Jwt:Key"]));
-                        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                        token = new JwtSecurityTokenHandler().WriteToken(token),
+                        experation = token.ValidFrom
+                    });
+                    var update = this.userContext.Register.Where(n => n.Email == loginModel.Email).Single();
+                    if (update != null)
+                    {
+                        update.Status = "Active";
+                        await userContext.SaveChangesAsync();
 
-                        var token = new JwtSecurityToken(iconfiguration["Jwt:Issuer"],
-                          iconfiguration["Jwt:Audience"],
-                          expires: DateTime.Now.AddMinutes(30),
-                          signingCredentials: creds);
-
-                        var cachekey = loginModel.Email;
-                        ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
-                        IDatabase database = connectionMulitplexer.GetDatabase();
-                        database.StringSet(cachekey, token.ToString());
-                        database.StringGet(cachekey);
-                        var data = (new
-                        {
-                            token = new JwtSecurityTokenHandler().WriteToken(token),
-                            experation = token.ValidFrom 
-                        });
+                    }
                     var userData = userContext.Register.Where(r => r.Email == loginModel.Email).Single();
+
+                    AdminModel admin = new AdminModel()
+                    {
+                        Email = loginModel.Email,
+                        LoginTime = DateTime.Now.ToString(),
+                        Service = userData.CardType
+                    };
+                    this.userContext.Admin.Add(admin);
+                    userContext.SaveChanges();
                     return userData;
-                     }
-                  catch (Exception e)
+                }
+                catch (Exception e)
                 {
                     throw new Exception(e.Message);
                 }
             }
             return null;
         }
+
         /// <summary>
         /// public Task<IdentityUser> for FindByEmailAsync
         /// </summary>
@@ -250,9 +294,10 @@ namespace FundooRepository.Repository
             {
                 Email = user.Email
             };
-           
+
             return Task.Run(() => identityUser);
         }
+
         /// <summary>
         /// public async Task<object> ResetPasswordAsync
         /// </summary>
@@ -268,6 +313,7 @@ namespace FundooRepository.Repository
             }
             return "email is not matched";
         }
+
         /// <summary>
         ///   public Task GeneratePasswordReset
         /// </summary>
@@ -281,6 +327,7 @@ namespace FundooRepository.Repository
             return Task.Run(() => userContext.SaveChanges());
 
         }
+
         /// <summary>
         ///  public async Task ForgetPasswordLinkAsync
         /// </summary>
@@ -313,6 +360,13 @@ namespace FundooRepository.Repository
 
                 smtp.Send(message);
         }
+
+        /// <summary>
+        /// Uploads the images.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="profilePicture">The profile picture.</param>
+        /// <returns></returns>
         public string UploadImages(string email, IFormFile profilePicture)
         {
             var stream = profilePicture.OpenReadStream();
@@ -337,6 +391,11 @@ namespace FundooRepository.Repository
                 return e.Message;
             }
         }
+
+        /// <summary>
+        /// Gets the user list.
+        /// </summary>
+        /// <returns></returns>
         public List<UserModel> GetUserList()
         {
             return this.userContext.Register.ToList<UserModel>();

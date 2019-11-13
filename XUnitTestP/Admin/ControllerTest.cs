@@ -11,6 +11,7 @@ namespace XUnitTestP.Admin
     using FundooNoteApi.Controllers;
     using Moq;
     using Xunit;
+
     /// <summary>
     /// public class ControllerTest
     /// </summary>
@@ -34,6 +35,7 @@ namespace XUnitTestP.Admin
             var data = controller.AddAdminAsync(add);
             Assert.NotNull(data);
         }
+
         /// <summary>
         /// Admins the login.
         /// </summary>

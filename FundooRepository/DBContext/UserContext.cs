@@ -41,7 +41,7 @@ namespace FundooRepository.DBContext
         /// </value>
         public DbSet<UserModel> Register { get; set; }
 
-       
+
 
         /// <summary>
         /// Gets or sets the notes.
@@ -50,11 +50,39 @@ namespace FundooRepository.DBContext
         /// The notes.
         /// </value>
         public DbSet<NotesModel> Notes { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the labels.
+        /// </summary>
+        /// <value>
+        /// The labels.
+        /// </value>
         public DbSet<LabelModel> Labels { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collaborators.
+        /// </summary>
+        /// <value>
+        /// The collaborators.
+        /// </value>
         public DbSet<CollaboratorsModel> Collaborators { get; set; }
+
+        /// <summary>
+        /// Gets or sets the admin.
+        /// </summary>
+        /// <value>
+        /// The admin.
+        /// </value>
         public DbSet<AdminModel> Admin { get; set; }
+
+        /// <summary>
+        /// Gets or sets the admin login.
+        /// </summary>
+        /// <value>
+        /// The admin login.
+        /// </value>
         public DbSet<AdminLoginModel> AdminLogin { get; set; }
+
         /// <summary>
         /// Gets or sets the notes label models.
         /// </summary>

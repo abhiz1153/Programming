@@ -7,6 +7,7 @@
 namespace Common.Models.AdminModels
 {
     using System.ComponentModel.DataAnnotations;
+
     /// <summary>
     ///   public class AdminLoginModel
     /// </summary>
@@ -16,18 +17,22 @@ namespace Common.Models.AdminModels
         /// The email
         /// </summary>
         private string email;
+
         /// <summary>
         /// The first name
         /// </summary>
         private string firstName;
+
         /// <summary>
         /// The last name
         /// </summary>
         private string lastName;
+
         /// <summary>
         /// The password
         /// </summary>
         private string password;
+
         /// <summary>
         /// Gets or sets the email.
         /// </summary>
@@ -39,7 +44,8 @@ namespace Common.Models.AdminModels
         {
             set { this.email = value; }
             get { return this.email; }
-         }
+        }
+
         /// <summary>
         /// Gets or sets the first name.
         /// </summary>
@@ -51,6 +57,7 @@ namespace Common.Models.AdminModels
             set { this.firstName = value; }
             get { return this.firstName; }
         }
+
         /// <summary>
         /// Gets or sets the last name.
         /// </summary>
@@ -62,6 +69,7 @@ namespace Common.Models.AdminModels
             set { this.lastName = value; }
             get { return this.lastName; }
         }
+
         /// <summary>
         /// Gets or sets the password.
         /// </summary>

@@ -12,6 +12,7 @@ namespace XUnitTestP.Notes
     using Moq;
     using System;
     using Xunit;
+
     /// <summary>
     /// public calss for ControllerTest
     /// </summary>
@@ -39,6 +40,7 @@ namespace XUnitTestP.Notes
             var data = controller.Add(add);
             Assert.NotNull(data);
         }
+
         /// <summary>
         /// Updates the notes.
         /// </summary>
@@ -61,6 +63,7 @@ namespace XUnitTestP.Notes
             var data = controller.Update(add);
             Assert.NotNull(data);
         }
+
         /// <summary>
         /// Deletes the notes.
         /// </summary>
@@ -68,7 +71,7 @@ namespace XUnitTestP.Notes
         public void DeleteNotes()
         {
             var service = new Mock<INotes>();
-            var controller = new NotesController(service.Object);            
+            var controller = new NotesController(service.Object);
             var data = controller.Delete(1);
             Assert.NotNull(data);
         }

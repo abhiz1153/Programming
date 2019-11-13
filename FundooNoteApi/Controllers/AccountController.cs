@@ -8,15 +8,12 @@ namespace FundooNoteApi.Controllers
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using BussinessManager.Interface;
     using Common.Models;
-    using FundooRepository.DBContext;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+
     /// <summary>
     ///  public class AccountController
     /// </summary>
@@ -31,6 +28,7 @@ namespace FundooNoteApi.Controllers
         /// The account
         /// </summary>
         private readonly IAccount account;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
         /// </summary>
@@ -39,6 +37,7 @@ namespace FundooNoteApi.Controllers
         {
             this.account = account;
         }
+
         /// <summary>  
         /// <summary>
         /// Registrations the specified user model.
@@ -60,6 +59,7 @@ namespace FundooNoteApi.Controllers
                 return this.BadRequest(e.Message);
             }
         }
+
         /// <summary>
         /// Logins the specified login model.
         /// </summary>
@@ -72,6 +72,7 @@ namespace FundooNoteApi.Controllers
             var result = await this.account.LoginAsync(loginModel);
             return result;
         }
+
         /// <summary>
         /// Facebooks the login.
         /// </summary>
@@ -85,6 +86,7 @@ namespace FundooNoteApi.Controllers
             var result = await this.account.FacebookLoginAsync(loginModel);
             return result;
         }
+
         /// <summary>
         /// Googles the login.
         /// </summary>
@@ -135,6 +137,7 @@ namespace FundooNoteApi.Controllers
                 return this.BadRequest(e.Message);
             }
         }
+
         /// <summary>
         /// Logouts the specified login model.
         /// </summary>
@@ -147,6 +150,13 @@ namespace FundooNoteApi.Controllers
             var result = this.account.LogoutAsync(loginModel);
             return result;
         }
+
+        /// <summary>
+        /// Uploads the specified email.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="profilePicture">The profile picture.</param>
+        /// <returns></returns>
         [HttpPut]
         [Route("upload")]
         public IActionResult Upload(string email, IFormFile profilePicture)
@@ -161,6 +171,11 @@ namespace FundooNoteApi.Controllers
                 return this.BadRequest(e.Message);
             }
         }
+
+        /// <summary>
+        /// Users the list.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("viewall")]
         public List<UserModel> UserList()

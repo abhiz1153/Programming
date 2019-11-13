@@ -7,10 +7,9 @@
 namespace Common.Models.CollaboratorModel
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Text;
+   
     /// <summary>
     /// Public Class for NotesModel
     /// </summary>
@@ -20,62 +19,78 @@ namespace Common.Models.CollaboratorModel
         /// The identifier
         /// </summary>
         private int id;
+
         /// <summary>
         /// The email
         /// </summary>
         private string email;
+
         /// <summary>
         /// The title
         /// </summary>
         private string title;
+
         /// <summary>
         /// The description
         /// </summary>
         private string description;
+
         /// <summary>
         /// The created date
         /// </summary>
         private DateTime? createdDate;
+
         /// <summary>
         /// The modified date
         /// </summary>
         private DateTime? modifiedDate;
+
         /// <summary>
         /// The images
         /// </summary>
         private string images;
+
         /// <summary>
         /// The reminder
         /// </summary>
         private string reminder;
+
         /// <summary>
         /// The is archive
         /// </summary>
         private bool isArchive;
+
         /// <summary>
         /// </summary>
         private bool isTrash;
+
         /// <summary>
         /// The is pin
         /// </summary>
         private bool isPin;
+
         /// <summary>
         /// The color
         /// </summary>
         private string color;
+
+        /// <summary>
+        /// The index value
+        /// </summary>
         private int indexValue;
+
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>
         /// The identifier.
         /// </value>
-        
         public int Id
         {
             set { this.id = value; }
             get { return this.id; }
         }
+
         /// <summary>
         /// Gets or sets the email.
         /// </summary>
@@ -89,6 +104,7 @@ namespace Common.Models.CollaboratorModel
             set { this.email = value; }
             get { return this.email; }
         }
+
         /// <summary>
         /// Gets or sets the title.
         /// </summary>
@@ -100,6 +116,7 @@ namespace Common.Models.CollaboratorModel
             set { this.title = value; }
             get { return this.title; }
         }
+
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
@@ -111,6 +128,7 @@ namespace Common.Models.CollaboratorModel
             set { this.description = value; }
             get { return this.description; }
         }
+
         /// <summary>
         /// Gets or sets the created date.
         /// </summary>
@@ -122,6 +140,7 @@ namespace Common.Models.CollaboratorModel
             set { this.createdDate = value; }
             get { return this.createdDate; }
         }
+
         /// <summary>
         /// Gets or sets the modified date.
         /// </summary>
@@ -133,6 +152,7 @@ namespace Common.Models.CollaboratorModel
             set { this.modifiedDate = value; }
             get { return this.modifiedDate; }
         }
+
         /// <summary>
         /// Gets or sets the images.
         /// </summary>
@@ -144,6 +164,7 @@ namespace Common.Models.CollaboratorModel
             set { this.images = value; }
             get { return this.images; }
         }
+
         /// <summary>
         /// Gets or sets the reminder.
         /// </summary>
@@ -155,6 +176,7 @@ namespace Common.Models.CollaboratorModel
             set { this.reminder = value; }
             get { return this.reminder; }
         }
+
         /// <summary>
         /// Gets or sets a value indicating whether this instance is archive.
         /// </summary>
@@ -166,6 +188,7 @@ namespace Common.Models.CollaboratorModel
             set { this.isArchive = value; }
             get { return this.isArchive; }
         }
+
         /// <summary>
         /// Gets or sets a value indicating whether this instance is trash.
         /// </summary>
@@ -177,6 +200,7 @@ namespace Common.Models.CollaboratorModel
             set { this.isTrash = value; }
             get { return this.isTrash; }
         }
+
         /// <summary>
         /// Gets or sets a value indicating whether this instance is pin.
         /// </summary>
@@ -188,6 +212,7 @@ namespace Common.Models.CollaboratorModel
             set { this.isPin = value; }
             get { return this.isPin; }
         }
+
         /// <summary>
         /// Gets or sets the color.
         /// </summary>
@@ -199,6 +224,13 @@ namespace Common.Models.CollaboratorModel
             set { this.color = value; }
             get { return this.color; }
         }
+
+        /// <summary>
+        /// Gets or sets the index value.
+        /// </summary>
+        /// <value>
+        /// The index value.
+        /// </value>
         public int IndexValue
         {
 

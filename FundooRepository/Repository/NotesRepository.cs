@@ -13,13 +13,12 @@ namespace FundooRepository.Repository
     using FundooRepository.DBContext;
     using FundooRepository.Interface;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Identity;
-    using StackExchange.Redis;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
     /// <summary>
     /// Public Class NotesRepository
     /// </summary>
@@ -30,6 +29,7 @@ namespace FundooRepository.Repository
         /// The user context
         /// </summary>
         private readonly UserContext userContext;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="NotesRepository"/> class.
         /// </summary>
@@ -38,6 +38,7 @@ namespace FundooRepository.Repository
         {
             this.userContext = userContext;
         }
+
         /// <summary>
         /// Adds the notes.
         /// </summary>
@@ -66,6 +67,7 @@ namespace FundooRepository.Repository
             }
             return Task.Run(() => userContext.SaveChanges());
         }
+
         /// <summary>
         /// Deletes the notes.
         /// </summary>
@@ -87,6 +89,7 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
+
         /// <summary>
         /// Updates the notes.
         /// </summary>
@@ -97,16 +100,22 @@ namespace FundooRepository.Repository
             var note = userContext.Notes.Where(r => r.Id == notesModel.Id).SingleOrDefault();
             if (note != null)
             {
-
                 note.Email = notesModel.Email;
                 note.Title = notesModel.Title;
                 note.Description = notesModel.Description;
                 note.ModifiedDate = DateTime.Now;
                 userContext.Notes.Update(note);
-
             }
             return Task.Run(() => userContext.SaveChanges());
         }
+
+        /// <summary>
+        /// Drags the and drop.
+        /// </summary>
+        /// <param name="Email">The email.</param>
+        /// <param name="PreviousIndex">Index of the previous.</param>
+        /// <param name="IndexValue">The index value.</param>
+        /// <returns></returns>
         public Task DragAndDrop(string Email, int PreviousIndex, int IndexValue)
         {
             var data = userContext.Notes.Where(n => n.Email == Email).ToList();
@@ -125,10 +134,10 @@ namespace FundooRepository.Repository
                         userContext.Notes.Update(item);
                     }
                 }
-
             }
             return Task.Run(() => userContext.SaveChanges());
         }
+
         /// <summary>
         /// Gets the list.
         /// </summary>
@@ -137,6 +146,7 @@ namespace FundooRepository.Repository
         {
             return this.userContext.Notes.ToList<NotesModel>();
         }
+
         /// <summary>
         /// Gets the notes.
         /// </summary>
@@ -151,6 +161,12 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+
+        /// <summary>
+        /// Gets the reminder.
+        /// </summary>
+        /// <param name="Email">The email.</param>
+        /// <returns></returns>
         public List<NotesModel> GetReminder(string Email)
         {
             var note = userContext.Notes.Any(r => r.Email == Email && r.Reminder != null);
@@ -160,6 +176,7 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+
         /// <summary>
         /// Determines whether the specified identifier is trash.
         /// </summary>
@@ -172,10 +189,15 @@ namespace FundooRepository.Repository
             {
                 result.IsTrash = true;
                 return Task.Run(() => userContext.SaveChangesAsync());
-
             }
             return null;
         }
+
+        /// <summary>
+        /// Gets the trash list.
+        /// </summary>
+        /// <param name="Email">The email.</param>
+        /// <returns></returns>
         public List<NotesModel> GetTrashList(string Email)
         {
             var result = this.userContext.Notes.Any(n => n.Email == Email && n.IsTrash == true);
@@ -185,6 +207,7 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+
         /// <summary>
         /// Restores the specified identifier.
         /// </summary>
@@ -197,10 +220,15 @@ namespace FundooRepository.Repository
             {
                 result.IsTrash = false;
                 return Task.Run(() => userContext.SaveChangesAsync());
-
             }
             return null;
         }
+
+        /// <summary>
+        /// Restores all.
+        /// </summary>
+        /// <param name="Email"></param>
+        /// <returns></returns>
         public Task RestoreAll(string Email)
         {
             var data = this.userContext.Notes.Where(n => n.Email == Email && n.IsTrash == true).ToList();
@@ -214,6 +242,7 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+
         /// <summary>
         /// Removes the trash.
         /// </summary>
@@ -247,6 +276,7 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+
         /// <summary>
         /// Uns the archive.
         /// </summary>
@@ -263,6 +293,12 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+
+        /// <summary>
+        /// Archives the note.
+        /// </summary>
+        /// <param name="Email">The email.</param>
+        /// <returns></returns>
         public List<NotesModel> ArchiveNote(string Email)
         {
             var result = this.userContext.Notes.Any(n => n.Email == Email && n.IsArchive == true);
@@ -272,6 +308,11 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+
+        /// <summary>
+        /// Archives the list.
+        /// </summary>
+        /// <returns></returns>
         public List<NotesModel> ArchiveList()
         {
             var result = this.userContext.Notes.Where(n => n.IsArchive == true).SingleOrDefault();
@@ -281,6 +322,7 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+
         /// <summary>
         /// Determines whether the specified identifier is pin.
         /// </summary>
@@ -293,10 +335,10 @@ namespace FundooRepository.Repository
             {
                 result.IsPin = true;
                 return Task.Run(() => userContext.SaveChangesAsync());
-
             }
             return null;
         }
+
         /// <summary>
         /// Uns the pin.
         /// </summary>
@@ -309,10 +351,10 @@ namespace FundooRepository.Repository
             {
                 result.IsPin = false;
                 return Task.Run(() => userContext.SaveChangesAsync());
-
             }
             return null;
         }
+
         /// <summary>
         /// Uploads the images.
         /// </summary>
@@ -343,6 +385,13 @@ namespace FundooRepository.Repository
                 return e.Message;
             }
         }
+
+        /// <summary>
+        /// Reminders the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="reminder">The date time.</param>
+        /// <returns></returns>
         public int Remainder(int id, string reminder)
         {
             var user = this.userContext.Notes.Where(r => r.Id == id).SingleOrDefault();
@@ -353,6 +402,13 @@ namespace FundooRepository.Repository
             }
             return 0;
         }
+
+        /// <summary>
+        /// Colors the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="color">The color.</param>
+        /// <returns></returns>
         public Task Color(int id, string color)
         {
             var result = this.userContext.Notes.Where(n => n.Id == id).SingleOrDefault();
@@ -364,6 +420,12 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+
+        /// <summary>
+        /// Searches the specified title.
+        /// </summary>
+        /// <param name="title">The title.</param>
+        /// <returns></returns>
         public List<NotesModel> Search(string title)
         {
             var note = userContext.Notes.Where(r => r.Title == title).Single();
@@ -373,6 +435,7 @@ namespace FundooRepository.Repository
             }
             return null;
         }
+
         /// <summary>
         /// Adds the notes.
         /// </summary>
@@ -439,6 +502,11 @@ namespace FundooRepository.Repository
                 throw new Exception(exception.Message);
             }
         }
+
+        /// <summary>
+        /// Gets the label list.
+        /// </summary>
+        /// <returns></returns>
         public List<NoteLabelModel> GetLabelList()
         {
             return this.userContext.NotesLabelModels.ToList<NoteLabelModel>();

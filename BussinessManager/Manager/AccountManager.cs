@@ -14,6 +14,7 @@ namespace BussinessManager.Manager
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
+
     /// <summary>
     /// public class AccountManager
     /// </summary>
@@ -24,10 +25,12 @@ namespace BussinessManager.Manager
         /// The account repository
         /// </summary>
         private readonly IAccountRepository accountRepository;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountManager"/> class.
         /// </summary>
         public AccountManager() { }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountManager"/> class.
         /// </summary>
@@ -36,6 +39,7 @@ namespace BussinessManager.Manager
         {
             this.accountRepository = accountRepository;
         }
+
         /// <summary>
         /// Registrations the asynchronous.
         /// </summary>
@@ -54,6 +58,7 @@ namespace BussinessManager.Manager
                 throw new Exception(e.Message);
             }          
         }
+
         /// <summary>
         /// Logins the asynchronous.
         /// </summary>
@@ -65,6 +70,7 @@ namespace BussinessManager.Manager
             return result;
 
         }
+
         /// <summary>
         /// Facebooks the login asynchronous.
         /// </summary>
@@ -76,6 +82,7 @@ namespace BussinessManager.Manager
             return result;
 
         }
+
         /// <summary>
         /// Googles the login asynchronous.
         /// </summary>
@@ -87,6 +94,7 @@ namespace BussinessManager.Manager
             return result;
 
         }
+
         /// <summary>
         /// Resets the password asynchronous.
         /// </summary>
@@ -97,6 +105,7 @@ namespace BussinessManager.Manager
             await this.accountRepository.ResetPasswordAsync(resetPasswordModel);
             return "PASSWORD CHANGED SUCCESSFULLY";
         }
+
         /// <summary>
         /// Forgets the password link asynchronous.
         /// </summary>
@@ -107,6 +116,7 @@ namespace BussinessManager.Manager
             await this.accountRepository.ForgetPasswordLinkAsync(forgetPasswordModel);
             return "PASSWORD HAD SUCCESSFULLY SEND TO REGISTERED EMAIL ";
         }
+
         /// <summary>
         /// Logouts the asynchronous.
         /// </summary>
@@ -117,6 +127,14 @@ namespace BussinessManager.Manager
            var result =  this.accountRepository.Logout(loginModel);
             return result;
         }
+
+        /// <summary>
+        /// Uploads the images.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="profilePicture">The profile picture.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public string UploadImages(string email, IFormFile profilePicture)
         {
             try
@@ -129,6 +147,11 @@ namespace BussinessManager.Manager
                 throw new Exception(e.Message);
             }
         }
+
+        /// <summary>
+        /// Gets all user list asynchronous.
+        /// </summary>
+        /// <returns></returns>
         public List<UserModel> GetAllUserListAsync()
         {
             var list = new List<UserModel>();
@@ -145,8 +168,6 @@ namespace BussinessManager.Manager
             {
                 return null;
             }
-
         }
     }
-
 }

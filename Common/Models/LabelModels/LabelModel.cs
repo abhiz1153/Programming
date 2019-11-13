@@ -6,10 +6,8 @@
 // ----------------------------------------------------------------------------------------------------------------------------------
 namespace Common.Models.LabelModels
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Text;
+
     /// <summary>
     /// public class LabelModel
     /// </summary>
@@ -19,14 +17,17 @@ namespace Common.Models.LabelModels
         /// The identifier
         /// </summary>
         private int id;
+
         /// <summary>
         /// The email
         /// </summary>
         private string email;
+
         /// <summary>
         /// The label
         /// </summary>
         private string label;
+
         /// <summary>
         /// /// Gets or sets the identifier.
           /// </summary>
@@ -38,6 +39,7 @@ namespace Common.Models.LabelModels
             set { this.id = value; }
             get { return this.id; }
         }
+
         /// <summary>
         /// Gets or sets the email.
         /// </summary>
@@ -50,6 +52,7 @@ namespace Common.Models.LabelModels
             set { this.email = value; }
             get { return this.email; }
         }
+
         /// <summary>
         /// Gets or sets the label.
         /// </summary>
@@ -61,6 +64,5 @@ namespace Common.Models.LabelModels
             set { this.label = value; }
             get { return this.label; }
         }
-      
     }
 }

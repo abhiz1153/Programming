@@ -9,11 +9,9 @@ namespace FundooRepository.Repository
     using Common.Models.LabelModels;
     using FundooRepository.DBContext;
     using FundooRepository.Interface;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+
     /// <summary>
     /// Public Class For LabelRepository
     /// </summary>
@@ -24,6 +22,7 @@ namespace FundooRepository.Repository
         /// The user context
         /// </summary>
         private readonly UserContext userContext;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LabelRepository"/> class.
         /// </summary>
@@ -32,6 +31,7 @@ namespace FundooRepository.Repository
         {
             this.userContext = user;
         }
+
         /// <summary>
         /// Adds the label.
         /// </summary>
@@ -44,10 +44,11 @@ namespace FundooRepository.Repository
                 Email = labelModel.Email,
                 Label = labelModel.Label
             };
-             this.userContext.Labels.Add(add);
+            this.userContext.Labels.Add(add);
             this.userContext.SaveChanges();
             return "DONE";
         }
+
         /// <summary>
         /// Updates the label.
         /// </summary>
@@ -58,7 +59,7 @@ namespace FundooRepository.Repository
             var result = userContext.Labels.Where(r => r.Id == labelModel.Id).SingleOrDefault();
             if (result != null)
             {
-               // result.Email = labelModel.Email;
+                // result.Email = labelModel.Email;
                 result.Label = labelModel.Label;
 
                 userContext.Labels.Update(result);
@@ -66,6 +67,7 @@ namespace FundooRepository.Repository
             userContext.SaveChanges();
             return "DONE";
         }
+
         /// <summary>
         /// Deletes the label.
         /// </summary>
@@ -81,6 +83,7 @@ namespace FundooRepository.Repository
             userContext.SaveChanges();
             return "DONE";
         }
+
         /// <summary>
         /// Gets the list.
         /// </summary>
@@ -89,6 +92,7 @@ namespace FundooRepository.Repository
         {
             return this.userContext.Labels.ToList<LabelModel>();
         }
+
         /// <summary>
         /// Gets the label.
         /// </summary>
@@ -96,8 +100,8 @@ namespace FundooRepository.Repository
         /// <returns></returns>
         public List<LabelModel> GetLabel(string email)
         {
-            var note = userContext.Labels.Where(r => r.Email == email).FirstOrDefault();
-            if (note != null)
+            bool note = userContext.Labels.Any(r => r.Email == email);
+            if (note)
             {
                 return userContext.Labels.Where(r => r.Email == email).ToList();
             }

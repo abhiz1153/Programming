@@ -11,6 +11,7 @@ namespace Common.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Text;
+
     /// <summary>
     /// public class for ResetPasswordModel
     /// </summary>
@@ -20,10 +21,12 @@ namespace Common.Models
         /// The email
         /// </summary>
         private string email;
+
         /// <summary>
         /// The password
         /// </summary>
         private string password;
+
         /// <summary>
         /// Gets or sets the email.
         /// </summary>
@@ -37,6 +40,7 @@ namespace Common.Models
             set { this.email = value; }
             get { return this.email; }
         }
+
         /// <summary>
         /// Gets or sets the password.
         /// </summary>

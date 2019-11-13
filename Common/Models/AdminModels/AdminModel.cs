@@ -8,6 +8,7 @@ namespace Common.Models.AdminModels
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
     /// <summary>
     ///  public class AdminModel
     /// </summary>
@@ -17,18 +18,22 @@ namespace Common.Models.AdminModels
         /// The identifier
         /// </summary>
         private int id;
+
         /// <summary>
         /// The email
         /// </summary>
         private string email;
+
         /// <summary>
         /// The login time
         /// </summary>
         private string loginTime;
+
         /// <summary>
         /// The service
         /// </summary>
         private string service;
+
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
@@ -41,6 +46,7 @@ namespace Common.Models.AdminModels
             set { this.id = value; }
             get { return this.id; }
         }
+
         /// <summary>
         /// Gets or sets the email.
         /// </summary>
@@ -53,6 +59,7 @@ namespace Common.Models.AdminModels
             set { this.email = value; }
             get { return this.email; }
         }
+
         /// <summary>
         /// Gets or sets the login time.
         /// </summary>
@@ -64,6 +71,7 @@ namespace Common.Models.AdminModels
             set { this.loginTime = value; }
             get { return this.loginTime; }
         }
+
         /// <summary>
         /// Gets or sets the service.
         /// </summary>

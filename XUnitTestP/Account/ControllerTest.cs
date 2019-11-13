@@ -10,10 +10,8 @@ namespace XUnitTestP.Account
     using Common.Models;
     using FundooNoteApi.Controllers;
     using Moq;
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
     using Xunit;
+
     /// <summary>
     /// public class for ControllerTest
     /// </summary>
@@ -38,6 +36,7 @@ namespace XUnitTestP.Account
             var data = controller.Registration(add);
             Assert.NotNull(data);
         }
+
         /// <summary>
         /// Logins this instance.
         /// </summary>
@@ -54,6 +53,7 @@ namespace XUnitTestP.Account
             var data = controller.Login(login);
             Assert.NotNull(data);
         }
+
         /// <summary>
         /// Forgets the password.
         /// </summary>
@@ -69,6 +69,7 @@ namespace XUnitTestP.Account
             var data = controller.ForgetPassword(add);
             Assert.NotNull(data);
         }
+
         /// <summary>
         /// Resets the password.
         /// </summary>
@@ -81,11 +82,11 @@ namespace XUnitTestP.Account
             {
                 Email = "abhiz@gmail.com",
                 Password = "pasworedeedc"
-
             };
             var data = controller.ResetPassword(add);
             Assert.NotNull(data);
         }
+
         /// <summary>
         /// Facebook login.
         /// </summary>
@@ -97,11 +98,11 @@ namespace XUnitTestP.Account
             var add = new LoginModel()
             {
                 Email = "abhiz@gmail.com"
-
             };
             var data = controller.FacebookLogin(add);
             Assert.NotNull(data);
         }
+
         /// <summary>
         /// Google login.
         /// </summary>
@@ -113,7 +114,6 @@ namespace XUnitTestP.Account
             var add = new LoginModel()
             {
                 Email = "abhiz@gmail.com"
-
             };
             var data = controller.GoogleLogin(add);
             Assert.NotNull(data);

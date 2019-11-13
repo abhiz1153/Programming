@@ -8,6 +8,7 @@ namespace Common.Models.CollaboratorsModels
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
     /// <summary>
     /// public class CollaboratorsModel
     /// </summary>
@@ -17,18 +18,22 @@ namespace Common.Models.CollaboratorsModels
         /// The identifier
         /// </summary>
         private int id;
+
         /// <summary>
         /// The sender email
         /// </summary>
         private string senderEmail;
+
         /// <summary>
         /// The note identifier
         /// </summary>
         private int noteId;
+
         /// <summary>
         /// The reciver email
         /// </summary>
         private string reciverEmail;
+
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
@@ -40,6 +45,7 @@ namespace Common.Models.CollaboratorsModels
             set { this.id = value; }
             get { return this.id; }
         }
+
         /// <summary>
         /// Gets or sets the sender email.
         /// </summary>
@@ -53,6 +59,7 @@ namespace Common.Models.CollaboratorsModels
             set { this.senderEmail = value; }
             get { return this.senderEmail; }
         }
+
         /// <summary>
         /// Gets or sets the note identifier.
         /// </summary>
@@ -64,6 +71,7 @@ namespace Common.Models.CollaboratorsModels
             set { this.noteId = value; }
             get { return this.noteId; }
         }
+
         /// <summary>
         /// Gets or sets the reciver email.
         /// </summary>

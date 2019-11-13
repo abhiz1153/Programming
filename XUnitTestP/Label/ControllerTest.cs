@@ -10,6 +10,7 @@ namespace XUnitTestP.Label
     using FundooNoteApi.Controllers;
     using Moq;
     using Xunit;
+
     /// <summary>
     ///  public class for ControllerTest
     /// </summary>
@@ -27,11 +28,12 @@ namespace XUnitTestP.Label
             {
                 Email = "abhishek@gmail.com",
                 Label = "qwerty"
-              
+
             };
             var data = controller.Add(add);
             Assert.NotNull(data);
         }
+
         /// <summary>
         /// Updates the label.
         /// </summary>
@@ -49,6 +51,7 @@ namespace XUnitTestP.Label
             var data = controller.Add(update);
             Assert.NotNull(data);
         }
+
         /// <summary>
         /// Deletes the label.
         /// </summary>
