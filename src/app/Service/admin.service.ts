@@ -10,4 +10,15 @@ export class AdminService {
   userStatic() {
     return this.http.get(this.rootUrl + '/loginlist');
   }
+  registerAdmin(user) {
+    const body = {
+      FirstName: user.firstName,
+      LastName: user.lastName,
+      Email: user.email,
+      Password: user.password
+    };
+    console.log('test', body);
+    return this.http.post(this.rootUrl + '/add', body);
+  }
+
 }

@@ -1,7 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-
 import { LabelsService } from './labels.service';
-
 describe('LabelsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 

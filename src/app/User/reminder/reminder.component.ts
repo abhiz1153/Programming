@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NotesService} from 'src/app/Service/notes.service';
+import { NotesService } from 'src/app/Service/notes.service';
 @Component({
   selector: 'app-reminder',
   templateUrl: './reminder.component.html',
@@ -13,6 +13,6 @@ export class ReminderComponent implements OnInit {
   ngOnInit() {
     this.notesService.GetReminder(this.userData.email).subscribe((data: any) => {
       this.notes = data;
-  });
+    });
   }
 }

@@ -4,8 +4,8 @@
   overflow: initial;
 }
 .tool{
-    min-height: 100%;
-    height: 100%;
+    min-height: 500px;
+    height: auto;
     width: 100%;
     min-width: 100%;
 
@@ -94,27 +94,27 @@
     margin-top: -9%;
     margin-left: -19%;
 }
-.search-bar {
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    width: 42vw;
-    height: 15px;
-    left: 27%;
-    top: 2.7%;
-    border-radius: 21px;
-    box-shadow: 0 1px 20px 1px;
+.search-bar {   
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  width: 48vw;
+  height: 56px;
+  left: 29%;
+  top: 0.7%;
+  border-radius: 16px;
+  outline: none;
 }
 .refresh-button{
     position: absolute;
     left:78%;
-    top:3%;
+
     outline: none;
   }
   .listview-button{
     position: absolute;
     left:83%;
-    top:3%;
+    margin-top: -30px;
     outline: none;
   }
   .settings-button{
@@ -130,15 +130,14 @@
     border-radius: 50%;
   }
   .search-button,#search-button {
-    margin-top: -11px;
     outline: none;
   }
 .form-control {
     width: 90%;
     height: 25px;
     border: none;
+    outline: none;
     font-size: 16px;
-    margin-top: -11px;
     outline: none;
 
 }
@@ -151,10 +150,8 @@
 .timg{
     margin-top: -4%;
 }
-.profile{
-  display: flex;
-  justify-content: center;
-  margin-left: 75%;
+.profile{ 
+  margin-left: 72%;
   outline: none;
 }
 .profilemenu{
@@ -171,7 +168,13 @@
 // }
 
 ::ng-deep .cdk-overlay-pane {
-  margin-top: 70px;
+  margin-top: 12px;
+}
+::ng-deep .mat-menu-content:not(:empty) {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 ::ng-deep .mat-drawer-inner-container {
   width: 100%;
@@ -179,9 +182,10 @@
   overflow: visible !important;
 }
 .imgclass{
-  height: 40px;
-  width: 40px;
-  border-radius: 25px;
+  margin-top: -18px;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
 }
 .changepic{
   height: 100px;

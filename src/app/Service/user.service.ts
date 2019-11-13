@@ -9,7 +9,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   registerUser(user, card) {
-   const body = {
+    const body = {
       FirstName: user.firstName,
       LastName: user.lastName,
       Email: user.email,
@@ -20,48 +20,55 @@ export class UserService {
     console.log('test', body);
     return this.http.post(this.rootUrl + 'api/account/register', body);
   }
- loginUser(user) {
-   const body = {
-     Email: user.email,
-     Password: user.password
-   };
-   console.log('test', body);
+  loginUser(user) {
+    const body = {
+      Email: user.email,
+      Password: user.password
+    };
+    console.log('test', body);
     return this.http.post(this.rootUrl + 'api/account/login', body);
- }
+  }
 
- forgetPassword(user) {
-   const body = {
-     Email: user.email
-   };
-   return this.http.put(this.rootUrl + 'api/account/forgetpassword', body);
- }
- facebook(user) {
-   const body = {
-     Email: user
-   };
-   console.log('data in user service', user);
-   return this.http.post(this.rootUrl + 'api/account/facebooklogin', body);
- }
- google(user) {
-  const body = {
-    Email: user
-  };
-  console.log('data in user service', user);
-  return this.http.post(this.rootUrl + 'api/account/google', body);
-}
-getProfile(email , formData) {
-  console.log('data in user service', formData);
-return this.http.put(this.rootUrl + 'api/account/upload?email=' + email , formData);
-}
-adminLogin(user) {
-  const body = {
-    Email: user.email,
-    Password: user.password
-  };
-  console.log('test', body);
-   return this.http.post(this.rootUrl + 'api/admin/login', body);
-}
-userList() {
-  return this.http.get(this.rootUrl + 'api/account/viewall');
-}
+  forgetPassword(user) {
+    const body = {
+      Email: user.email
+    };
+    return this.http.put(this.rootUrl + 'api/account/forgetpassword', body);
+  }
+  facebook(user) {
+    const body = {
+      Email: user
+    };
+    console.log('data in user service', user);
+    return this.http.post(this.rootUrl + 'api/account/facebooklogin', body);
+  }
+  google(user) {
+    const body = {
+      Email: user
+    };
+    console.log('data in user service', user);
+    return this.http.post(this.rootUrl + 'api/account/google', body);
+  }
+  getProfile(email, formData) {
+    console.log('data in user service', formData);
+    return this.http.put(this.rootUrl + 'api/account/upload?email=' + email, formData);
+  }
+  adminLogin(user) {
+    const body = {
+      Email: user.email,
+      Password: user.password
+    };
+    console.log('test', body);
+    return this.http.post(this.rootUrl + 'api/admin/login', body);
+  }
+  userList() {
+    return this.http.get(this.rootUrl + 'api/account/viewall');
+  }
+  logout(email) {
+    const body = {
+      Email: email,
+    };
+    return this.http.post(this.rootUrl + 'api/account/logout', body);
+    console.log(email);
+  }
 }

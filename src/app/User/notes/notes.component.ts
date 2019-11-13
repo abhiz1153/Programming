@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NotesService } from 'src/app/Service/notes.service';
 import { FormGroup } from '@angular/forms';
 
@@ -22,12 +22,12 @@ export class NotesComponent implements OnInit {
   ngOnInit() {
   }
   onclick() {
-     this.popup1 = true;
-     this.popup2 = false;
+    this.popup1 = true;
+    this.popup2 = false;
   }
   back() {
     this.popup1 = false;
-     this.popup2 = true;
-     this.noteService.AddNotes(this.title, this.description, this.userData.email).subscribe((data: any) => { });
+    this.popup2 = true;
+    this.noteService.AddNotes(this.title, this.description, this.userData.email).subscribe((data: any) => { });
   }
 }

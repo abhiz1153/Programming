@@ -12,28 +12,25 @@ export class CollaboratorComponent implements OnInit {
   items = [];
   addemail: string;
   userData = JSON.parse(localStorage.getItem('userData'));
-  constructor( private collaboratordailog: MatDialogRef<CollaboratorComponent>,
-        @Inject(MAT_DIALOG_DATA) private data, private collaborator: CollaboratorService) {
-      this.note = this.data.notesData;
-     }
+  constructor(private collaboratordailog: MatDialogRef<CollaboratorComponent>,
+    @Inject(MAT_DIALOG_DATA) private data, private collaborator: CollaboratorService) {
+    this.note = this.data.notesData;
+  }
 
   ngOnInit() {
     this.getList();
   }
   sendData() {
-   this.collaborator.add(this.userData.email, this.note.id, this.addemail).subscribe((data: any) => {
-    console.log(data.result);
-  });
+    this.collaborator.add(this.userData.email, this.note.id, this.addemail).subscribe((data: any) => {
+    });
   }
   getList() {
     this.collaborator.getCollaborators(this.note.id).subscribe((status: any) => {
-   console.log('colaborators', status);
-   this.items = status;
+      this.items = status;
     });
   }
   deleteCollaborator(id) {
     this.collaborator.removeCollaborator(id).subscribe((status: any) => {
-      console.log(status);
       this.collaboratordailog.close();
     });
   }

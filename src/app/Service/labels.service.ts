@@ -15,7 +15,7 @@ export class LabelsService {
       label: label,
       email: email
     };
-    return this.http.post(this.rootUrl + '/add' , body);
+    return this.http.post(this.rootUrl + '/add', body);
   }
   editLabel(id, label) {
     const newdata = {

@@ -56,7 +56,7 @@
 </div>
 
 <div class="main" *ngIf="!cardss">
-    <mat-card style=" display: flex; justify-content: center;width: 33%;margin: auto; height: 60%; margin-top: 45px;">
+    <mat-card style=" display: flex; justify-content: center;width: auto;margin: auto; height: auto; margin-top: 45px;">
         <form [formGroup]='login'>
             <mat-card-title>
                 <div class="title">
@@ -68,31 +68,33 @@
                     <p class="t6">O</p>
                 </div>
             </mat-card-title>
-            <h3 class="heading">Sign In As Admin</h3>
-            <p class="msg">To Continue Your FUNDOO Account</p>
+            <h3 class="Adminheading">Sign In As Admin</h3>
+            <p class="msg" style="display: flex;justify-content: center;font-size: small;">To Continue Your FUNDOO Admin
+                Account</p>
             <div class="email">
-                <mat-form-field class="password" appearance="outline">
+                <mat-form-field class="AdminInput" appearance="outline">
                     <mat-label for="email">Email</mat-label>
                     <input matInput placeholder=" " type="text" formControlName="email">
-                    <mat-error *ngIf="login.get('email').hasError('required')">
+                    <mat-error style="margin-top: 17%;" *ngIf="login.get('email').hasError('required')">
                         Enter Email.
                     </mat-error>
                 </mat-form-field>
             </div>
             <div class="password">
-                <mat-form-field class="password" appearance="outline">
+                <mat-form-field class="AdminInput" appearance="outline">
                     <mat-label for="password">Password</mat-label>
                     <input matInput placeholder=" " type="password" formControlName="password">
-                    <mat-error *ngIf="login.get('password').hasError('required')">
+                    <mat-error style="margin-top: 17%;" *ngIf="login.get('password').hasError('required')">
                         Enter Password.
                     </mat-error>
                 </mat-form-field>
             </div>
             <div class="buttons">
-                <button type="submit" (click)="adminLogin()" class="signin" mat-button id="SUBMIT">SIGN IN</button>
+                <button style="margin-top: 10%;margin-right: 8%;" type="submit" (click)="adminLogin()" class="signin"
+                    mat-button id="SUBMIT">SIGN IN</button>
             </div>
             <div class="register">
-                <a mat-button routerLink="/register">Create New User</a>
+                <a mat-button routerLink="/adminRegistration">Create Admin</a>
             </div>
         </form>
     </mat-card>

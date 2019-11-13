@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RegisterComponent } from './register.component';
-import { ReactiveFormsModule , FormsModule} from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { MatButtonModule, MatCardModule } from '@angular/material';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {CardsComponent} from '../cards/cards.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { CardsComponent } from '../cards/cards.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -15,7 +15,7 @@ describe('RegisterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterComponent , CardsComponent],
+      declarations: [RegisterComponent, CardsComponent],
       imports: [ReactiveFormsModule,
         FormsModule,
         MatSnackBarModule,
@@ -28,10 +28,10 @@ describe('RegisterComponent', () => {
         BrowserAnimationsModule,
         MatToolbarModule,
         HttpClientModule
-     ]
+      ]
 
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

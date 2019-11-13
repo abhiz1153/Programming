@@ -14,9 +14,8 @@ export class TrashComponent implements OnInit {
   ngOnInit() {
     this.notesService.GetTrash(this.userData.email).subscribe((data: any) => {
       this.notes = data;
-  });
-}
-
+    });
+  }
   restoreAll() {
     this.notesService.RestoreAll(this.userData.email).subscribe((data: any) => {
     });

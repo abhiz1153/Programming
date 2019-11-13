@@ -1,4 +1,4 @@
-import { Component, OnInit , Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NotesService } from 'src/app/Service/notes.service';
 
@@ -9,12 +9,12 @@ import { NotesService } from 'src/app/Service/notes.service';
 })
 export class EditComponent implements OnInit {
   note;
-  constructor( private dialogRef: MatDialogRef<EditComponent>,
-                @Inject(MAT_DIALOG_DATA) private data,
-                private noteService: NotesService
+  constructor(private dialogRef: MatDialogRef<EditComponent>,
+    @Inject(MAT_DIALOG_DATA) private data,
+    private noteService: NotesService
   ) {
-  this.note = this.data.notesData;
-   }
+    this.note = this.data.notesData;
+  }
 
   ngOnInit() {
   }

@@ -7,9 +7,9 @@ import { LabelsService } from 'src/app/Service/labels.service';
   styleUrls: ['./labels.component.scss']
 })
 export class LabelsComponent implements OnInit {
-label: string;
-labels = [];
-userData = JSON.parse(localStorage.getItem('userData'));
+  label: string;
+  labels = [];
+  userData = JSON.parse(localStorage.getItem('userData'));
   constructor(private labelservice: LabelsService) { }
 
   ngOnInit() {
@@ -20,8 +20,7 @@ userData = JSON.parse(localStorage.getItem('userData'));
   addLabel() {
     this.labelservice.createLabel(this.label, this.userData.email).subscribe((data: any) => { });
   }
-    updateLabel(id, value) {
-    console.log(id, value);
+  updateLabel(id, value) {
     this.labelservice.editLabel(id, value).subscribe((data: any) => { });
   }
   deleteLabels(id) {
