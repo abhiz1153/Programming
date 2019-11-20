@@ -1,0 +1,16 @@
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\bin\Debug\netcoreapp2.1\appsettings.Development.json
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\bin\Debug\netcoreapp2.1\WebSecurity.deps.json
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\bin\Debug\netcoreapp2.1\WebSecurity.runtimeconfig.json
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\bin\Debug\netcoreapp2.1\WebSecurity.runtimeconfig.dev.json
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\bin\Debug\netcoreapp2.1\WebSecurity.dll
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\obj\Debug\netcoreapp2.1\WebSecurity.csprojAssemblyReference.cache
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\obj\Debug\netcoreapp2.1\WebSecurity.RazorAssemblyInfo.cache
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\obj\Debug\netcoreapp2.1\WebSecurity.RazorAssemblyInfo.cs
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\obj\Debug\netcoreapp2.1\WebSecurity.AssemblyInfoInputs.cache
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\obj\Debug\netcoreapp2.1\WebSecurity.AssemblyInfo.cs
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\obj\Debug\netcoreapp2.1\WebSecurity.RazorTargetAssemblyInfo.cache
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\bin\Debug\netcoreapp2.1\WebSecurity.pdb
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\obj\Debug\netcoreapp2.1\WebSecurity.dll
+C:\Users\admin\source\repos\WebSecurity\WebSecurity\obj\Debug\netcoreapp2.1\WebSecurity.pdb
