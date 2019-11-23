@@ -30,7 +30,8 @@ namespace WebSecurity
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-           services.AddTransient<Cryptography, Cryptography>();
+            services.AddTransient<Cryptography, Cryptography>();
+            services.AddTransient<MD5Implement, MD5Implement>();
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
             var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:secret"].ToString());
             services.AddAuthentication(x =>

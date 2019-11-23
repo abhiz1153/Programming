@@ -9,8 +9,8 @@ using WebSecurity.Repository;
 
 namespace WebSecurity.Controllers
 {
-    //[Route("api/[controller]")]
-    //[ApiController]
+    [Route("api/[controller]")]
+    [ApiController]
     public class CryptographyController : ControllerBase
     {
         private readonly Cryptography cryptography;
